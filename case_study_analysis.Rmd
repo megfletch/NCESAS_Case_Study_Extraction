@@ -1,0 +1,173 @@
+---
+title: "SNAPP Case Study Analysis"
+author: "Meghan Fletcher"
+date: "10/19/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Loading the necessary packages
+library(tidyverse)
+library(googlesheets4)
+library(here)
+library(janitor)
+
+#for text mining open responses
+library(tidytext)
+library(textdata)
+library(ggwordcloud)
+```
+
+```{r}
+#gs4_auth() # Run this in console with your email address. It allow R to access your google sheets
+```
+
+# Reading in the data
+
+```{r}
+# Pull in the data from your google spreadsheets
+kathy_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1q4gdm5N2AuBKAxaguPaKQWM6FkAnoK1Dqf5Zyb2PXVY/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+eurich_KiribatiClam <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68puKO2f1huE-mJO4EcgeLpYdijEz6gP-pyk/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() #%>%
+  #remove_empty(which = c("rows", "cols")) 
+  #not sure if the remove will be best when analyzing multiple sheets
+
+dickey_collas_EUR <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+dickey_collas_EUR <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+hollowed_kasperski_BeringSea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/180-RTmWdELLWcqLHxqmhCXOthjtdjxB_I_LZ38vUj98/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+burden_PacificSardine <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15EGC7TPV_nvKhOAoDi7bTJv1l3qlor_v/edit#gid=1766513209", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+aguion_barnacles <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1n6GKgX3_JklLeqoWgXetbgkx9gO6l8IE/edit#gid=20792413032", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+```
+
+# Testing the analysis
+
+```{r}
+#Analysing data
+
+#This is binding the response sheets together into one sheet so it will be easier to analyze
+test_section_bind <- bind_rows(test_section0, test_section1)
+
+#This is filtering to a specific question so that the question can be analyzed
+test_section_bind_filter1 <- test_section_bind %>%
+  filter(question_id == "4.1.1.1")
+
+# Analyzing a multiple choice questions performing  a count
+s4q1_count <- count(test_section_bind_filter1, test_section_bind_filter1$score_1_4)
+
+s4q1_plot <- ggplot(test_section_bind_filter1, aes(x = score_1_4)) +
+  geom_bar() +
+  labs(caption = test_section_bind_filter1$definition_questions[1], x = "Reponses", y = "Count", title = test_section_bind_filter1$definition_questions[1])
+
+plot(s4q1_plot)
+  #ggtitle(test_section4_bind_filter1$definition_questions[1]) 
+  
+
+s4_data_quality_count <- count(test_section_bind, test_section_bind$information_quality)
+
+s4_mechanism <- count(test_section_bind, test_section_bind$does_the_mechanism_work_as_described_in_your_system)
+
+
+# This is making bar graphs of the counts.
+mechanism_plot <- ggplot(test_section_bind, aes(x = does_the_mechanism_work_as_described_in_your_system)) +
+  geom_bar()
+
+s4_data_quality_plot <- ggplot(test_section_bind, aes(x = information_quality)) +
+  geom_bar()
+
+
+#This calling the counts and plots to be displayed
+s4q1_count
+s4_data_quality_count
+s4_mechanism
+s4q1_plot #I'm having trouble getting the full question to render and it would be good to have the columns be the actual responses instead of just a,b,c.
+mechanism_plot
+s4_data_quality_plot
+
+
+```
+
+
+
