@@ -26,11 +26,11 @@ library(ggwordcloud)
 #gs4_auth() # Run this in console with your email address. It allow R to access your google sheets
 ```
 
-# Reading in the data
+# Looking at the data one column at a time
 
 ```{r}
 # Pull in the data from your google spreadsheets
-kathy_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1q4gdm5N2AuBKAxaguPaKQWM6FkAnoK1Dqf5Zyb2PXVY/edit#gid=1980661832", 
+kathy_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1KX9bKyduCYkHMT1ovdSea97GFdLcLv7Q/edit#gid=1070941345", 
                            sheet = "S4_ResilienceAttributes",
                            range = "A6:T7",
                            col_names = TRUE,
@@ -69,17 +69,17 @@ dickey_collas_EUR <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QV
   clean_names()
 
 
-dickey_collas_EUR <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
-                           sheet = "S4_ResilienceAttributes",
-                           range = "A6:T7",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names()
+#aguion_barnacle <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1n6GKgX3_JklLeqoWgXetbgkx9gO6l8IE/edit?rtpof=true", 
+#                           sheet = "S4_ResilienceAttributes",
+#                           range = "A6:T7",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()
 
 
 hollowed_kasperski_BeringSea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/180-RTmWdELLWcqLHxqmhCXOthjtdjxB_I_LZ38vUj98/edit#gid=1980661832", 
@@ -95,7 +95,20 @@ hollowed_kasperski_BeringSea <-read_sheet(ss = "https://docs.google.com/spreadsh
   clean_names()
 
 
-burden_PacificSardine <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15EGC7TPV_nvKhOAoDi7bTJv1l3qlor_v/edit#gid=1766513209", 
+#burden_sardine <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/15EGC7TPV_nvKhOAoDi7bTJv1l3qlor_v/edit#gid=2051385825", 
+#                           sheet = "S4_ResilienceAttributes",
+#                           range = "A6:T7",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()
+
+
+free_crab <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwfeIFH1gr7mvNxskICya6qFrVZngPwGM/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
                            range = "A6:T7",
                            col_names = TRUE,
@@ -108,7 +121,7 @@ burden_PacificSardine <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/
   clean_names()
 
 
-aguion_barnacles <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1n6GKgX3_JklLeqoWgXetbgkx9gO6l8IE/edit#gid=20792413032", 
+kleisner_jfi <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QULIY4H7eCYAcSSXapYH1yMKe6jLMZ6TaBEYI/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
                            range = "A6:T7",
                            col_names = TRUE,
@@ -120,6 +133,44 @@ aguion_barnacles <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1n6GK
   as_tibble() %>%
   clean_names()
 
+
+lau_png <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqvT7lXb54C3t7kS7nHgfQP7o2ArlybY/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+#westfall_msf <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1uz7nb_aJ2cPK8txdiOY9SWnHc5M45Rs2/edit#gid=1818956842", 
+#                           sheet = "S4_ResilienceAttributes",
+#                           range = "A6:T7",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()
+
+
+zhoa_moorea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4BQgT2i-3rnl2tt6ja2kZuUJc63HkrUQ/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
 ```
 
 # Testing the analysis
@@ -128,7 +179,7 @@ aguion_barnacles <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1n6GK
 #Analysing data
 
 #This is binding the response sheets together into one sheet so it will be easier to analyze
-test_section_bind <- bind_rows(test_section0, test_section1)
+test_section_bind <- bind_rows(kathy_lobster, dickey_collas_EUR, eurich_KiribatiClam, free_crab, hollowed_kasperski_BeringSea, kleisner_jfi, lau_png, zhoa_moorea)
 
 #This is filtering to a specific question so that the question can be analyzed
 test_section_bind_filter1 <- test_section_bind %>%
@@ -165,9 +216,181 @@ s4_mechanism
 s4q1_plot #I'm having trouble getting the full question to render and it would be good to have the columns be the actual responses instead of just a,b,c.
 mechanism_plot
 s4_data_quality_plot
+```
+
+###############################################################################################################################################
+
+# Section 4 Analysis
+
+```{r, include=FALSE}
+#This will read in all of the data for section 4
+
+### This appears ot change the data columns names for some reason...
+
+mills_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1KX9bKyduCYkHMT1ovdSea97GFdLcLv7Q/edit#gid=1070941345", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+eurich_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68puKO2f1huE-mJO4EcgeLpYdijEz6gP-pyk/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+dc_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+hk_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/180-RTmWdELLWcqLHxqmhCXOthjtdjxB_I_LZ38vUj98/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+free_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwfeIFH1gr7mvNxskICya6qFrVZngPwGM/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+kleisner_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QULIY4H7eCYAcSSXapYH1yMKe6jLMZ6TaBEYI/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+lau_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqvT7lXb54C3t7kS7nHgfQP7o2ArlybY/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+zhoa_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4BQgT2i-3rnl2tt6ja2kZuUJc63HkrUQ/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:M61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+s4_bind <- bind_rows(mills_s4, eurich_s4, dc_s4, hk_s4, free_s4, kleisner_s4, lau_s4, zhoa_s4)
+
+```
+
+
+```{r}
+#information Quality Analysis
+
+s4_data_quality_count <- count(s4_bind, s4_bind$information_quality)
+
+s4_data_quality_plot <- ggplot(s4_bind, aes(x = information_quality)) +
+  geom_bar()
+
+s4_data_quality_count
+s4_data_quality_plot
+
+```
+
+```{r}
+# Analyzing if the mechanisms are generally working
+
+s4_mechanism_count <- count(s4_bind, s4_bind$does_the_mechanism_work_as_described_in_your_system)
+
+s4_mechanism_plot <- ggplot(s4_bind, aes(x = does_the_mechanism_work_as_described_in_your_system)) + 
+  geom_bar()
+
+s4_mechanism_count
+s4_mechanism_plot
+
+```
+
+```{r echo=FALSE}
+# This will be for testing text analysis
+
+s4_notes_tokens <- s4_bind %>%
+  unnest_tokens(word, notes) %>%
+  select(word) %>%
+  drop_na()
+
+s4_notes_wc <- s4_notes_tokens %>%
+  count(word) %>%
+  arrange(-n) 
+
+s4_notes_no_stop_numeric <- s4_notes_tokens %>%
+  anti_join(stop_words) %>%
+  dplyr::filter(is.na(as.numeric(word)))
+
+#Below here will be making a word cloud
+
+s4_notes_100 <- s4_notes_no_stop_numeric %>%
+  count(word) %>%
+  arrange(-n) %>%
+  head(100)
+
+s4_notes_cloud <- ggplot(data = s4_notes_100, aes(label = word, size = n)) +
+  geom_text_wordcloud(aes(color = n), shape = "diamond") +
+  scale_size_area(max_size = 15) +
+  #scale_color_gradient(colors = c("darkgreen", "blue", "purple")) +
+  theme_minimal()
+
+s4_notes_cloud
 
 
 ```
+
+
 
 
 
