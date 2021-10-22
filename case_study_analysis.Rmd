@@ -198,15 +198,16 @@ plot(s4q1_plot)
 
 s4_data_quality_count <- count(test_section_bind, test_section_bind$information_quality)
 
-s4_mechanism <- count(test_section_bind, test_section_bind$does_the_mechanism_work_as_described_in_your_system)
+s4_mechanism <- count(test_section_bind, test_section_bind$does_the_mechanism_work_as_described_in_this_fishery_system)
 
 
 # This is making bar graphs of the counts.
-mechanism_plot <- ggplot(test_section_bind, aes(x = does_the_mechanism_work_as_described_in_your_system)) +
+mechanism_plot <- ggplot(test_section_bind, aes(x = does_the_mechanism_work_as_described_in_this_fishery_system)) +
   geom_bar()
 
 s4_data_quality_plot <- ggplot(test_section_bind, aes(x = information_quality)) +
-  geom_bar()
+  geom_bar() +
+  coord_flip()
 
 
 #This calling the counts and plots to be displayed
@@ -225,11 +226,11 @@ s4_data_quality_plot
 ```{r, include=FALSE}
 #This will read in all of the data for section 4
 
-### This appears ot change the data columns names for some reason...
+### This appears to change the data columns names for some reason...
 
 mills_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1KX9bKyduCYkHMT1ovdSea97GFdLcLv7Q/edit#gid=1070941345", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -241,7 +242,7 @@ mills_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1K
 
 eurich_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68puKO2f1huE-mJO4EcgeLpYdijEz6gP-pyk/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -253,7 +254,7 @@ eurich_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68pu
 
 dc_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -265,7 +266,7 @@ dc_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C
 
 hk_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/180-RTmWdELLWcqLHxqmhCXOthjtdjxB_I_LZ38vUj98/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -278,7 +279,7 @@ hk_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/180-RTmWdELLWcqL
 
 free_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwfeIFH1gr7mvNxskICya6qFrVZngPwGM/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -290,7 +291,7 @@ free_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwf
 
 kleisner_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QULIY4H7eCYAcSSXapYH1yMKe6jLMZ6TaBEYI/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -302,7 +303,7 @@ kleisner_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QUL
 
 lau_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqvT7lXb54C3t7kS7nHgfQP7o2ArlybY/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -314,7 +315,7 @@ lau_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqv
 
 zhoa_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4BQgT2i-3rnl2tt6ja2kZuUJc63HkrUQ/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
-                           range = "A6:M61",
+                           range = "A6:P61",
                            col_names = TRUE,
                            na = "",
                            guess_max = 10000,
@@ -325,36 +326,89 @@ zhoa_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4B
   clean_names()
 
 
-s4_bind <- bind_rows(mills_s4, eurich_s4, dc_s4, hk_s4, free_s4, kleisner_s4, lau_s4, zhoa_s4)
+s4_bind <- bind_rows(mills_s4, eurich_s4, dc_s4, hk_s4, free_s4, kleisner_s4, lau_s4, zhoa_s4) 
+
 
 ```
 
 
 ```{r}
-#information Quality Analysis
+#Information Quality Analysis
 
 s4_data_quality_count <- count(s4_bind, s4_bind$information_quality)
 
 s4_data_quality_plot <- ggplot(s4_bind, aes(x = information_quality)) +
-  geom_bar()
+  geom_bar() +
+  coord_flip()
 
 s4_data_quality_count
 s4_data_quality_plot
 
 ```
 
+
 ```{r}
 # Analyzing if the mechanisms are generally working
 
-s4_mechanism_count <- count(s4_bind, s4_bind$does_the_mechanism_work_as_described_in_your_system)
+s4_mechanism_count <- count(s4_bind, s4_bind$does_the_mechanism_work_as_described_in_this_fishery_system)
 
-s4_mechanism_plot <- ggplot(s4_bind, aes(x = does_the_mechanism_work_as_described_in_your_system)) + 
-  geom_bar()
+s4_mechanism_plot <- ggplot(s4_bind, aes(x = does_the_mechanism_work_as_described_in_this_fishery_system)) + 
+  geom_bar() 
 
 s4_mechanism_count
 s4_mechanism_plot
+```
+
+
+```{r}
+# This makes a graph of the scores of the different resilience attributes based on dimension
+
+#Ecological
+ecological_scores <- s4_bind %>% 
+  filter(dimensions == "Ecological")
+
+ecological_scores_count <- count(ecological_scores, ecological_scores$score_1_4)
+
+ecological_scores_graph <- ggplot(ecological_scores, aes(x = score_1_4)) + 
+  geom_bar() 
+
+#Socioeconomic
+socioeconomic_scores <- s4_bind %>% 
+  filter(dimensions == "Social-economic")
+
+socioeconomic_scores_count <- count(socioeconomic_scores, socioeconomic_scores$score_1_4)
+
+socioeconomic_scores_graph <- ggplot(socioeconomic_scores, aes(x = score_1_4)) + 
+  geom_bar() 
+
+#Governance
+governance_scores <- s4_bind %>% 
+  filter(dimensions == "Governance-management")
+
+governance_scores_count <- count(governance_scores, governance_scores$score_1_4)
+
+governance_scores_graph <- ggplot(governance_scores, aes(x = score_1_4)) + 
+  geom_bar() 
+
+#Results:
+ecological_scores_count
+ecological_scores_graph
+
+socioeconomic_scores_count
+socioeconomic_scores_graph
+
+governance_scores_count
+governance_scores_graph
+
+
+### I want to look at the means here but we will need to remove all NA values - this will make more sense once everyone has filled in their case studies and there are less NA values to think about omitting 
+#Means of scores across dimensions
+mean(ecologcial_scores$score_1_4)
+mena(socioeconomic_scores$score_1_4)
+mean(governance_scores$score_1_4)
 
 ```
+
 
 ```{r echo=FALSE}
 # This will be for testing text analysis
@@ -375,7 +429,7 @@ s4_notes_no_stop_numeric <- s4_notes_tokens %>%
 #Below here will be making a word cloud
 
 s4_notes_100 <- s4_notes_no_stop_numeric %>%
-  count(word) %>%
+  count(word) %>% #World liek to figure out how to remove numbers in this data column
   arrange(-n) %>%
   head(100)
 
@@ -386,7 +440,6 @@ s4_notes_cloud <- ggplot(data = s4_notes_100, aes(label = word, size = n)) +
   theme_minimal()
 
 s4_notes_cloud
-
 
 ```
 
