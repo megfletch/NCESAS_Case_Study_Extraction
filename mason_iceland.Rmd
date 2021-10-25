@@ -1,0 +1,170 @@
+---
+title: "Iceland Attributes"
+author: "Meghan Fletcher"
+date: "10/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Loading the necessary packages
+library(tidyverse)
+library(googlesheets4)
+library(here)
+library(janitor)
+library(patchwork)
+```
+
+```{r}
+#Pull in the data from Google Sheets
+mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQST-vE9TRY6DIpVnGF_6-uG97z5OP_nvPcuhc/edit#gid=1070941345", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+```
+
+```{r}
+#Information Quality Analysis
+
+s4_data_quality_count <- count(mason_iceland, mason_iceland$information_quality)
+
+s4_data_quality_plot <- ggplot(mason_iceland, aes(x = information_quality)) +
+  geom_bar() +
+  coord_flip() +
+  labs(x = "Informaiton Quality", y = "Count") +
+  theme_bw()
+
+s4_data_quality_count
+s4_data_quality_plot
+```
+
+```{r}
+# Analyzing if the mechanisms are generally working in the system
+
+mason_s4_mechanism_count <- count(mason_iceland, mason_iceland$does_the_mechanism_work_as_described_in_this_fishery_system)
+
+mason_s4_mechanism_plot <- ggplot(mason_iceland, aes(x = does_the_mechanism_work_as_described_in_this_fishery_system)) + 
+  geom_bar() +
+  labs(x = "Does the mechanism work as described?", y = "Count") +
+  theme_bw()
+
+mason_s4_mechanism_count
+mason_s4_mechanism_plot
+```
+
+```{r}
+# This makes a graph of the scores of the different resilience attributes based on dimension
+
+#Ecological
+mason_ecological_scores <- mason_iceland %>% 
+  filter(dimensions == "Ecological") %>% 
+  drop_na(score_1_4)
+
+mason_ecological_scores_count <- count(mason_ecological_scores, mason_ecological_scores$score_1_4)
+
+mason_ecological_scores_graph <- ggplot(mason_ecological_scores, aes(x = score_1_4)) + 
+  geom_bar() +
+  labs(title = "Ecological", x = "Capacity Score", y = "Count") +
+  theme_bw()
+
+#Socioeconomic
+mason_socioeconomic_scores <- mason_iceland %>% 
+  filter(dimensions == "Social-economic") %>% 
+  drop_na(score_1_4)
+
+mason_socioeconomic_scores_count <- count(mason_socioeconomic_scores, mason_socioeconomic_scores$score_1_4)
+
+mason_socioeconomic_scores_graph <- ggplot(mason_socioeconomic_scores, aes(x = score_1_4)) + 
+  geom_bar() +
+  labs(title = "Socioeconomic", x = "Capacity Score", y = "Count") +
+  theme_bw()
+
+#Governance
+mason_governance_scores <- mason_iceland %>% 
+  filter(dimensions == "Governance-management") %>% 
+  drop_na(score_1_4)
+
+mason_governance_scores_count <- count(mason_governance_scores, mason_governance_scores$score_1_4)
+
+mason_governance_scores_graph <- ggplot(mason_governance_scores, aes(x = score_1_4)) + 
+  geom_bar() +
+  labs(title = "Governance", x = "Capacity Score", y = "Count") +
+  theme_bw()
+
+
+#Results:
+mason_ecological_scores_count
+mason_socioeconomic_scores_count
+mason_governance_scores_count
+
+mason_ecological_scores_graph / mason_socioeconomic_scores_graph / mason_governance_scores_graph
+
+#Means of scores across dimensions
+#mean(mason_ecological_scores$score_1_4, na.rm = TRUE)
+#mean(socioeconomic_scores$score_1_4)
+#mean(governance_scores$score_1_4)
+
+```
+
+```{r}
+#Capacity scores by attribute
+ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4)) +
+  geom_col() +
+  coord_flip()
+
+ggplot(mason_ecological_scores, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Ecological Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
+  theme_bw() +
+  scale_fill_discrete(name = "Importance", labels=c("High", "Medium", "Low"))
+
+#scale_fill_manual("legend", values = c("High" = "green", "Medium" = "yellow", "Low" = "Red"))
+ggplot(mason_socioeconomic_scores, aes(x = resilience_attribute, y = score_1_4)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Socioeconomic Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
+  theme_bw() 
+
+ggplot(mason_governance_scores, aes(x = resilience_attribute, y = score_1_4)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Governance Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
+  theme_bw()
+```
+
+```{r}
+#Looking at column "L" - analyzing the importance of the attribute
+mason_ecological_importance_count <- count(mason_ecological_scores, mason_ecological_scores$importance_of_attribute_in_study_system_high_medium_low)
+
+ggplot(mason_ecological_scores, aes(x = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_bar() +
+  labs(title = "Ecological Attribute Scores", x = "Importance", y = "Count") +
+  theme_bw()
+
+ggplot(mason_socioeconomic_scores, aes(x = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_bar() +
+  labs(title = "Socioeconomic Attribute Scores", x = "Importance", y = "Count") +
+  theme_bw()
+
+ggplot(mason_governance_scores, aes(x = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_bar() +
+  labs(title = "Governance Attribute Scores", x = "Importance", y = "Count") +
+  theme_bw()
+```
+
+
+
+
+
+
