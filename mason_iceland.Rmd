@@ -117,30 +117,52 @@ mason_ecological_scores_graph / mason_socioeconomic_scores_graph / mason_governa
 ```
 
 ```{r}
-#Capacity scores by attribute
-ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4)) +
+#Capacity scores by attribute and importance
+ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
   geom_col() +
-  coord_flip()
+  coord_flip() +
+  labs(title = "Attribute Scores", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 0.5)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "lightgray"))
+
 
 ggplot(mason_ecological_scores, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
   geom_col() +
   coord_flip() +
-  labs(title = "Ecological Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
+  labs(title = "Ecological Attribute Scores", x = "Resilience Attributes", y = "Capacity Score (1-4)") +
   theme_bw() +
-  scale_fill_discrete(name = "Importance", labels=c("High", "Medium", "Low"))
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue"))
+
 
 #scale_fill_manual("legend", values = c("High" = "green", "Medium" = "yellow", "Low" = "Red"))
-ggplot(mason_socioeconomic_scores, aes(x = resilience_attribute, y = score_1_4)) +
+ggplot(mason_socioeconomic_scores, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
   geom_col() +
   coord_flip() +
-  labs(title = "Socioeconomic Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
-  theme_bw() 
+  labs(title = "Socioeconomic Attribute Scores", x = "Resilience Attributes", y = "Capacity Score (1-4)") +
+  theme_bw() +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "NA" = "lightgray"))
 
-ggplot(mason_governance_scores, aes(x = resilience_attribute, y = score_1_4)) +
+
+ggplot(mason_governance_scores, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
   geom_col() +
   coord_flip() +
-  labs(title = "Governance Attribute Scores", x = "Resilience Attributes", y = "Score (1-4)") +
-  theme_bw()
+  labs(title = "Governance Attribute Scores", x = "Resilience Attributes", y = "Capacity Score (1-4)") +
+  theme_bw() +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "NA" = "lightgray"))
 ```
 
 ```{r}
