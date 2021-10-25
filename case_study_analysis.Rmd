@@ -171,6 +171,19 @@ zhoa_moorea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqr
                            ) %>%
   as_tibble() %>%
   clean_names()
+
+
+mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQST-vE9TRY6DIpVnGF_6-uG97z5OP_nvPcuhc/edit#gid=1070941345", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:T7",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
 ```
 
 # Testing the analysis
@@ -179,7 +192,7 @@ zhoa_moorea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqr
 #Analyzing the data
 
 #This is binding the response sheets together into one sheet so it will be easier to analyze
-test_section_bind <- bind_rows(kathy_lobster, dickey_collas_EUR, eurich_KiribatiClam, free_crab, hollowed_kasperski_BeringSea, kleisner_jfi, lau_png, zhoa_moorea)
+test_section_bind <- bind_rows(kathy_lobster, dickey_collas_EUR, eurich_KiribatiClam, free_crab, hollowed_kasperski_BeringSea, kleisner_jfi, lau_png, zhoa_moorea, mason_iceland)
 
 #This is filtering to a specific question so that the question can be analyzed
 test_section_bind_filter1 <- test_section_bind %>%
@@ -330,7 +343,20 @@ zhoa_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4B
   clean_names()
 
 
-s4_bind <- bind_rows(mills_s4, eurich_s4, dc_s4, hk_s4, free_s4, kleisner_s4, lau_s4, zhoa_s4) 
+mason_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQST-vE9TRY6DIpVnGF_6-uG97z5OP_nvPcuhc/edit#gid=1070941345", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+s4_bind <- bind_rows(mills_s4, eurich_s4, dc_s4, hk_s4, free_s4, kleisner_s4, lau_s4, zhoa_s4, mason_s4) 
 
 
 ```
