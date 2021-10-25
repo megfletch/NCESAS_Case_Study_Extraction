@@ -176,7 +176,7 @@ zhoa_moorea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqr
 # Testing the analysis
 
 ```{r}
-#Analysing data
+#Analyzing the data
 
 #This is binding the response sheets together into one sheet so it will be easier to analyze
 test_section_bind <- bind_rows(kathy_lobster, dickey_collas_EUR, eurich_KiribatiClam, free_crab, hollowed_kasperski_BeringSea, kleisner_jfi, lau_png, zhoa_moorea)
@@ -190,7 +190,8 @@ s4q1_count <- count(test_section_bind_filter1, test_section_bind_filter1$score_1
 
 s4q1_plot <- ggplot(test_section_bind_filter1, aes(x = score_1_4)) +
   geom_bar() +
-  labs(caption = test_section_bind_filter1$definition_questions[1], x = "Reponses", y = "Count", title = test_section_bind_filter1$definition_questions[1])
+  labs(caption = test_section_bind_filter1$definition_questions[1], x = "Reponses", y = "Count", title = test_section_bind_filter1$definition_questions[1]) +
+  theme_bw()
 
 plot(s4q1_plot)
   #ggtitle(test_section4_bind_filter1$definition_questions[1]) 
@@ -203,11 +204,15 @@ s4_mechanism <- count(test_section_bind, test_section_bind$does_the_mechanism_wo
 
 # This is making bar graphs of the counts.
 mechanism_plot <- ggplot(test_section_bind, aes(x = does_the_mechanism_work_as_described_in_this_fishery_system)) +
-  geom_bar()
+  geom_bar() +
+  labs(x = "Does the mechanism work in the system?", y = "Count") +
+  theme_bw()
 
 s4_data_quality_plot <- ggplot(test_section_bind, aes(x = information_quality)) +
   geom_bar() +
-  coord_flip()
+  coord_flip() +
+  labs(x = "Information Quality", y = "Count") +
+  theme_bw()
 
 
 #This calling the counts and plots to be displayed
@@ -225,8 +230,7 @@ s4_data_quality_plot
 
 ```{r, include=FALSE}
 #This will read in all of the data for section 4
-
-### This appears to change the data columns names for some reason...
+##If all data column names are not int he same order/identical, then "x1, x2,..." will replace the column name making it difficult to perform anaylses
 
 mills_s4 <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1KX9bKyduCYkHMT1ovdSea97GFdLcLv7Q/edit#gid=1070941345", 
                            sheet = "S4_ResilienceAttributes",
@@ -339,7 +343,9 @@ s4_data_quality_count <- count(s4_bind, s4_bind$information_quality)
 
 s4_data_quality_plot <- ggplot(s4_bind, aes(x = information_quality)) +
   geom_bar() +
-  coord_flip()
+  coord_flip() +
+  labs(x = "Informaiton Quality", y = "Count") +
+  theme_bw()
 
 s4_data_quality_count
 s4_data_quality_plot
@@ -348,12 +354,14 @@ s4_data_quality_plot
 
 
 ```{r}
-# Analyzing if the mechanisms are generally working
+# Analyzing if the mechanisms are generally working in the system
 
 s4_mechanism_count <- count(s4_bind, s4_bind$does_the_mechanism_work_as_described_in_this_fishery_system)
 
 s4_mechanism_plot <- ggplot(s4_bind, aes(x = does_the_mechanism_work_as_described_in_this_fishery_system)) + 
-  geom_bar() 
+  geom_bar() +
+  labs(x = "Does the mechanism works as described?", y = "Count") +
+  theme_bw()
 
 s4_mechanism_count
 s4_mechanism_plot
@@ -370,7 +378,9 @@ ecological_scores <- s4_bind %>%
 ecological_scores_count <- count(ecological_scores, ecological_scores$score_1_4)
 
 ecological_scores_graph <- ggplot(ecological_scores, aes(x = score_1_4)) + 
-  geom_bar() 
+  geom_bar() +
+  labs(x = "Capacity Score", y = "Count") +
+  theme_bw()
 
 #Socioeconomic
 socioeconomic_scores <- s4_bind %>% 
@@ -379,7 +389,9 @@ socioeconomic_scores <- s4_bind %>%
 socioeconomic_scores_count <- count(socioeconomic_scores, socioeconomic_scores$score_1_4)
 
 socioeconomic_scores_graph <- ggplot(socioeconomic_scores, aes(x = score_1_4)) + 
-  geom_bar() 
+  geom_bar() +
+  labs(x = "Capacity Score", y = "Count") +
+  theme_bw()
 
 #Governance
 governance_scores <- s4_bind %>% 
@@ -388,7 +400,10 @@ governance_scores <- s4_bind %>%
 governance_scores_count <- count(governance_scores, governance_scores$score_1_4)
 
 governance_scores_graph <- ggplot(governance_scores, aes(x = score_1_4)) + 
-  geom_bar() 
+  geom_bar() +
+  labs(x = "Capacity Score", y = "Count") +
+  theme_bw()
+
 
 #Results:
 ecological_scores_count
@@ -403,9 +418,9 @@ governance_scores_graph
 
 ### I want to look at the means here but we will need to remove all NA values - this will make more sense once everyone has filled in their case studies and there are less NA values to think about omitting 
 #Means of scores across dimensions
-mean(ecologcial_scores$score_1_4)
-mena(socioeconomic_scores$score_1_4)
-mean(governance_scores$score_1_4)
+#mean(ecologcial_scores$score_1_4)
+#mean(socioeconomic_scores$score_1_4)
+#mean(governance_scores$score_1_4)
 
 ```
 
@@ -430,6 +445,7 @@ s4_notes_no_stop_numeric <- s4_notes_tokens %>%
 
 s4_notes_100 <- s4_notes_no_stop_numeric %>%
   count(word) %>% #World liek to figure out how to remove numbers in this data column
+  
   arrange(-n) %>%
   head(100)
 
