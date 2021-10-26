@@ -110,9 +110,22 @@ mason_governance_scores_count
 mason_ecological_scores_graph / mason_socioeconomic_scores_graph / mason_governance_scores_graph
 
 #Means of scores across dimensions
-#mean(mason_ecological_scores$score_1_4, na.rm = TRUE)
-#mean(socioeconomic_scores$score_1_4)
-#mean(governance_scores$score_1_4)
+mason_eco_mean <- (data = mason_ecological_scores) %>% 
+  select(score_1_4) 
+mason_eco_mean <- lapply(mason_eco_mean, as.numeric)
+
+mason_socio_mean <- (data = mason_socioeconomic_scores) %>% 
+  select(score_1_4) 
+mason_socio_mean <- lapply(mason_socio_mean, as.numeric)
+
+mason_gov_mean <- (data = mason_governance_scores) %>% 
+  select(score_1_4) 
+mason_gov_mean <- lapply(mason_gov_mean, as.numeric)
+
+
+mean(mason_eco_mean$score_1_4) #3
+mean(mason_socio_mean$score_1_4)
+mean(mason_gov_mean$score_1_4) #3
 
 ```
 
