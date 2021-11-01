@@ -20,19 +20,6 @@ library(janitor)
 # Read in the data from Google Sheets
 
 ```{r}
-free_dungeness <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwfeIFH1gr7mvNxskICya6qFrVZngPwGM/edit#gid=1980661832", 
-                           sheet = "S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  drop_na(score_1_4)
-
 #burden_sardine <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/15EGC7TPV_nvKhOAoDi7bTJv1l3qlor_v/edit#gid=2051385825", 
 #                           sheet = "S4_ResilienceAttributes",
 #                           range = "A6:P61",
@@ -45,45 +32,6 @@ free_dungeness <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMY
 #  as_tibble() %>%
 #  clean_names() 
 
-kleisner_juanfernandez <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QULIY4H7eCYAcSSXapYH1yMKe6jLMZ6TaBEYI/edit#gid=1980661832", 
-                           sheet = "S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  drop_na(score_1_4)
-
-#There's no data in this study
-golden_madagascar <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tZinlZ-AfuPA2-q0VFvvrHDjkrhhU8i1hqC1aweC26c/edit?usp=drive_web&ouid=108297509896161547373", 
-                           sheet = "S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names()
-
-# Kristle kanay????
-
-lau_png <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqvT7lXb54C3t7kS7nHgfQP7o2ArlybY/edit#gid=1980661832", 
-                           sheet = "S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() 
 
 collas_eur <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVlS-S0C_rUJVZ2vFbnMAEyCE7v0MIjVd1NU/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
@@ -98,6 +46,7 @@ collas_eur <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/18QVfptmhVl
   clean_names() %>% 
   drop_na(score_1_4)
 
+
 eurich_clam <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68puKO2f1huE-mJO4EcgeLpYdijEz6gP-pyk/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
                            range = "A6:P61",
@@ -111,6 +60,81 @@ eurich_clam <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/10nq_klt68
   clean_names() %>% 
   drop_na(score_1_4)
 
+
+free_dungeness <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/15ykQMYzJRbKwfeIFH1gr7mvNxskICya6qFrVZngPwGM/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  drop_na(score_1_4)
+
+
+friedman_fiji <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/17ylfR7aSucj2kuakAEOFTLOt45BYKR0hHjvaNwjvacs/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  drop_na(score_1_4)
+
+
+#There's no data in this study
+golden_madagascar <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tZinlZ-AfuPA2-q0VFvvrHDjkrhhU8i1hqC1aweC26c/edit?usp=drive_web&ouid=108297509896161547373", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+kleisner_juanfernandez <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1p6Twr7QULIY4H7eCYAcSSXapYH1yMKe6jLMZ6TaBEYI/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  drop_na(score_1_4)
+
+
+
+
+
+lau_png <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1tzobZdKlZIZSqvT7lXb54C3t7kS7nHgfQP7o2ArlybY/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() 
+
+
+
+
 mills_lobster <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufdNmc1KX9bKyduCYkHMT1ovdSea97GFdLcLv7Q/edit#gid=1980661832", 
                            sheet = "S4_ResilienceAttributes",
                            range = "A6:P61",
@@ -123,19 +147,6 @@ mills_lobster <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufd
   as_tibble() %>%
   clean_names()
 
-#Need Friedman data
-
-#westfall_hmsfishery <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1uz7nb_aJ2cPK8txdiOY9SWnHc5M45Rs2/edit#gid=1818956842", 
-#                           sheet = "S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names()
 
 mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQST-vE9TRY6DIpVnGF_6-uG97z5OP_nvPcuhc/edit#gid=1070941345", 
                            sheet = "S4_ResilienceAttributes",
@@ -150,95 +161,31 @@ mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQ
   clean_names() %>% 
   drop_na(score_1_4)
 
+#westfall_hmsfishery <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1uz7nb_aJ2cPK8txdiOY9SWnHc5M45Rs2/edit#gid=1818956842", 
+#                           sheet = "S4_ResilienceAttributes",
+#                           range = "A6:P61",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()
+
+
+#Kristle kanay????
 #Pecl data???
 #zhao data???
 ```
 
-## California Dungeness Crab Case Study (Free)
-
-```{r}
-#Has actual "NA" input into scores column - needs to be removed; also the Importance column has not been completed
-
-ggplot(free_dungeness, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low, group_by = dimensions)) +
-  geom_col() +
-  labs(title = "California Dungeness Crab Case study (Free)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
-  theme_bw() + 
-  scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(name = "Importance", 
-                      values = c("High" = "firebrick1",
-                               "Medium" = "lightgreen",
-                               "Low" = "lightblue",
-                               "NA" = "darkgray")) +
-  facet_wrap(~dimensions, scales = "free")
-```
 
 ## Pacific Sardine Case Study (Burden & Fujita)
 
 ```{r}
-
+# Not able to pull in the data
 ```
 
-## Juan Fernandez Islands Case Study (Kleisner & Cunningham)
-
-```{r}
-#Importance data is not filled in for ecological and socioeconomic sections
-
-ggplot(kleisner_juanfernandez, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
-  geom_col() +
-  labs(title = "Juan Fernandez Islands Case Study (Kleisner & Cunningham)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
-  theme_bw() + 
-  scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(name = "Importance", 
-                      values = c("High" = "firebrick1",
-                               "Medium" = "lightgreen",
-                               "Low" = "lightblue",
-                               "NA" = "darkgray")) +
-  facet_wrap(~dimensions, scales = "free")
-```
-
-## Madagascar SSF Case Study (Golden)
-
-```{r}
-#This case has NO data for score or importance
-
-ggplot(golden_madagascar, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
-  geom_col() +
-  labs(title = "Madagascar SSF Case Study (Golden)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
-  theme_bw() + 
-  scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(name = "Importance", 
-                      values = c("High" = "firebrick1",
-                               "Medium" = "lightgreen",
-                               "Low" = "lightblue",
-                               "NA" = "darkgray")) +
-  facet_wrap(~dimensions, scales = "free")
-```
-
-## Madang PNG Coral Reef Case Study (Lau)
-
-```{r}
-# Missing data in the importance column
-
-ggplot(lau_png, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
-  geom_col() +
-  labs(title = "Madang PNG Coral Reef Case Study (Lau)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
-  theme_bw() + 
-  scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_manual(name = "Importance", 
-                      values = c("High" = "firebrick1",
-                               "Medium" = "lightgreen",
-                               "Low" = "lightblue",
-                               "NA" = "darkgray")) +
-  facet_wrap(~dimensions, scales = "free")
-```
 
 ## Pelagic Fishery (>40m vessels) EUR Case study (Dickey-Collas)
 
@@ -260,6 +207,7 @@ ggplot(collas_eur, aes(x = resilience_attribute, y = score_1_4, fill = importanc
   facet_wrap(~dimensions, scales = "free")
 ```
 
+
 ## Kiribati Giant Clam Case Study (Eurich)
 
 ```{r}
@@ -279,6 +227,110 @@ ggplot(eurich_clam, aes(x = resilience_attribute, y = score_1_4, fill = importan
                                "NA" = "darkgray")) +
   facet_wrap(~dimensions, scales = "free")
 ```
+
+
+## California Dungeness Crab Case Study (Free)
+
+```{r}
+#Has actual "NA" input into scores column - needs to be removed; also the Importance column has not been completed
+
+ggplot(free_dungeness, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low, group_by = dimensions)) +
+  geom_col() +
+  labs(title = "California Dungeness Crab Case study (Free)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.95)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Fijian Nearshore Fisheries Case Study (Friedman)
+
+```{r}
+ggplot(friedman_fiji, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Fijian Nearshore Fisheries Case Study (Friedman)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.95)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Madagascar SSF Case Study (Golden)
+
+```{r}
+#This case has NO data for score or importance
+
+ggplot(golden_madagascar, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Madagascar SSF Case Study (Golden)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Juan Fernandez Islands Case Study (Kleisner & Cunningham)
+
+```{r}
+#Importance data is not filled in for ecological and socioeconomic sections
+
+ggplot(kleisner_juanfernandez, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Juan Fernandez Islands Case Study (Kleisner & Cunningham)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Madang PNG Coral Reef Case Study (Lau)
+
+```{r}
+# Missing data in the importance column
+
+ggplot(lau_png, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Madang PNG Coral Reef Case Study (Lau)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
 
 ## Maine Lobster Case Study (Mills)
 
@@ -300,17 +352,6 @@ ggplot(mills_lobster, aes(x = resilience_attribute, y = score_1_4, fill = import
   facet_wrap(~dimensions, scales = "free")
 ```
 
-## Friedman
-
-```{r}
-
-```
-
-## U.S. Atltanci/Gulf  of Mexico Highly Migratory Species Case Study (Westfall)
-
-```{r}
-# Not able to pull in data
-```
 
 ## Icelandic Groundfish Case Study (Mason)
 
@@ -331,3 +372,8 @@ ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4, fill = import
 ```
 
 
+## U.S. Atltanci/Gulf  of Mexico Highly Migratory Species Case Study (Westfall)
+
+```{r}
+# Not able to pull in data
+```
