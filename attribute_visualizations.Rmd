@@ -2,14 +2,19 @@
 title: "Resilience Attrtibute Analysis Across Case Studies"
 author: "Meghan Fletcher"
 date: "10/27/2021"
-output: html_document
+output: 
+  html_document:
+    theme: flatly
+    code_folding: show
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r}
+```{r loading packages, results=FALSE, message = FALSE, warning = FALSE, class.source = 'fold-show', warning = FALSE}
 # Attach necessary packages
 library(tidyverse)
 library(googlesheets4)
