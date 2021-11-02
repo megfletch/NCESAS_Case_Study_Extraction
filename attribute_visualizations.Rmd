@@ -4,17 +4,18 @@ author: "Meghan Fletcher"
 date: "10/27/2021"
 output: 
   html_document:
-    theme: flatly
-    code_folding: show
+    theme: yeti
+    code_folding: hide
     toc: true
-    toc_float: true
+    toc_float: 
+      toc_collapsed: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r loading packages, results=FALSE, message = FALSE, warning = FALSE, class.source = 'fold-show', warning = FALSE}
+```{r loading packages, results=FALSE, message = FALSE, warning = FALSE, class.source = 'fold-hide', warning = FALSE}
 # Attach necessary packages
 library(tidyverse)
 library(googlesheets4)
@@ -22,9 +23,22 @@ library(here)
 library(janitor)
 ```
 
-# Read in the data from Google Sheets
+## Read in the data from Google Sheets
 
 ```{r}
+#aguion_barnacle <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1n6GKgX3_JklLeqoWgXetbgkx9gO6l8IE/edit#gid=545616100", 
+#                           sheet = "S4_ResilienceAttributes",
+#                           range = "A6:P61",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()
+
+
 #burden_sardine <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/15EGC7TPV_nvKhOAoDi7bTJv1l3qlor_v/edit#gid=2051385825", 
 #                           sheet = "S4_ResilienceAttributes",
 #                           range = "A6:P61",
@@ -166,6 +180,34 @@ mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQ
   clean_names() %>% 
   drop_na(score_1_4)
 
+
+pecl_lobster <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZHoYUmppJAAa7FYjVMhBj9fNyuc3GVErPRk_frsYwEI/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
+
+tokunaga_lobster <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1RsAUs1uBnHsj7mwVV4ANZMEcV7kLnT5hqXS448K2l6w/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  drop_na(score_1_4)
+
+
 #westfall_hmsfishery <-read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1uz7nb_aJ2cPK8txdiOY9SWnHc5M45Rs2/edit#gid=1818956842", 
 #                           sheet = "S4_ResilienceAttributes",
 #                           range = "A6:P61",
@@ -179,10 +221,27 @@ mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQ
 #  clean_names()
 
 
-#Kristle kanay????
-#Pecl data???
-#zhao data???
+zhoa_moorea <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1JrmJCYFqrqJ4BQgT2i-3rnl2tt6ja2kZuUJc63HkrUQ/edit#gid=1980661832", 
+                           sheet = "S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()
+
 ```
+
+
+## Spain Stalked Barnacle Case Study (Aguion)
+
+```{r}
+# Not able to pull in the data
+```
+
 
 
 ## Pacific Sardine Case Study (Burden & Fujita)
@@ -202,7 +261,7 @@ ggplot(collas_eur, aes(x = resilience_attribute, y = score_1_4, fill = importanc
   labs(title = "Pelagic Fishery (>40m vessels) EUR Case study (Dickey-Collas)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -223,7 +282,7 @@ ggplot(eurich_clam, aes(x = resilience_attribute, y = score_1_4, fill = importan
   labs(title = "Kiribati Giant Clam Case Study (Eurich)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -244,7 +303,7 @@ ggplot(free_dungeness, aes(x = resilience_attribute, y = score_1_4, fill = impor
   labs(title = "California Dungeness Crab Case study (Free)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 0.95)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -263,7 +322,7 @@ ggplot(friedman_fiji, aes(x = resilience_attribute, y = score_1_4, fill = import
   labs(title = "Fijian Nearshore Fisheries Case Study (Friedman)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 0.95)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -284,7 +343,7 @@ ggplot(golden_madagascar, aes(x = resilience_attribute, y = score_1_4, fill = im
   labs(title = "Madagascar SSF Case Study (Golden)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -305,7 +364,7 @@ ggplot(kleisner_juanfernandez, aes(x = resilience_attribute, y = score_1_4, fill
   labs(title = "Juan Fernandez Islands Case Study (Kleisner & Cunningham)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -326,7 +385,7 @@ ggplot(lau_png, aes(x = resilience_attribute, y = score_1_4, fill = importance_o
   labs(title = "Madang PNG Coral Reef Case Study (Lau)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -347,7 +406,7 @@ ggplot(mills_lobster, aes(x = resilience_attribute, y = score_1_4, fill = import
   labs(title = "Maine Lobster Case Study (Mills)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -366,7 +425,45 @@ ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4, fill = import
   labs(title = "Iceland Groundfish Case Study (Mason)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
-  theme(axis.text.x = element_text(size = 6)) +
+  theme(axis.text.x = element_text(size = 7)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Tasmanian Rock Lobster Case Stduy (Pecl)
+
+```{r}
+ggplot(pecl_lobster, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Tasmanian Rock Lobster Case Stduy (Pecl)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 7)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+## Japanese Spiny Lobster Case Study (Tokunaga)
+
+```{r}
+ggplot(tokunaga_lobster, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Japanese Spiny Lobster Case Study (Tokunaga)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 7)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(name = "Importance", 
                       values = c("High" = "firebrick1",
@@ -382,3 +479,25 @@ ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4, fill = import
 ```{r}
 # Not able to pull in data
 ```
+
+
+## Moorea Coral Reef Fishery Case Study (Zhoa)
+
+```{r}
+ggplot(zhoa_moorea, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
+  geom_col() +
+  labs(title = "Moorea Coral Reef Fishery Case Study (Zhoa)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  theme_bw() + 
+  scale_y_discrete(expand = c(0,0.1)) +
+  theme(axis.text.x = element_text(size = 7)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(name = "Importance", 
+                      values = c("High" = "firebrick1",
+                               "Medium" = "lightgreen",
+                               "Low" = "lightblue",
+                               "NA" = "darkgray")) +
+  facet_wrap(~dimensions, scales = "free")
+```
+
+
+
