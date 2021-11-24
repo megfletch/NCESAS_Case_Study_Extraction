@@ -1,0 +1,196 @@
+---
+title: "Case Study Score Cards"
+author: "Meghan Fletcher"
+date: "11/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load in libraries
+
+library(ggplot2)
+library(tidyverse)
+library(janitor)
+library(googlesheets4)
+library(here)
+library(kableExtra)
+```
+
+# Setup: Read in and format the data
+################################################################################
+
+```{r}
+# Read in the data
+
+eurich_clam <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZEIev1lcoD6Lxu3otzDCfbJJSiPJoZeyYbTvBXb_S9U/edit#gid=1453404713", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+#Rename
+  rename(dimension=dimensions, 
+         domain=new_domain, 
+         attribute=resilience_attribute, 
+         score=score_1_4,
+         quality=information_quality, 
+         importance=importance_of_attribute_in_study_system_high_medium_low, 
+         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
+# Simplify
+  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+# Remove spacer rows
+  filter(!is.na(attribute)) %>% 
+# Format scores
+  mutate(score=as.numeric(score)) %>% 
+# Format dimension
+  mutate(dimension=recode_factor(dimension, 
+                                 "Ecological"="Ecological",
+                                 "Socio-economic"="Social-economic",
+                                 "Governance-management"="Goverance")) %>% 
+# Format data quality
+  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
+         quality=recode_factor(quality,
+                               "E - No data"="No data", ### CF used "E - No data/information; no basis for expert judgement", but JE's was different
+                               "D - not confident that the answer provided reflects the true state of the system"="Low",
+                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
+                               "B - limited data/information and expert judgement"="Good",
+                               "A - adequate and reliable data/information"="Excellent")) %>% 
+  # Format importance
+  mutate(importance=stringr::str_to_sentence(importance),
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  # Format attribute
+  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+  # Arrange
+  arrange(dimension, domain, score) %>% 
+  # Set attribute order
+  mutate(attribute=factor(attribute, levels=attribute))
+  
+
+```
+
+
+# Inspect the data
+################################################################################
+
+```{r}
+# Inspect
+str(eurich_clam)
+table(eurich_clam$dimension)
+table(eurich_clam$quality)
+mean(eurich_clam$score)
+```
+```{r}
+# Build a table
+eurich_count <- eurich_clam %>% 
+  group_by(domain) %>% 
+  summarise_at(vars(score), list(score = mean))
+
+# Use `kableExtra` package to create table
+eurich_count %>% 
+  kbl(caption = "Kiribati Giant Clam Score Averages by Domain") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria")
+```
+
+
+
+# Plot data
+################################################################################
+
+```{r}
+# Create theme
+my_theme <-  theme(axis.text=element_text(size=8),
+                   axis.title=element_text(size=9),
+                   legend.text=element_text(size=8),
+                   legend.title=element_text(size=9),
+                   strip.text=element_text(size=9),
+                   plot.title=element_text(size=10),
+                   # Gridlines
+                   panel.grid.major = element_blank(), 
+                   panel.grid.minor = element_blank(),
+                   panel.background = element_blank(), 
+                   axis.line = element_line(colour = "black"))
+```
+
+
+```{r}
+# Plot data
+eurich_plot <- ggplot() +
+  # Facet
+  facet_grid(dimension~., space="free", scales="free_y") +
+  # Plot points
+  geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
+  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, size=importance), inherit.aes = F) +
+  # Limits
+  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  # Labels
+  labs(x="Attribute score", y="", title="Kiribati giant clam resilience score card") +
+  # Bars
+  # geom_bar(stat="identity", color="black", lwd=0.2) +
+  # Legend
+  scale_alpha_ordinal(name="Data quality") +
+  scale_color_discrete(name="Domain") +
+  scale_size_ordinal(name="Importance") +
+  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  # Theme
+  theme_bw() + my_theme
+eurich_plot
+```
+
+```{r}
+# Plot data
+eurich_plot1 <- ggplot() +
+  # Facet
+  facet_grid(domain~., space="free", scales="free_y") +
+  # Plot points
+  geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=dimension, alpha=quality)) +
+  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=dimension, alpha=quality, size=importance), inherit.aes = F) +
+  # Limits
+  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  # Labels
+  labs(x="Attribute score", y="", title="Kiribati giant clam resilience score card") +
+  # Bars
+  # geom_bar(stat="identity", color="black", lwd=0.2) +
+  # Legend
+  scale_alpha_ordinal(name="Data quality") +
+  scale_color_discrete(name="Dimension") +
+  scale_size_ordinal(name="Importance") +
+  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  # Theme
+  theme_bw() + my_theme
+eurich_plot1
+```
+
+
+
+# Merging datasets to reveal overall trends
+################################################################################
+
+```{r}
+# merge two data frames by ID
+total <- merge(data frameA,data frameB,by="ID")
+
+# merge two data frames by ID and Country
+total <- merge(data frameA,data frameB,by=c("ID","Country"))
+
+# I think we will want to merge the data frames horizonatlly as shown above and then use the mean function to reveal the means across the data sets and then pull out the total means of each if possible - doing the across the domains
+```
+
+
+
+
+
+
+# Exporting the plots to PNG files using `ggsave`
+################################################################################
+
+# Export plot
+# ggsave(g, filename=file.path(plotdir, "case_study_attribute_scores_clam.png"), 
+#      width=6.5, height=6.5, units="in", dpi=600)
+

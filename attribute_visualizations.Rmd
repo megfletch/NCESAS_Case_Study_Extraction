@@ -164,7 +164,7 @@ mills_lobster <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1gcmZufd
                            col_types = "c"
                            ) %>%
   as_tibble() %>%
-  clean_names()
+  clean_names() 
 
 
 mason_iceland <-read_sheet(ss = "https://docs.google.com/spreadsheets/d/1M1MXmEQST-vE9TRY6DIpVnGF_6-uG97z5OP_nvPcuhc/edit#gid=1070941345", 
@@ -436,12 +436,12 @@ ggplot(mason_iceland, aes(x = resilience_attribute, y = score_1_4, fill = import
 ```
 
 
-## Tasmanian Rock Lobster Case Stduy (Pecl)
+## Tasmanian Rock Lobster Case Study (Pecl)
 
 ```{r}
 ggplot(pecl_lobster, aes(x = resilience_attribute, y = score_1_4, fill = importance_of_attribute_in_study_system_high_medium_low)) +
   geom_col() +
-  labs(title = "Tasmanian Rock Lobster Case Stduy (Pecl)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
+  labs(title = "Tasmanian Rock Lobster Case Study (Pecl)", x = "Resilience Attributes", y = " Capacity Score (1-4)") +
   theme_bw() + 
   scale_y_discrete(expand = c(0,0.1)) +
   theme(axis.text.x = element_text(size = 7)) +
