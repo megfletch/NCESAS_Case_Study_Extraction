@@ -114,7 +114,7 @@ my_theme <-  theme(axis.text=element_text(size=8),
                    # Gridlines
                    panel.grid.major = element_blank(), 
                    panel.grid.minor = element_blank(),
-                   panel.background = element_blank(), 
+                   panel.background = element_rect(fill = "gray"), 
                    axis.line = element_line(colour = "black"))
 ```
 
@@ -163,7 +163,7 @@ eurich_plot1 <- ggplot() +
   scale_size_ordinal(name="Importance") +
   guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
   # Theme
-  theme_bw() + my_theme
+  theme_bw() + my_theme 
 eurich_plot1
 ```
 
@@ -179,7 +179,7 @@ total <- merge(data frameA,data frameB,by="ID")
 # merge two data frames by ID and Country
 total <- merge(data frameA,data frameB,by=c("ID","Country"))
 
-# I think we will want to merge the data frames horizonatlly as shown above and then use the mean function to reveal the means across the data sets and then pull out the total means of each if possible - doing the across the domains
+# I think we will want to merge the data frames horizontally as shown above and then use the mean function to reveal the means across the data sets and then pull out the total means of each if possible - doing the across the domains
 ```
 
 

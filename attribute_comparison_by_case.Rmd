@@ -1,0 +1,149 @@
+---
+title: "Resilience Atttribute Case by Case Comparison"
+author: "Meghan Fletcher"
+date: "11/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#Load libraries
+library(ggplot2)
+library(tidyverse)
+library(janitor)
+library(googlesheets4)
+library(here)
+```
+
+# Read in the data from Google Sheets
+```{r}
+eurich_clam <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZEIev1lcoD6Lxu3otzDCfbJJSiPJoZeyYbTvBXb_S9U/edit#gid=1453404713", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+#Rename
+  rename(dimension=dimensions, 
+         domain=new_domain, 
+         attribute=resilience_attribute, 
+         score=score_1_4,
+         quality=information_quality, 
+         importance=importance_of_attribute_in_study_system_high_medium_low, 
+         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
+# Simplify
+  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+# Remove spacer rows
+  filter(!is.na(attribute)) %>% 
+# Format scores
+  mutate(score=as.numeric(score)) %>% 
+# Format dimension
+  mutate(dimension=recode_factor(dimension, 
+                                 "Ecological"="Ecological",
+                                 "Socio-economic"="Social-economic",
+                                 "Governance-management"="Goverance")) %>% 
+# Format data quality
+  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
+         quality=recode_factor(quality,
+                               "E - No data"="No data", ### CF used "E - No data/information; no basis for expert judgement", but JE's was different
+                               "D - not confident that the answer provided reflects the true state of the system"="Low",
+                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
+                               "B - limited data/information and expert judgement"="Good",
+                               "A - adequate and reliable data/information"="Excellent")) %>% 
+  # Format importance
+  mutate(importance=stringr::str_to_sentence(importance),
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  # Format attribute
+  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+  # Arrange
+  arrange(dimension, domain, score) %>% 
+  # Set attribute order
+  mutate(attribute=factor(attribute, levels=attribute))
+
+
+free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QAB-CdZdmdKjWw5Krbwx7farqlUvbN08HEg/edit#gid=390317686", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  rename(dimension=dimensions, 
+         domain=new_domain, 
+         attribute=resilience_attribute, 
+         score=score_1_4,
+         quality=information_quality, 
+         importance=importance_of_attribute_in_study_system_high_medium_low, 
+         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
+  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+  filter(!is.na(attribute)) %>% 
+  mutate(score=as.numeric(score)) %>% 
+  mutate(dimension=recode_factor(dimension, 
+                                 "Ecological"="Ecological",
+                                 "Socio-economic"="Social-economic",
+                                 "Governance-management"="Goverance")) %>% 
+  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
+         quality=recode_factor(quality,
+                               "E - No data"="No data", ### CF used "E - No data/information; no basis for expert judgement", but JE's was different
+                               "D - not confident that the answer provided reflects the true state of the system"="Low",
+                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
+                               "B - limited data/information and expert judgement"="Good",
+                               "A - adequate and reliable data/information"="Excellent")) %>% 
+  mutate(importance=stringr::str_to_sentence(importance),
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+  arrange(dimension, domain, score) %>% 
+  mutate(attribute=factor(attribute, levels=attribute))
+```
+
+
+# Merge the datasets
+
+```{r}
+# Clean data more before merging
+eurich1 <- eurich_clam %>% 
+  select(attribute, score) %>% 
+  mutate(attribute = gsub("\\*", "", attribute))
+
+free1 <- free_crab %>% 
+  select(attribute, score)%>% 
+  mutate(attribute = gsub("\\*", "", attribute))
+```
+
+```{r}
+data_merged <- full_join(eurich1, free1, by=c("attribute")) %>% 
+  rename(Eurich = score.x,
+         Free = score.y)
+```
+
+
+
+# Plot the merged data by attribute of interest
+
+```{r}
+# Filter the data to get the attribute you're looking for
+population_abundance <- data_merged %>% 
+  filter(attribute == "Population abundance") %>% 
+  as_tibble(name_repair = ~ c("Eurich", "Free")) %>% 
+  pivot_longer(cols = c(Eurich, Free),
+               names_to = "score")
+
+ggplot(population_abundance, aes(x = score, y = value)) +
+  geom_bar(stat = 'identity') +
+  labs(title = "Population Abundance Scores Across Case Studies", x = "Case Studies", y = "Attribute Score")
+```
+
+
+
+
+
