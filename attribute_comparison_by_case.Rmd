@@ -29,7 +29,336 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
                            ) %>%
   as_tibble() %>%
   clean_names() %>% 
-#Rename
+  add_column(case_study = "aguion",
+             reference = "aguion1",
+             .after = "question_id")
+
+
+
+#######################################################################################################################
+#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=1082#97509896161547373&rtpof=true", 
+#                           sheet = "UPDATED_S4_ResilienceAttributes",
+#                           range = "A6:P61",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names()%>% 
+#  add_column(case_study = "burden",
+#             reference = "burden1",
+#             .after = "question_id")
+
+
+
+#######################################################################################################################
+dickey_collas_eur <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1hfXTM5hwe0iLWQQmrc31-xruOV3SUixuxqRSuqC8ydA/edit#gid=1707192308", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "dickey_collas",
+             reference = "dickey_collas1",
+             .after = "question_id")
+
+
+
+#######################################################################################################################
+eurich_clam <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZEIev1lcoD6Lxu3otzDCfbJJSiPJoZeyYbTvBXb_S9U/edit#gid=1453404713", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "eurich",
+             reference = "eurich1",
+             .after = "question_id")
+
+
+
+#####################################################################################################################################
+free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QAB-CdZdmdKjWw5Krbwx7farqlUvbN08HEg/edit#gid=390317686", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "free",
+             reference = "free1",
+             .after = "question_id")
+
+
+
+#######################################################################################################################
+#golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
+#                           sheet = "UPDATED_S4_ResilienceAttributes",
+#                           range = "A6:P61",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names() %>% 
+#  add_column(case_study = "golden",
+#             reference = "golden1",
+#             .after = "question_id")
+
+
+
+#######################################################################################################################
+friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1xHZB6gZqXUBHuylaC3ImCDIDTFFjqQ8RAoV-s/edit#gid=476628697", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "friedman",
+             reference = "friedman1",
+             .after = "question_id")
+
+
+
+#######################################################################################################################
+hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=1980661832", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "hollowed",
+             reference = "hollowed1",
+             .after = "question_id")
+
+
+
+########################################################################################################################
+kisara_squid <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1RX1iUmEKsOUmuPZkn4SMA6zts9TTPz-gi0D6XFrY1RQ/edit#gid=934077877", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "kisara",
+             reference = "kisara1",
+             .after = "question_id") 
+
+
+
+###########################################################################################################################
+kleisner_jfi <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YM1wc6F0SgGIoBcTvSjVyLJquE6-6Chk1dPFoLiXuQY/edit#gid=1865610127", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "kleisner",
+             reference = "kleisner1",
+             .after = "question_id")
+
+
+
+################################################################################################################################
+lau_png <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/18po7Pgq5Od6Q8yCnFdSfj_Gaxii34e-WsYwBFA3RTvo/edit#gid=1980661832", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "lau",
+             reference = "lau1",
+             .after = "question_id")
+
+
+
+###############################################################################################################################
+mason_iceland <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZPs5ow4wpZgj5eP26jvoMRgD9q6VT9DEdkJfqj7UrRE/edit#gid=2142384281", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "mason",
+             reference = "mason1",
+             .after = "question_id")
+
+
+
+
+##########################################################################################################################
+mills_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1HEPT54TsR1aTNNzDtZI59zU0eb-eJfH61ujErxAFtiI/edit#gid=553950990", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "mills",
+             reference = "mills1",
+             .after = "question_id")
+
+
+
+########################################################################################################################
+pecl_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/11Z-SLlAS0f9Ug1Z8gLMnHkaN7hoZT1W0KMVLG8HtbXs/edit#gid=179679195", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "pecl",
+             reference = "pecl1",
+             .after = "question_id")
+
+
+
+###########################################################################################################################
+#schmidt_senegal <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1bUY6yII5y0FZfDRJ5lxpA7iD2p3o__2A1xsWivxwKB0/edit#gid=2000123802", 
+#                           sheet = "UPDATED_S4_ResilienceAttributes",
+#                           range = "A6:P61",
+#                           col_names = TRUE,
+#                           na = "",
+#                           guess_max = 10000,
+#                           trim_ws = TRUE,
+#                           col_types = "c"
+#                           ) %>%
+#  as_tibble() %>%
+#  clean_names() %>% 
+#  add_column(case_study = "schmidt",
+#             reference = "schmidt1",
+#             .after = "question_id") 
+
+
+
+###############################################################################################################################
+tokunaga_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1jgFZut693B14rdKbxprKtQcoh-mFlMzAktekjhvwf2Q/edit#gid=228934601", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "tokunaga",
+             reference = "tokunaga1",
+             .after = "question_id") 
+
+
+
+############################################################################################################################
+westfall_hms <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1DMx0Ux9Li1LhIe4ee5bbAYtJaw1vCezziRGyeERBthY/edit#gid=1818956842", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "westfall",
+             reference = "westfall1",
+             .after = "question_id")
+
+
+
+###################################################################################################################################
+zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--fNv1qfdXZcBENP-agemTTySZAay9uAEO0HI/edit#gid=1980661832", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "zhao",
+             reference = "zhao1",
+             .after = "question_id")
+```
+
+
+# Merge the datasets
+
+```{r}
+attributes_merged <- rbind(aguion_barnacle, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+
+
+# Data frames that don't bind:
+#  kisara_squid
+
+```
+
+
+
+# Clean the merged datasets 
+
+```{r}
+attributes_merged_clean <- attributes_merged %>% 
   rename(dimension=dimensions, 
          domain=new_domain, 
          attribute=resilience_attribute, 
@@ -38,11 +367,18 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
          importance=importance_of_attribute_in_study_system_high_medium_low, 
          work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
 # Simplify
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+  select(dimension, domain, case_study, reference, attribute, score, quality, importance, work_as_described) %>% 
 # Remove spacer rows
   filter(!is.na(attribute)) %>% 
 # Format scores
-  mutate(score=as.numeric(score)) %>% 
+  filter(!is.na(score)) %>% 
+# Do this next part using Case When like Dani said
+#  mutate(score=as.numeric(score))
+  
+```
+
+```{r}
+ %>% 
 # Format dimension
   mutate(dimension=recode_factor(dimension, 
                                  "Ecological"="Ecological",
@@ -65,707 +401,12 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
   arrange(dimension, domain, score) %>% 
   # Set attribute order
   mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=1082#97509896161547373&rtpof=true", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  rename(dimension=dimensions, 
-#         domain=new_domain, 
-#         attribute=resilience_attribute, 
-#         score=score_1_4,
-#         quality=information_quality, 
-#         importance=importance_of_attribute_in_study_system_high_medium_low, 
-#         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-#  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-#  filter(!is.na(attribute)) %>% 
-#  mutate(score=as.numeric(score)) %>% 
-#  mutate(dimension=recode_factor(dimension, 
-#                                 "Ecological"="Ecological",
-#                                 "Socio-economic"="Social-economic",
-#                                 "Governance-management"="Goverance")) %>% 
-#  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-#         quality=recode_factor(quality,
-#                               "E - No data"="No data",
-#                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-#                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-#                               "B - limited data/information and expert judgement"="Good",
-#                               "A - adequate and reliable data/information"="Excellent")) %>% 
-#  mutate(importance=stringr::str_to_sentence(importance),
-#         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-#  arrange(dimension, domain, score) %>% 
-#  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-dickey_collas_eur <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1hfXTM5hwe0iLWQQmrc31-xruOV3SUixuxqRSuqC8ydA/edit#gid=1707192308", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-eurich_clam <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZEIev1lcoD6Lxu3otzDCfbJJSiPJoZeyYbTvBXb_S9U/edit#gid=1453404713", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#####################################################################################################################################
-free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QAB-CdZdmdKjWw5Krbwx7farqlUvbN08HEg/edit#gid=390317686", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-#golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  rename(dimension=dimensions, 
-#         domain=new_domain, 
-#         attribute=resilience_attribute, 
-#         score=score_1_4,
-#         quality=information_quality, 
-#         importance=importance_of_attribute_in_study_system_high_medium_low, 
-#         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-#  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-#  filter(!is.na(attribute)) %>% 
-#  mutate(score=as.numeric(score)) %>% 
-#  mutate(dimension=recode_factor(dimension, 
-#                                 "Ecological"="Ecological",
-#                                 "Socio-economic"="Social-economic",
-#                                 "Governance-management"="Goverance")) %>% 
-#  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-#         quality=recode_factor(quality,
-#                               "E - No data"="No data",
-#                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-#                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-#                               "B - limited data/information and expert judgement"="Good",
-#                               "A - adequate and reliable data/information"="Excellent")) %>% 
-#  mutate(importance=stringr::str_to_sentence(importance),
-#         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-#  arrange(dimension, domain, score) %>% 
-#  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1xHZB6gZqXUBHuylaC3ImCDIDTFFjqQ8RAoV-s/edit#gid=476628697", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
-hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=1980661832", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-########################################################################################################################
-kisara_squid <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1RX1iUmEKsOUmuPZkn4SMA6zts9TTPz-gi0D6XFrY1RQ/edit#gid=934077877", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-###########################################################################################################################
-kleisner_jfi <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YM1wc6F0SgGIoBcTvSjVyLJquE6-6Chk1dPFoLiXuQY/edit#gid=1865610127", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-################################################################################################################################
-lau_png <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/18po7Pgq5Od6Q8yCnFdSfj_Gaxii34e-WsYwBFA3RTvo/edit#gid=1980661832", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-###############################################################################################################################
-mason_iceland <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZPs5ow4wpZgj5eP26jvoMRgD9q6VT9DEdkJfqj7UrRE/edit#gid=2142384281", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-##########################################################################################################################
-mills_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1HEPT54TsR1aTNNzDtZI59zU0eb-eJfH61ujErxAFtiI/edit#gid=553950990", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-########################################################################################################################
-pecl_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/11Z-SLlAS0f9Ug1Z8gLMnHkaN7hoZT1W0KMVLG8HtbXs/edit#gid=179679195", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data",
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-###########################################################################################################################
-#schmidt_senegal <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1bUY6yII5y0FZfDRJ5lxpA7iD2p3o__2A1xsWivxwKB0/edit#gid=2000123802", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  rename(dimension=dimensions, 
-#         domain=new_domain, 
-#         attribute=resilience_attribute, 
-#         score=score_1_4,
-#         quality=information_quality, 
-#         importance=importance_of_attribute_in_study_system_high_medium_low, 
-#         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-#  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-#  filter(!is.na(attribute)) %>% 
-#  mutate(score=as.numeric(score)) %>% 
-#  mutate(dimension=recode_factor(dimension, 
-#                                 "Ecological"="Ecological",
-#                                 "Socio-economic"="Social-economic",
-#                                 "Governance-management"="Goverance")) %>% 
-#  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-#         quality=recode_factor(quality,
-#                               "E - No data"="No data", 
-#                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-#                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-#                               "B - limited data/information and expert judgement"="Good",
-#                               "A - adequate and reliable data/information"="Excellent")) %>% 
-#  mutate(importance=stringr::str_to_sentence(importance),
-#         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-#  arrange(dimension, domain, score) %>% 
-#  mutate(attribute=factor(attribute, levels=attribute)) 
-
-
-
-###############################################################################################################################
-tokunaga_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1jgFZut693B14rdKbxprKtQcoh-mFlMzAktekjhvwf2Q/edit#gid=228934601", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data", 
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-############################################################################################################################
-westfall_hms <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1DMx0Ux9Li1LhIe4ee5bbAYtJaw1vCezziRGyeERBthY/edit#gid=1818956842", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data", 
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-###################################################################################################################################
-zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--fNv1qfdXZcBENP-agemTTySZAay9uAEO0HI/edit#gid=1980661832", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  rename(dimension=dimensions, 
-         domain=new_domain, 
-         attribute=resilience_attribute, 
-         score=score_1_4,
-         quality=information_quality, 
-         importance=importance_of_attribute_in_study_system_high_medium_low, 
-         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-  filter(!is.na(attribute)) %>% 
-  mutate(score=as.numeric(score)) %>% 
-  mutate(dimension=recode_factor(dimension, 
-                                 "Ecological"="Ecological",
-                                 "Socio-economic"="Social-economic",
-                                 "Governance-management"="Goverance")) %>% 
-  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-         quality=recode_factor(quality,
-                               "E - No data"="No data", 
-                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-                               "B - limited data/information and expert judgement"="Good",
-                               "A - adequate and reliable data/information"="Excellent")) %>% 
-  mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-  arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
 ```
 
 
-# Merge the datasets
+
+
+
 
 ```{r}
 # Clean data more before merging
