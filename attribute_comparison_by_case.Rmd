@@ -372,14 +372,16 @@ attributes_merged_clean <- attributes_merged %>%
   filter(!is.na(attribute)) %>% 
 # Format scores
   filter(!is.na(score)) %>% 
-# Do this next part using Case When like Dani said
-#  mutate(score=as.numeric(score))
-  
-```
-
-```{r}
- %>% 
-# Format dimension
+# In order to get rid of "NA" values that were purposefully entered into the data, I used the `case_when` function to revert
+  mutate(official_score = case_when(
+    score == "1" ~ "1",
+    score == "2" ~ "2",
+    score == "3" ~ "3",
+    score == "4" ~ "4",
+    score == "NA" ~ "0"
+  )) %>% 
+  mutate(official_score=as.numeric(official_score)) %>%
+  # Formate dimension
   mutate(dimension=recode_factor(dimension, 
                                  "Ecological"="Ecological",
                                  "Socio-economic"="Social-economic",
@@ -394,127 +396,244 @@ attributes_merged_clean <- attributes_merged %>%
                                "A - adequate and reliable data/information"="Excellent")) %>% 
   # Format importance
   mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  # Format attribute
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+         importance=factor(importance, levels=c("Low", "Medium", "High")))   
+  
+```
+
+```{r}
+#%>% 
   # Arrange
-  arrange(dimension, domain, score) %>% 
+  # arrange(dimension, domain, official_score)%>% 
   # Set attribute order
-  mutate(attribute=factor(attribute, levels=attribute))
+  #mutate(attribute=factor(attribute, levels=attribute))
+  # Format attribute - to put an * next to the attribute name is the `work_as_described` column says "no"
+  #mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) 
+
+# To remove the astrisks if added back into the dataset:
+#aguion1 <- aguion_barnacle %>% 
+  #select(attribute, score) %>% 
+  #mutate(attribute = gsub("\\*", "", attribute))
 ```
-
-
-
-
-
-
-```{r}
-# Clean data more before merging
-aguion1 <- aguion_barnacle %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-#burden1 <- burden_sardine %>% 
-#  select(attribute, score) %>% 
-#  mutate(attribute = gsub("\\*", "", attribute))
-
-dickey_collas1 <- dickey_collas_eur %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-eurich1 <- eurich_clam %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-free1 <- free_crab %>% 
-  select(attribute, score)%>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-friedman1 <- friedman_fiji %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-#golden1 <- golden_madagascar %>% 
-#  select(attribute, score) %>% 
-#  mutate(attribute = gsub("\\*", "", attribute))
-
-hollowed1 <- hollowed_bering_sea %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-kisara1 <- kisara_squid %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-kleisner1 <- kleisner_jfi %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-lau1 <- lau_png %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-mason1 <- mason_iceland %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-mills1 <- mills_lobster %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-pecl1 <- pecl_lobster %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-#schimdt1 <- schmidt_senegal %>% 
-#  select(attribute, score) %>% 
-#  mutate(attribute = gsub("\\*", "", attribute))
-
-tokunaga1 <- tokunaga_lobster %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-westfall1 <- westfall_hms %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-
-zhao1 <- zhao_moorea %>% 
-  select(attribute, score) %>% 
-  mutate(attribute = gsub("\\*", "", attribute))
-```
-
-```{r}
-data_merged <- full_join(eurich1, free1, by=c("attribute")) %>% 
-  rename(Eurich = score.x,
-         Free = score.y)
-```
-
 
 
 # Plot the merged data by attribute of interest
 
+
+```{r}
+# Create theme
+my_theme <-  theme(axis.text=element_text(size=8),
+                   axis.title=element_text(size=9),
+                   legend.text=element_text(size=8),
+                   legend.title=element_text(size=9),
+                   strip.text=element_text(size=9),
+                   plot.title=element_text(size=10),
+                   # Gridlines
+                   panel.grid.major = element_blank(), 
+                   panel.grid.minor = element_blank(),
+                   panel.background = element_rect(fill = "black"), 
+                   axis.line = element_line(colour = "black"))
+```
+
+## Ecological
+
+### Assets
+#### Population Abundance
 ```{r}
 # Filter the data to get the attribute you're looking for
-population_abundance <- data_merged %>% 
-  filter(attribute == "Population abundance") %>% 
-  as_tibble(name_repair = ~ c("Eurich", "Free")) %>% 
-  pivot_longer(cols = c(Eurich, Free),
-               names_to = "score")
+population_abundance <- attributes_merged_clean %>% 
+  filter(attribute == "Population abundance") 
 
-ggplot(population_abundance, aes(x = score, y = value)) +
+ggplot(population_abundance, aes(x = case_study, y = official_score)) +
   geom_bar(stat = 'identity') +
   labs(title = "Population Abundance Scores Across Case Studies", x = "Case Studies", y = "Attribute Score")
 ```
 
+#### Age Structure
 
-
-##### Scratch Work
 ```{r}
 
-list <- Reduce(function(x, y) merge(x, y, by="attribute",all=TRUE), list(eurich1, free1,  mason1))
-
-
-#full_join(aguion1, dickey_collas1, eurich1, free1, friedman1, hollowed1, kisara1, kleisner1, lau1, mason1, mills1, pecl1, tokunaga1, westfall1, zhao1, by=c("attribute")) 
 ```
+
+
+#### Genetic Diversity
+
+```{r}
+
+```
+
+
+#### Species Diversity
+
+```{r}
+
+```
+
+
+### Flexibility
+#### Adult Mobility
+
+```{r}
+
+```
+
+
+#### Larval Dispersal
+
+```{r}
+
+```
+
+
+#### Environmental Niche Breadth
+
+```{r}
+
+```
+
+
+#### Dietary Flexibility
+
+```{r}
+
+```
+
+
+#### Habitat Diversity
+
+```{r}
+
+```
+
+
+#### Plasticity
+
+```{r}
+
+```
+
+
+#### Evolutionary Potential
+
+```{r}
+
+```
+
+
+### Organization
+#### Ecosystem Connectivity
+
+```{r}
+
+```
+
+
+#### Population Modularity
+
+```{r}
+
+```
+
+
+## Socio-economic
+
+### Assets
+#### Wealth and Reserves
+
+```{r}
+
+```
+
+
+#### Economic Diversity
+
+```{r}
+
+```
+
+
+#### Social Diversity
+
+```{r}
+
+```
+
+
+### Flexibility
+#### Flexible and Agile Infrstructure
+
+```{r}
+
+```
+
+
+#### Mobility
+
+```{r}
+
+```
+
+
+#### Economic Opportunity
+
+```{r}
+
+```
+
+
+#### Resilience Mindset
+
+```{r}
+
+```
+
+
+#### Place Attachment
+
+```{r}
+
+```
+
+
+### Orgaanization
+#### Social Capital
+
+```{r}
+
+```
+
+
+#### Technology Transfer
+
+```{r}
+
+```
+
+
+#### Modular Infrastructure
+
+```{r}
+
+```
+
+
+###
+####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
