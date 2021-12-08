@@ -478,7 +478,8 @@ lau_png <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/18po7Pgq5Od6Q
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
   mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
   arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
+  mutate(attribute=factor(attribute, levels=attribute)) %>% 
+  filter(!is.na(score))
 
 
 
@@ -821,7 +822,7 @@ eurich_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
   # Plot points
   geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, size=importance), inherit.aes = F) +
+  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size =3, inherit.aes = F) +
   # Limits
   scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
   # Labels
@@ -862,7 +863,27 @@ eurich_plot1 <- ggplot() +
 eurich_plot1
 ```
 
+## Madang PNG Coral Reef Resilience Score Card
 
+```{r}
+# Remove filter(is,=.na(score)) for Jacquie's code above
+lau_plot <- ggplot() +
+  facet_grid(dimension~., space="free", scales="free_y") +
+  geom_segment(data=lau_png, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
+  geom_point(data=lau_png, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, size=importance), inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(x="Attribute score", y="", title="Mandang PNG Coral Reef resilience score card") +
+  scale_alpha_ordinal(name="Data quality") +
+  scale_color_discrete(name="Domain") +
+  scale_size_ordinal(name="Importance") +
+  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  theme_bw() + my_theme
+lau_plot
+```
+```{r}
+ggsave("case_study_attribute_scores_lau.png", 
+      width=6.5, height=6.5, units="in", dpi=600)
+```
 
 
 
