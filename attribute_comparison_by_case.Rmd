@@ -2,11 +2,16 @@
 title: "Resilience Atttribute Case by Case Comparison"
 author: "Meghan Fletcher"
 date: "11/29/2021"
-output: html_document
+output: 
+  html_document:
+    theme: flatly
+    code_folding: hide
+    toc: true
+    toc_float: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 #Load libraries
 library(ggplot2)
@@ -14,10 +19,11 @@ library(tidyverse)
 library(janitor)
 library(googlesheets4)
 library(here)
+library(kableExtra)
 ```
 
 # Read in the data from Google Sheets
-```{r}
+```{r, results=FALSE, message = FALSE, warning = FALSE, class.source = 'fold-hide', warning = FALSE}
 aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGsKOT0gFSN1yHUObDNSQflqd5avodSuf3kOZLTyLk/edit#gid=1947230832", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
                            range = "A6:P61",
@@ -389,7 +395,7 @@ attributes_merged_clean <- attributes_merged %>%
 # Format data quality
   mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
          quality=recode_factor(quality,
-                               "E - No data"="No data", ### CF used "E - No data/information; no basis for expert judgement", but JE's was different
+                               "E - No data/information; no basis for expert judgement"="No data", ### CF used "E - No data/information; no basis for expert judgement", but JE's was different
                                "D - not confident that the answer provided reflects the true state of the system"="Low",
                                "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
                                "B - limited data/information and expert judgement"="Good",
@@ -415,6 +421,26 @@ attributes_merged_clean <- attributes_merged %>%
   #select(attribute, score) %>% 
   #mutate(attribute = gsub("\\*", "", attribute))
 ```
+
+
+# Table of Attribute Score Means
+
+```{r}
+# Build a table
+merged_mean <- attributes_merged_clean %>% 
+  group_by(attribute) %>% 
+  count(importance) 
+
+
+%>% 
+  summarise_at(vars(official_score), list(score = mean))
+
+# Use `kableExtra` package to create table
+merged_mean %>% 
+  kbl(caption = "Resilience Attribute Score Means") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria")
+```
+
 
 
 # Plot the merged data by attribute of interest
@@ -451,7 +477,9 @@ ggplot() +
   labs(title = "Population Abundance Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  theme_bw() + my_theme
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(aes(yintercept = mean(data=population_abundance, "official_score"))) +
+  theme_bw() + my_theme  
 ```
 
 #### Age Structure
@@ -467,6 +495,7 @@ ggplot() +
   labs(title = "Age Structure Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   theme_bw() + my_theme
 ```
 
@@ -481,9 +510,10 @@ genetic_diversity <- attributes_merged_clean %>%
 ggplot() +
   geom_bar(data=genetic_diversity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
   scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(title = "Age Structure Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  labs(title = "Genetic Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   theme_bw() + my_theme
 ```
 
@@ -491,7 +521,18 @@ ggplot() +
 #### Species Diversity
 
 ```{r}
+species_diversity <- attributes_merged_clean %>% 
+  filter(attribute == "Species diversity") 
 
+
+ggplot() +
+  geom_bar(data=species_diversity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Species Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -499,49 +540,127 @@ ggplot() +
 #### Adult Mobility
 
 ```{r}
+adult_mobility <- attributes_merged_clean %>% 
+  filter(attribute == "Adult mobility") 
 
+
+ggplot() +
+  geom_bar(data=adult_mobility, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Adult Mobility Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Larval Dispersal
 
 ```{r}
+larval_dispersal <- attributes_merged_clean %>% 
+  filter(attribute == "Larval dispersal") 
 
+
+ggplot() +
+  geom_bar(data=larval_dispersal, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Larval Dispersal Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  # Had to delete the first blue color in the code below in order to match the colors appropriately since there are no "low" importance valuus for this attribute
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Environmental Niche Breadth
 
 ```{r}
+environmental_breadth <- attributes_merged_clean %>% 
+  filter(attribute == "Environmental niche breadth") 
 
+
+ggplot() +
+  geom_bar(data=environmental_breadth, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Environmental Niche Breadth Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Dietary Flexibility
 
 ```{r}
+dietary_flexibility <- attributes_merged_clean %>% 
+  filter(attribute == "Dietary flexibility") 
 
+
+ggplot() +
+  geom_bar(data=dietary_flexibility, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Dietary Flexibility Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Habitat Diversity
 
 ```{r}
+habitat_diversity <- attributes_merged_clean %>% 
+  filter(attribute == "Habitat diversity") 
 
+
+ggplot() +
+  geom_bar(data=habitat_diversity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Habitat Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Plasticity
 
 ```{r}
+plasticity <- attributes_merged_clean %>% 
+  filter(attribute == "Plasticity") 
 
+
+ggplot() +
+  geom_bar(data=plasticity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Plasticity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Evolutionary Potential
 
 ```{r}
+evolutionary_potential <- attributes_merged_clean %>% 
+  filter(attribute == "Evolutionary potential") 
 
+
+ggplot() +
+  geom_bar(data=evolutionary_potential, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Evolutionary Potential Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -549,14 +668,36 @@ ggplot() +
 #### Ecosystem Connectivity
 
 ```{r}
+ecosystem_connectivity <- attributes_merged_clean %>% 
+  filter(attribute == "Ecosystem connectivity") 
 
+
+ggplot() +
+  geom_bar(data=ecosystem_connectivity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Ecosystem Connectivity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Population Modularity
 
 ```{r}
+population_modularity <- attributes_merged_clean %>% 
+  filter(attribute == "Population modularity") 
 
+
+ggplot() +
+  geom_bar(data=population_modularity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Population Modularity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -566,21 +707,54 @@ ggplot() +
 #### Wealth and Reserves
 
 ```{r}
+wealth_reserves <- attributes_merged_clean %>% 
+  filter(attribute == "Wealth and reserves") 
 
+
+ggplot() +
+  geom_bar(data=wealth_reserves, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Wealth and Reserves Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Economic Diversity
 
 ```{r}
+economic_divserity <- attributes_merged_clean %>% 
+  filter(attribute == "Economic diversity") 
 
+
+ggplot() +
+  geom_bar(data=economic_divserity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Ecosystem Connectivity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Social Diversity
 
 ```{r}
+social_divsersity <- attributes_merged_clean %>% 
+  filter(attribute == "Social diversity") 
 
+
+ggplot() +
+  geom_bar(data=social_divsersity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Social Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -588,35 +762,90 @@ ggplot() +
 #### Flexible and Agile Infrstructure
 
 ```{r}
+flexible_agile <- attributes_merged_clean %>% 
+  filter(attribute == "Flexible and agile infrstructure") # "infrastructure" was spelled wrong in the google sheets
 
+
+ggplot() +
+  geom_bar(data=flexible_agile, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Flexible and Agile Infrastructure Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Mobility
 
 ```{r}
+mobility <- attributes_merged_clean %>% 
+  filter(attribute == "Mobility") 
 
+
+ggplot() +
+  geom_bar(data=mobility, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Mobility Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Economic Opportunity
 
 ```{r}
+economic_opportunity <- attributes_merged_clean %>% 
+  filter(attribute == "Economic opportunity") 
 
+
+ggplot() +
+  geom_bar(data=economic_opportunity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Economic Opportuntity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Resilience Mindset
 
 ```{r}
+resilience_mindset <- attributes_merged_clean %>% 
+  filter(attribute == "Resilience mindset") 
 
+
+ggplot() +
+  geom_bar(data=resilience_mindset, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "REsilience mindset Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Place Attachment
 
 ```{r}
+place_attachment <- attributes_merged_clean %>% 
+  filter(attribute == "Place attachment") 
 
+
+ggplot() +
+  geom_bar(data=place_attachment, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Place Attachment Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -624,21 +853,54 @@ ggplot() +
 #### Social Capital
 
 ```{r}
+social_capital <- attributes_merged_clean %>% 
+  filter(attribute == "Social capital") 
 
+
+ggplot() +
+  geom_bar(data=social_capital, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Social Capital Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Technology Transfer
 
 ```{r}
+tech_transfer <- attributes_merged_clean %>% 
+  filter(attribute == "Technology transfer") 
 
+
+ggplot() +
+  geom_bar(data=tech_transfer, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Technology Transfer Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Modular Infrastructure
 
 ```{r}
+modular_infrastrucutre <- attributes_merged_clean %>% 
+  filter(attribute == "Modular infrastructure") 
 
+
+ggplot() +
+  geom_bar(data=modular_infrastrucutre, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Modular Infrastructure Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -646,21 +908,55 @@ ggplot() +
 #### Knowledge Divserity
 
 ```{r}
+knowledge_diversity <- attributes_merged_clean %>% 
+  filter(attribute == "Knowledge diversity") 
 
+
+ggplot() +
+  geom_bar(data=knowledge_diversity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Knowledge Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c(
+    "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Knowledge Access
 
 ```{r}
+knowledge_access <- attributes_merged_clean %>% 
+  filter(attribute == "Knowledge access") 
 
+
+ggplot() +
+  geom_bar(data=knowledge_access, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "KNowledge Access Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Learning Capacity
 
 ```{r}
+learning_capacity <- attributes_merged_clean %>% 
+  filter(attribute == "Learning capacity") 
 
+
+ggplot() +
+  geom_bar(data=learning_capacity, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Learning capacity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -668,7 +964,18 @@ ggplot() +
 #### Agency
 
 ```{r}
+agency <- attributes_merged_clean %>% 
+  filter(attribute == "Agency") 
 
+
+ggplot() +
+  geom_bar(data=agency, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Agency Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -678,7 +985,18 @@ ggplot() +
 #### Responsive
 
 ```{r}
+responsive <- attributes_merged_clean %>% 
+  filter(attribute == "Responsive") 
 
+
+ggplot() +
+  geom_bar(data=responsive, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Responsive Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -686,48 +1004,125 @@ ggplot() +
 #### Participaory
 
 ```{r}
+participatory <- attributes_merged_clean %>% 
+  filter(attribute == "Participatory") 
 
+
+ggplot() +
+  geom_bar(data=participatory, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Participatory Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Equitbale and Inclusive
 
 ```{r}
+equitable_inclusive <- attributes_merged_clean %>% 
+  filter(attribute == "Equitable and inclusive") 
 
+
+ggplot() +
+  geom_bar(data=equitable_inclusive, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Equitable and Inclusive Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 #### Accountable
 
 ```{r}
+accountable <- attributes_merged_clean %>% 
+  filter(attribute == "Accountable") 
 
+
+ggplot() +
+  geom_bar(data=accountable, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Accountable Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Transparent
 
 ```{r}
+transparent <- attributes_merged_clean %>% 
+  filter(attribute == "Transparent") 
 
+
+ggplot() +
+  geom_bar(data=transparent, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Transparent Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Effective and Efficient
 
 ```{r}
+effective_efficient <- attributes_merged_clean %>% 
+  filter(attribute == "Effective and efficient") 
 
+
+ggplot() +
+  geom_bar(data=effective_efficient, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Effective and Efficient Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Polycentric
 
 ```{r}
+polycentric <- attributes_merged_clean %>% 
+  filter(attribute == "Polycentric") 
 
+
+ggplot() +
+  geom_bar(data=polycentric, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Polycentric Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
 #### Cross-scale Integration
 
 ```{r}
+cross_scale <- attributes_merged_clean %>% 
+  filter(attribute == "Cross-scale integration") 
 
+
+ggplot() +
+  geom_bar(data=cross_scale, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Cross-scale Integration Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -735,7 +1130,18 @@ ggplot() +
 #### Adaptive
 
 ```{r}
+adaptive <- attributes_merged_clean %>% 
+  filter(attribute == "Adaptive") 
 
+
+ggplot() +
+  geom_bar(data=adaptive, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Adaptive Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
@@ -743,7 +1149,18 @@ ggplot() +
 #### Leadership and Initiative
 
 ```{r}
+leadership_initiative <- attributes_merged_clean %>% 
+  filter(attribute == "Leadership and initiative") 
 
+
+ggplot() +
+  geom_bar(data=leadership_initiative, stat='identity', mapping=aes(y=official_score, yend=official_score, x=case_study, xend=case_study, fill=importance, alpha=quality)) +
+  scale_y_continuous( breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(title = "Leadership and Initiative Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
+  scale_alpha_ordinal(name="Data quality") + 
+  guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  theme_bw() + my_theme
 ```
 
 
