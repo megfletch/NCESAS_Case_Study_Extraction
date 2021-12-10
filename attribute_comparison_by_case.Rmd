@@ -423,22 +423,26 @@ attributes_merged_clean <- attributes_merged %>%
 ```
 
 
-# Table of Attribute Score Means
+# Find Attribute Score Means
+##### The socre means of each attribute are reflected in the table below as well as by the dashed lines in each graph below
 
 ```{r}
 # Build a table
 merged_mean <- attributes_merged_clean %>% 
   group_by(attribute) %>% 
-  count(importance) 
-
-
-%>% 
   summarise_at(vars(official_score), list(score = mean))
 
 # Use `kableExtra` package to create table
 merged_mean %>% 
   kbl(caption = "Resilience Attribute Score Means") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria")
+```
+
+
+# Count the numner of Importance levels by attribute
+
+```{r}
+# Try to create a table that shows count of low, medium, high, NA values per each attribute
 ```
 
 
@@ -478,7 +482,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
-  geom_hline(aes(yintercept = mean(data=population_abundance, "official_score"))) +
+  geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme  
 ```
 
@@ -496,6 +500,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=age_structure, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -514,6 +519,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=genetic_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -532,6 +538,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=species_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -551,6 +558,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=adult_mobility, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -570,6 +578,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   # Had to delete the first blue color in the code below in order to match the colors appropriately since there are no "low" importance valuus for this attribute
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=larval_dispersal, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -588,6 +597,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=environmental_breadth, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -606,6 +616,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=dietary_flexibility, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -624,6 +635,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=habitat_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -642,6 +654,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=plasticity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -660,6 +673,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=evolutionary_potential, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -679,6 +693,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=ecosystem_connectivity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -697,6 +712,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=population_modularity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -718,6 +734,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=wealth_reserves, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -736,6 +753,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=economic_divserity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -754,6 +772,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=social_divsersity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -773,6 +792,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=flexible_agile, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -791,6 +811,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=mobility, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -809,6 +830,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=economic_opportunity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -827,6 +849,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=resilience_mindset, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -845,6 +868,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=place_attachment, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -864,6 +888,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=social_capital, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -882,6 +907,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=tech_transfer, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -900,6 +926,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=modular_infrastrucutre, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -918,8 +945,8 @@ ggplot() +
   labs(title = "Knowledge Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c(
-    "#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=knowledge_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -938,6 +965,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=knowledge_access, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -956,6 +984,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=learning_capacity, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -975,6 +1004,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=agency, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -996,6 +1026,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=responsive, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1015,6 +1046,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=participatory, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1033,6 +1065,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=equitable_inclusive, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1050,6 +1083,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=accountable, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1068,6 +1102,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=transparent, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1086,6 +1121,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=effective_efficient, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1104,6 +1140,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=polycentric, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1122,6 +1159,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=cross_scale, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1141,6 +1179,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=adaptive, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
@@ -1160,6 +1199,7 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
+  geom_hline(data=leadership_initiative, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme
 ```
 
