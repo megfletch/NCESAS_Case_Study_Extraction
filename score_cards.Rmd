@@ -814,7 +814,7 @@ my_theme <-  theme(axis.text=element_text(size=8),
                    axis.line = element_line(colour = "black"))
 ```
 
-
+## Eurich Score Card
 ```{r}
 # Plot data
 eurich_plot <- ggplot() +
@@ -822,7 +822,7 @@ eurich_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
   # Plot points
   geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size =3, inherit.aes = F) +
+  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size =3.5, inherit.aes = F) +
   # Limits
   scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
   # Labels
@@ -863,7 +863,7 @@ eurich_plot1 <- ggplot() +
 eurich_plot1
 ```
 
-## Madang PNG Coral Reef Resilience Score Card
+## Lau Score Card
 
 ```{r}
 # Remove filter(is,=.na(score)) for Jacquie's code above
@@ -880,7 +880,16 @@ lau_plot <- ggplot() +
   theme_bw() + my_theme
 lau_plot
 ```
+
+
+
+
+# Save the Score Cards as PNG files
 ```{r}
+# Need to figure out how to save these separately.... 
+ggsave("case_study_attribute_score_eurich.png",
+       width=6.5, height=6.5, units="in", dpi=600)
+
 ggsave("case_study_attribute_scores_lau.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```

@@ -402,7 +402,12 @@ attributes_merged_clean <- attributes_merged %>%
                                "A - adequate and reliable data/information"="Excellent")) %>% 
   # Format importance
   mutate(importance=stringr::str_to_sentence(importance),
-         importance=factor(importance, levels=c("Low", "Medium", "High")))   
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  # Create a new column to house numeric values for importance
+  mutate(numeric_importance = case_when(
+    importance == "Low" ~ "1",
+    importance == "Medium" ~ "2",
+    importance == "High" ~ "3"))
   
 ```
 
@@ -439,11 +444,57 @@ merged_mean %>%
 ```
 
 
+```{r}
+# Find means across domains but within each dimension
+domain_mean <- attributes_merged_clean %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean))
+
+# Create a table
+domain_mean %>% 
+  kbl(caption = "Resilience Attribute Score Means by Domain") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria")
+```
+
+
+
 # Count the numner of Importance levels by attribute
 
 ```{r}
 # Try to create a table that shows count of low, medium, high, NA values per each attribute
+importance_count <- attributes_merged_clean %>% 
+  group_by(dimension, domain) %>% 
+  count(importance)
+
+# Create a table
+importance_count %>% 
+  kbl(caption = "Importance Counts by Dimenison and Domain") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria")
+  
 ```
+
+
+# Find Importance Level Averages
+
+```{r}
+# Find the mean of the importance category by making a new dataset that defines the importance levels as numbers - 1 ~ low
+importance_mean <- attributes_merged_clean %>% 
+  mutate(importance=recode(importance, 
+                                 "Low"="1",
+                                 "Medium"="2",
+                                 "High"="3")) %>% 
+  mutate(importance=as.numeric(importance)) %>% 
+  filter(!is.na(importance)) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(importance), list(importance_mean = mean)) 
+
+# Create a table
+importance_mean %>% 
+  kbl(caption = "Importance Means by Attribute") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria")
+
+```
+
 
 
 
@@ -483,6 +534,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed") +
   theme_bw() + my_theme  
 ```
 

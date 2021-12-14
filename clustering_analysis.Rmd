@@ -1,0 +1,61 @@
+---
+title: "Clustering Analysis"
+author: "Meghan Fletcher"
+date: "12/14/2021"
+output: 
+  html_document:
+    theme: flatly
+    code_folding: hide
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(janitor)
+library(here)
+
+# For PCA:
+library(ggfortify)
+```
+
+
+```{r}
+#Helpful link on clustering analysis from Whitney:
+#  https://jcoliver.github.io/learn-r/008-ggplot-dendrograms-and-heatmaps.html
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
