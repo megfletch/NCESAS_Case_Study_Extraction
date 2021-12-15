@@ -407,7 +407,9 @@ attributes_merged_clean <- attributes_merged %>%
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance)) %>% 
+  filter(!is.na(numeric_importance))
   
 ```
 
@@ -533,8 +535,8 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
-  geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed") +
   geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme  
 ```
 
