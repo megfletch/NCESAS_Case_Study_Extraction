@@ -458,6 +458,78 @@ domain_mean %>%
    kable_classic_2(full_width = F, html_font = "Cambria")
 ```
 
+```{r}
+# Create a table where the average scores of each domain across case studies are represented
+
+# Aguion mean
+aguion_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Aguion") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Aguion = score)
+
+# Dickey-Collas mean
+dickey_collas_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Dickey_Collas") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Dickey_Collas = score)
+
+# Eurich mean
+eurich_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Eurich") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Eurich = score)
+
+# Free mean
+free_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Free") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Free = score)
+
+# Friedman mean
+friedman_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Friedman") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Friedman = score)
+
+# Hollowed mean
+#hollowed_mean <- attributes_merged_clean %>% 
+#  filter(case_study == "Hollowed") %>% 
+#  group_by(dimension, domain) %>% 
+#  summarise_at(vars(official_score), list(score = mean)) %>% 
+#  rename(Hollowed = score)
+
+# Kisara mean
+#kisara_mean <- attributes_merged_clean %>% 
+#  filter(case_study == "Kisara") %>% 
+#  group_by(dimension, domain) %>% 
+#  summarise_at(vars(official_score), list(score = mean)) %>% 
+#  rename(Kisara = score)
+
+# Kleisner mean
+kleisner_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Kleisner") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Kleisner = score)
+
+
+
+
+
+# Merge all mean datasets together
+means_merged_by_case <- cbind(aguion_mean,dickey_collas_mean, eurich_mean, free_mean, friedman_mean, kleisner_mean)
+
+# Add all of the mean score columns to original total mean dataset
+mean_scores_across_cases <- cbind(domain_mean, means_merged_by_case[c("Aguion","Dickey_Collas","Eurich", "Free","Friedman","Kleisner")])
+```
+
+
+
 
 
 # Count the numner of Importance levels by attribute
@@ -477,6 +549,8 @@ importance_count %>%
 
 
 # Find Importance Level Averages
+
+In order to determine the average across importance levels, the levels were converted to numbers as follows: Low ~ 1, Medium ~ 2, High ~ 3. Using these numbers, the means were then calculated to generate scoring mean across attributes for important levels.
 
 ```{r}
 # Find the mean of the importance category by making a new dataset that defines the importance levels as numbers - 1 ~ low
@@ -518,6 +592,9 @@ my_theme <-  theme(axis.text.x=element_text(size=8, angle=35, hjust=1),
                    axis.line = element_line())
 ```
 
+The black dashed lines in the graphs below represent the mean scores of each attribute across the case studies.
+The blue dashed line in the graphs below represent the mean importance scores where low = 1, medium = 2, and high = 3.
+
 ## Ecological
 
 ### Assets
@@ -535,8 +612,8 @@ ggplot() +
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
-  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed") +
-  geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed", colour="blue") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(official_score)), linetype="dashed") +
   theme_bw() + my_theme  
 ```
 
@@ -555,6 +632,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=age_structure, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -574,6 +652,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=genetic_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -593,6 +672,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=species_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -613,6 +693,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=adult_mobility, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -633,6 +714,7 @@ ggplot() +
   # Had to delete the first blue color in the code below in order to match the colors appropriately since there are no "low" importance valuus for this attribute
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=larval_dispersal, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -652,6 +734,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=environmental_breadth, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -671,6 +754,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=dietary_flexibility, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -690,6 +774,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=habitat_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -709,6 +794,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=plasticity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -728,6 +814,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=evolutionary_potential, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -748,6 +835,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=ecosystem_connectivity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -767,6 +855,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=population_modularity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -789,6 +878,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=wealth_reserves, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -808,6 +898,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=economic_divserity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -827,6 +918,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=social_divsersity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -847,6 +939,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=flexible_agile, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -866,6 +959,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=mobility, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -885,6 +979,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=economic_opportunity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -904,6 +999,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=resilience_mindset, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -923,6 +1019,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=place_attachment, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -943,6 +1040,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=social_capital, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -962,6 +1060,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=tech_transfer, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -981,6 +1080,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=modular_infrastrucutre, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1001,6 +1101,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=knowledge_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1020,6 +1121,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=knowledge_access, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1039,6 +1141,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=learning_capacity, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1059,6 +1162,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=agency, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1081,6 +1185,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=responsive, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1101,6 +1206,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=participatory, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1120,6 +1226,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=equitable_inclusive, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1138,6 +1245,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=accountable, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1157,6 +1265,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=transparent, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1176,6 +1285,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=effective_efficient, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1195,6 +1305,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=polycentric, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1214,6 +1325,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=cross_scale, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1234,6 +1346,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=adaptive, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -1254,6 +1367,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=leadership_initiative, aes(yintercept = mean(official_score)), linetype="dashed") +
+  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
