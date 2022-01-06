@@ -356,7 +356,6 @@ attributes_merged <- rbind(aguion_barnacle, dickey_collas_eur, eurich_clam, free
 
 # Data frames that don't bind:
 #  kisara_squid
-
 ```
 
 

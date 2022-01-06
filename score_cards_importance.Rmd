@@ -84,7 +84,7 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
 
 
 #######################################################################################################################
-#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=1082#97509896161547373&rtpof=true", 
+#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=108297509896161547373&rtpof=true", 
 #                           sheet = "UPDATED_S4_ResilienceAttributes",
 #                           range = "A6:P61",
 #                           col_names = TRUE,
@@ -125,7 +125,8 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
 #  mutate(numeric_importance = case_when(
 #    importance == "Low" ~ "1",
 #    importance == "Medium" ~ "2",
-#    importance == "High" ~ "3"))
+#    importance == "High" ~ "3")) %>% 
+#  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 
@@ -172,7 +173,8 @@ dickey_collas_eur <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1hf
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 
@@ -219,7 +221,8 @@ eurich_clam <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZEIev1lc
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 #####################################################################################################################################
@@ -264,7 +267,8 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 #######################################################################################################################
@@ -309,7 +313,8 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
 #  mutate(numeric_importance = case_when(
 #    importance == "Low" ~ "1",
 #    importance == "Medium" ~ "2",
-#    importance == "High" ~ "3"))
+#    importance == "High" ~ "3")) %>% 
+#  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 #######################################################################################################################
@@ -354,7 +359,8 @@ friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 #######################################################################################################################
@@ -399,7 +405,8 @@ hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ########################################################################################################################
@@ -444,7 +451,8 @@ kisara_squid <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1RX1iUmE
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ###########################################################################################################################
@@ -484,8 +492,13 @@ kleisner_jfi <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YM1wc6F
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
   mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
   arrange(dimension, domain, score) %>% 
-  mutate(attribute=factor(attribute, levels=attribute))
-
+  mutate(attribute=factor(attribute, levels=attribute)) %>% 
+# Create a new column to house numeric values for importance
+  mutate(numeric_importance = case_when(
+    importance == "Low" ~ "1",
+    importance == "Medium" ~ "2",
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ################################################################################################################################
@@ -530,7 +543,8 @@ lau_png <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/18po7Pgq5Od6Q
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ###############################################################################################################################
@@ -575,7 +589,8 @@ mason_iceland <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1ZPs5ow
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ##########################################################################################################################
@@ -620,7 +635,8 @@ mills_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1HEPT54
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ########################################################################################################################
@@ -665,7 +681,8 @@ pecl_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/11Z-SLlA
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ###########################################################################################################################
@@ -710,7 +727,8 @@ pecl_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/11Z-SLlA
 #  mutate(numeric_importance = case_when(
 #    importance == "Low" ~ "1",
 #    importance == "Medium" ~ "2",
-#    importance == "High" ~ "3"))
+#    importance == "High" ~ "3")) %>% 
+#  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 
@@ -756,7 +774,8 @@ tokunaga_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1jgF
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ############################################################################################################################
@@ -801,7 +820,8 @@ westfall_hms <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1DMx0Ux9
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 ###################################################################################################################################
@@ -846,7 +866,8 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
   mutate(numeric_importance = case_when(
     importance == "Low" ~ "1",
     importance == "Medium" ~ "2",
-    importance == "High" ~ "3"))
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
   
 ```
 
@@ -875,8 +896,8 @@ my_theme <-  theme(axis.text=element_text(size=8),
 ```{r}
 aguion_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=aguion_barnacle, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=importance, alpha=quality)) +
-  geom_point(data=aguion_barnacle, mapping=aes(x=numeric_importance, y=attribute, color=importance, alpha=quality, shape=domain), size=3.5, inherit.aes = F) +
+  geom_segment(data=aguion_barnacle, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=aguion_barnacle, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
   scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
   labs(x="Attribute score", y="", title="Galicia stalked barnacle resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
@@ -896,14 +917,13 @@ ggsave("case_study_attribute_scores_aguion.png",
 ```{r}
 dickey_collas_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=dickey_collas_eur, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=dickey_collas_eur, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="EUR pelagic fishery resilience score card") +
+  geom_segment(data=dickey_collas_eur, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=dickey_collas_eur, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Pelagic EUR fishery resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 dickey_collas_plot
 
@@ -916,25 +936,15 @@ ggsave("case_study_attribute_scores_dickey_collas.png",
 ## Eurich Score Card
 
 ```{r}
-# Plot data
 eurich_plot <- ggplot() +
-  # Facet
   facet_grid(dimension~., space="free", scales="free_y") +
-  # Plot points
-  geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=eurich_clam, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size =3.5, inherit.aes = F) +
-  # Limits
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  # Labels
-  labs(x="Attribute score", y="", title="Kiribati giant clam resilience score card") +
-  # Bars
-  # geom_bar(stat="identity", color="black", lwd=0.2) +
-  # Legend
+  geom_segment(data=eurich_clam, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=eurich_clam, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Kiribati clam resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
-  # Theme
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 eurich_plot
 
@@ -950,14 +960,13 @@ ggsave("case_study_attribute_score_eurich.png",
 ```{r}
 free_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=free_crab, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=free_crab, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="CA dungeness crab resilience score card") +
+  geom_segment(data=free_crab, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=free_crab, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="DA dungeness crab resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 free_plot
 
@@ -972,14 +981,13 @@ ggsave("case_study_attribute_scores_free.png",
 ```{r}
 friedman_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=friedman_fiji, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=friedman_fiji, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Fijian nearshore fisheries resilience score card") +
+  geom_segment(data=friedman_fiji, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=friedman_fiji, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Fijian nearshore fisheries resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 friedman_plot
 
@@ -994,14 +1002,13 @@ ggsave("case_study_attribute_scores_friedman.png",
 ```{r}
 hollowed_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=hollowed_bering_sea, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=hollowed_bering_sea, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Bering sea resilience score card") +
+  geom_segment(data=hollowed_bering_sea, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=hollowed_bering_sea, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Bering sea resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 hollowed_plot
 
@@ -1016,14 +1023,13 @@ ggsave("case_study_attribute_scores_hollowed.png",
 ```{r}
 kisara_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=kisara_squid, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=kisara_squid, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Squid/yellowtail resilience score card") +
+  geom_segment(data=kisara_squid, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=kisara_squid, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Squid/yellowtail resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 kisara_plot
 
@@ -1038,14 +1044,13 @@ ggsave("case_study_attribute_scores_kisara.png",
 ```{r}
 kleisner_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=kleisner_jfi, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=kleisner_jfi, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Juan fernandez islands resilience score card") +
+  geom_segment(data=kleisner_jfi, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=kleisner_jfi, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Juan fernandez islands resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 kleisner_plot
 
@@ -1058,17 +1063,15 @@ ggsave("case_study_attribute_scores_kleisner.png",
 ## Lau Score Card
 
 ```{r}
-# Remove filter(is,=.na(score)) for Jacquie's code above
 lau_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=lau_png, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=lau_png, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Mandang PNG Coral Reef resilience score card") +
+  geom_segment(data=lau_png, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=lau_png, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Mandang PNG Coral Reef resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 lau_plot
 
@@ -1083,14 +1086,13 @@ ggsave("case_study_attribute_scores_lau.png",
 ```{r}
 mason_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=mason_iceland, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=mason_iceland, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Iceland groundfish resilience score card") +
+  geom_segment(data=mason_iceland, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=mason_iceland, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Iceland groundfish resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 mason_plot
 
@@ -1105,14 +1107,13 @@ ggsave("case_study_attribute_scores_mason.png",
 ```{r}
 mills_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=mills_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=mills_lobster, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Maine lobster resilience score card") +
+  geom_segment(data=mills_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=mills_lobster, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Maine lobster resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 mills_plot
 
@@ -1127,14 +1128,13 @@ ggsave("case_study_attribute_scores_mills.png",
 ```{r}
 pecl_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=pecl_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=pecl_lobster, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Tasmanian rock lobster resilience score card") +
+  geom_segment(data=pecl_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=pecl_lobster, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Tasmanian rock lobster resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 pecl_plot
 
@@ -1149,14 +1149,13 @@ ggsave("case_study_attribute_scores_pecl.png",
 ```{r}
 tokunaga_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=tokunaga_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=tokunaga_lobster, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Japanese spiny lobster resilience score card") +
+  geom_segment(data=tokunaga_lobster, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=tokunaga_lobster, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Japanese spiny lobster resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 tokunaga_plot
 
@@ -1171,14 +1170,13 @@ ggsave("case_study_attribute_scores_lau.png",
 ```{r}
 westfall_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=westfall_hms, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=westfall_hms, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="US Atlantic/Gulf of Mexico HMS fisheries resilience score card") +
+  geom_segment(data=westfall_hms, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=westfall_hms, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="US Atlantic/Gulf of Mexico HMS fisheries resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 westfall_plot
 
@@ -1193,14 +1191,13 @@ ggsave("case_study_attribute_scores_westfall.png",
 ```{r}
 zhao_plot <- ggplot() +
   facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=zhao_moorea, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
-  geom_point(data=zhao_moorea, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
-  labs(x="Attribute score", y="", title="Moorea coral reef lagoon fishery resilience score card") +
+  geom_segment(data=zhao_moorea, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=zhao_moorea, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Moorea coral reef lagoon fishery resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
-  scale_shape_discrete(name="Importance") +
-  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   theme_bw() + my_theme
 zhao_plot
 
