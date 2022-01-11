@@ -84,31 +84,31 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
 
 
 #######################################################################################################################
-#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=108297509896161547373&rtpof=true", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  rename(dimension=dimensions, 
-#         domain=new_domain, 
-#         attribute=resilience_attribute, 
-#         score=score_1_4,
-#         quality=information_quality, 
-#         importance=importance_of_attribute_in_study_system_high_medium_low, 
-#         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-#  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-#  filter(!is.na(attribute)) %>% 
-#  mutate(score=as.numeric(score)) %>% 
-#  mutate(dimension=recode_factor(dimension, 
-#                                 "Ecological"="Ecological",
-#                                 "Socio-economic"="Social-economic",
-#                                 "Governance-management"="Goverance")) %>% 
+burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1TkB-P94xgRssmcbAuzwoh0BlDdvUfYHO7vWjK6r2pxs/edit#gid=1274102518", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  rename(dimension=dimensions, 
+         domain=new_domain, 
+         attribute=resilience_attribute, 
+         score=score_1_4,
+         quality=information_quality, 
+         importance=importance_of_attribute_in_study_system_high_medium_low, 
+         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
+  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+  filter(!is.na(attribute)) %>% 
+  mutate(score=as.numeric(score)) %>% 
+  mutate(dimension=recode_factor(dimension, 
+                                 "Ecological"="Ecological",
+                                 "Socio-economic"="Social-economic",
+                                 "Governance-management"="Goverance")) %>% 
 #  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
 #         quality=recode_factor(quality,
 #                               "E - No data"="No data",
@@ -116,17 +116,17 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
 #                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
 #                               "B - limited data/information and expert judgement"="Good",
 #                               "A - adequate and reliable data/information"="Excellent")) %>% 
-#  mutate(importance=stringr::str_to_sentence(importance),
-#         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-#  arrange(dimension, domain, score) %>% 
-#  mutate(attribute=factor(attribute, levels=attribute)) %>% 
+  mutate(importance=stringr::str_to_sentence(importance),
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+  arrange(dimension, domain, score) %>% 
+  mutate(attribute=factor(attribute, levels=attribute)) %>% 
 # Create a new column to house numeric values for importance
-#  mutate(numeric_importance = case_when(
-#    importance == "Low" ~ "1",
-#    importance == "Medium" ~ "2",
-#    importance == "High" ~ "3")) %>% 
-#  mutate(numeric_importance=as.numeric(numeric_importance))
+  mutate(numeric_importance = case_when(
+    importance == "Low" ~ "1",
+    importance == "Medium" ~ "2",
+    importance == "High" ~ "3")) %>% 
+  mutate(numeric_importance=as.numeric(numeric_importance))
 
 
 
@@ -908,6 +908,27 @@ aguion_plot
 
 # Save the plot
 ggsave("case_study_attribute_scores_aguion.png", 
+      width=6.5, height=6.5, units="in", dpi=600)
+```
+
+
+## Burden Score Card
+
+```{r}
+burden_plot <- ggplot() +
+  facet_grid(dimension~., space="free", scales="free_y") +
+  geom_segment(data=burden_sardine, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
+  geom_point(data=burden_sardine, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
+  labs(x="Attribute score", y="", title="Pacific sardine resilience importance score card") +
+  scale_alpha_ordinal(name="Data quality") +
+  scale_color_discrete(name="Domain") +
+  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
+  theme_bw() + my_theme
+burden_plot
+
+# Save the plot
+ggsave("case_study_attribute_scores_burden.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 

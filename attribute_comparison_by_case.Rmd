@@ -42,20 +42,20 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
 
 
 #######################################################################################################################
-#burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1umFwY33PSTJYmlfSIZiIWmT2gIBQeYCw/edit?usp=drive_web&ouid=1082#97509896161547373&rtpof=true", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names()%>% 
-#  add_column(case_study = "Burden",
-#             reference = "burden1",
-#             .after = "question_id")
+burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1TkB-P94xgRssmcbAuzwoh0BlDdvUfYHO7vWjK6r2pxs/edit#gid=1965519914", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names()%>% 
+  add_column(case_study = "Burden",
+             reference = "burden1",
+             .after = "question_id")
 
 
 
@@ -351,7 +351,7 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 # Merge the datasets
 
 ```{r}
-attributes_merged <- rbind(aguion_barnacle, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
 
 
 # Data frames that don't bind:
@@ -429,8 +429,8 @@ attributes_merged_clean <- attributes_merged %>%
 ```
 
 
-# Find Attribute Score Means
-##### The socre means of each attribute are reflected in the table below as well as by the dashed lines in each graph below
+# Find Attribute Score Means 
+The attribute score means of each attribute are reflected in the table below as well as by the dashed lines in each graph below
 
 ```{r}
 # Build a table
@@ -468,6 +468,13 @@ aguion_mean <- attributes_merged_clean %>%
   group_by(dimension, domain) %>% 
   summarise_at(vars(official_score), list(score = mean)) %>% 
   rename(Aguion = score) 
+
+# Burden mean
+burden_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Burden") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Burden = score)
 
 # Dickey-Collas mean
 dickey_collas_mean <- attributes_merged_clean %>% 
@@ -569,8 +576,8 @@ zhao_mean <- attributes_merged_clean %>%
 
 
 # Merge all mean datasets together
-means_merged_by_case <- cbind(aguion_mean, dickey_collas_mean, eurich_mean, free_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
-  select(dimension...1, domain...2, Aguion, Dickey_Collas, Eurich, Free, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
   rename(Dimension = dimension...1, Domain = domain...2)
 
 # Create a table
@@ -580,6 +587,35 @@ means_merged_by_case %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
+
+#########################################################################################################
+
+# Looking at means by fishery scale
+
+## Small-scale Fisheries
+
+```{r}
+# Create dataset for attribute score means in small-scale fisheries
+small_scale <- attributes_merged_clean %>% 
+  filter(case_study %in% c("Aguion", "Eurich", "Kleisner", "Lau", "Pecl", "Tokunaga")) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(official_score), list(score = mean, score = sd))
+
+###### figure out how to combine mean table of attribute score and importance score
+
+# Create a table
+small_scale %>% 
+  kbl(caption = "Small-Scale Fishery Resilience Attribute Score Means") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+
+
+
+
+##########################################################################################################
 
 # Count the number of Importance levels by attribute
 
