@@ -348,6 +348,8 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 ```
 
 
+##############################################################################################
+
 # Merge the datasets
 
 ```{r}
@@ -357,7 +359,6 @@ attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, e
 # Data frames that don't bind:
 #  kisara_squid
 ```
-
 
 
 # Clean the merged datasets 
@@ -428,6 +429,8 @@ attributes_merged_clean <- attributes_merged %>%
   #mutate(attribute = gsub("\\*", "", attribute))
 ```
 
+
+############################################################################################
 
 # Find Attribute Score Means 
 The attribute score means of each attribute are reflected in the table below as well as by the dashed lines in each graph below
@@ -573,8 +576,9 @@ zhao_mean <- attributes_merged_clean %>%
   group_by(dimension, domain) %>% 
   summarise_at(vars(official_score), list(score = mean)) %>% 
   rename(Zhao = score)
+```
 
-
+```{r}
 # Merge all mean datasets together
 means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
   select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
@@ -589,50 +593,6 @@ means_merged_by_case %>%
 
 
 #########################################################################################################
-
-# Looking at means by fishery scale
-
-## Small-scale Fisheries
-
-```{r}
-# Create dataset for attribute score means in small-scale fisheries
-small_scale <- attributes_merged_clean %>% 
-  filter(case_study %in% c("Aguion", "Eurich", "Kleisner", "Lau", "Pecl", "Tokunaga")) %>% 
-  group_by(attribute) %>% 
-  summarise_at(vars(official_score), list(score = mean, score = sd))
-
-###### figure out how to combine mean table of attribute score and importance score
-
-# Create a table
-small_scale %>% 
-  kbl(caption = "Small-Scale Fishery Resilience Attribute Score Means") %>% 
-   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
-
-
-
-
-
-
-##########################################################################################################
-
-# Count the number of Importance levels by attribute
-
-```{r}
-# Try to create a table that shows count of low, medium, high, NA values per each attribute
-importance_count <- attributes_merged_clean %>% 
-  group_by(dimension, domain) %>% 
-  count(importance)
-
-# Create a table
-importance_count %>% 
-  kbl(caption = "Importance Counts by Dimenison and Domain") %>% 
-   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover"))
-  
-```
-
 
 # Find Importance Level Averages
 
@@ -659,6 +619,95 @@ importance_mean %>%
 ```
 
 
+#########################################################################################################
+
+# Looking at means by fishery scale
+
+With both of these tables, it is important to remember that score is based 1-4 while importance was a categorical variable originally. Due to this, Importance has been converted to numerical values where low = 1, medium = 2, and high = 3. This mean that for score, the highest value is 4 and the lowest is 1 and for importance, the highest is 3 and the lowest is 1.
+
+## Small-scale Fisheries
+
+```{r}
+# Create dataset for attribute score means in small-scale fisheries
+small_scale_score <- attributes_merged_clean %>% 
+  filter(case_study %in% c("Aguion", "Eurich", "Kleisner", "Lau", "Pecl", "Tokunaga")) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(official_score), list(score = mean, score = sd))
+
+# Create dataset for attribute importance score means in small-scale fisheries
+small_scale_importance <- attributes_merged_clean %>% 
+  filter(case_study %in% c("Aguion", "Eurich", "Kleisner", "Lau", "Pecl", "Tokunaga")) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd)) 
+  
+# Merge the datasets
+small_scale_combined <- merge(small_scale_score, small_scale_importance) %>% 
+  rename(Attributes = attribute,
+         "Score Mean" = score..1,
+         "Score SD" = score..2,
+         "Importance Mean" = numeric_importance..1,
+         "Importance SD" = numeric_importance..2)
+```
+
+```{r}
+# Create a table for the menas and standard deviations of both socre and importance 
+small_scale_combined %>% 
+  kbl(caption = "Small-Scale Fishery Resilience Attribute Score and Importance Means") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+## Large-scale Fisheries
+
+```{r}
+# Create dataset for attribute score means in small-scale fisheries
+large_scale_score <- attributes_merged_clean %>% 
+  filter(case_study %in% c("Burden", "Hollowed", "Free", "Dickey-Collas", "Mason", "Westfall", "Zhao")) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(official_score), list(score = mean, score = sd))
+
+# Create dataset for attribute importance score means in small-scale fisheries
+large_scale_importance <- attributes_merged_clean %>% 
+  filter(case_study %in% c("Burden", "Hollowed", "Free", "Dickey-Collas", "Mason", "Westfall", "Zhao")) %>% 
+  group_by(attribute) %>% 
+  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd)) 
+  
+# Merge the datasets
+large_scale_combined <- merge(large_scale_score, large_scale_importance) %>% 
+  rename(Attributes = attribute,
+         "Score Mean" = score..1,
+         "Score SD" = score..2,
+         "Importance Mean" = numeric_importance..1,
+         "Importance SD" = numeric_importance..2)
+```
+
+```{r}
+# Create a table for the menas and standard deviations of both socre and importance 
+small_scale_combined %>% 
+  kbl(caption = "Small-Scale Fishery Resilience Attribute Score and Importance Means") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+##########################################################################################################
+
+# Count the number of Importance levels by attribute
+
+```{r}
+# Try to create a table that shows count of low, medium, high, NA values per each attribute
+importance_count <- attributes_merged_clean %>% 
+  group_by(dimension, domain) %>% 
+  count(importance)
+
+# Create a table
+importance_count %>% 
+  kbl(caption = "Importance Counts by Dimenison and Domain") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+  
+```
 
 
 # Plot the merged data by attribute of interest
