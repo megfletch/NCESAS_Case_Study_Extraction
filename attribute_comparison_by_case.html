@@ -2249,8 +2249,8 @@ Wealth and reserves
 <p class="heading"></p>
 </div>
 </div>
-<div id="looking-at-means-by-fishery-scale" class="section level1">
-<h1>Looking at means by fishery scale</h1>
+<div id="small-vs.-large-scale-fishery-stats" class="section level1">
+<h1>Small vs. Large-scale Fishery Stats</h1>
 <p>With both of these tables, it is important to remember that score is based 1-4 while importance was a categorical variable originally. Due to this, Importance has been converted to numerical values where low = 1, medium = 2, and high = 3. This mean that for score, the highest value is 4 and the lowest is 1 and for importance, the highest is 3 and the lowest is 1.</p>
 <div id="small-scale-fisheries" class="section level2">
 <h2>Small-scale Fisheries</h2>
@@ -2971,15 +2971,19 @@ large_scale_combined &lt;- merge(large_scale_score, large_scale_importance) %&gt
          &quot;Score Mean&quot; = score..1,
          &quot;Score SD&quot; = score..2,
          &quot;Importance Mean&quot; = numeric_importance..1,
-         &quot;Importance SD&quot; = numeric_importance..2)</code></pre>
+         &quot;Importance SD&quot; = numeric_importance..2)
+
+# Turn the table sinto CSV files
+write_csv(small_scale_combined, &quot;ssf.csv&quot;)
+write_csv(large_scale_combined, &quot;ls.csv&quot;)</code></pre>
 <pre class="r"><code># Create a table for the menas and standard deviations of both socre and importance 
 small_scale_combined %&gt;% 
-  kbl(caption = &quot;Small-Scale Fishery Resilience Attribute Score and Importance Means&quot;) %&gt;% 
+  kbl(caption = &quot;Large-Scale Fishery Resilience Attribute Score and Importance Means&quot;) %&gt;% 
    kable_classic_2(full_width = F, html_font = &quot;Cambria&quot;) %&gt;% 
   kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;))</code></pre>
 <table class=" lightable-classic-2 table table-striped table-hover" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <caption>
-Small-Scale Fishery Resilience Attribute Score and Importance Means
+Large-Scale Fishery Resilience Attribute Score and Importance Means
 </caption>
 <thead>
 <tr>

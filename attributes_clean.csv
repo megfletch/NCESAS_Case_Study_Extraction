@@ -1,0 +1,485 @@
+dimension,domain,case_study,reference,attribute,score,quality,importance,work_as_described,official_score,numeric_importance
+Ecological,Assets,Aguion,aguion1,Population abundance,3,Good,Low,yes,3,1
+Ecological,Assets,Aguion,aguion1,Age structure,2,Fair,Low,yes,2,1
+Ecological,Assets,Aguion,aguion1,Genetic diversity,4,Excellent,Medium,yes,4,2
+Ecological,Assets,Aguion,aguion1,Species diversity,3,Fair,Low,yes,3,1
+Ecological,Flexibility,Aguion,aguion1,Adult mobility,1,Excellent,Low,yes,1,1
+Ecological,Flexibility,Aguion,aguion1,Larval dispersal,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Aguion,aguion1,Environmental niche breadth,3,Fair,Medium,yes,3,2
+Ecological,Flexibility,Aguion,aguion1,Dietary flexibility,2,Low,Low,yes,2,1
+Ecological,Flexibility,Aguion,aguion1,Habitat diversity,2,Fair,Low,yes,2,1
+Ecological,Flexibility,Aguion,aguion1,Plasticity,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Aguion,aguion1,Evolutionary potential,3,Fair,Medium,yes,3,2
+Ecological,Organization,Aguion,aguion1,Ecosystem connectivity,3,Fair,Low,yes,3,1
+Ecological,Organization,Aguion,aguion1,Population modularity,3,Fair,Low,yes,3,1
+Social-economic,Assets,Aguion,aguion1,Wealth and reserves,3,Low,Low,yes,3,1
+Social-economic,Assets,Aguion,aguion1,Economic diversity,3,Low,High,yes,3,3
+Social-economic,Assets,Aguion,aguion1,Social diversity,2,Fair,Medium,yes,2,2
+Social-economic,Flexibility,Aguion,aguion1,Flexible and agile infrstructure,3,Low,Low,yes,3,1
+Social-economic,Flexibility,Aguion,aguion1,Mobility,2,Excellent,Low,yes,2,1
+Social-economic,Flexibility,Aguion,aguion1,Economic opportunity,2,Low,Low,yes,2,1
+Social-economic,Flexibility,Aguion,aguion1,Resilience mindset,3,Fair,High,yes,3,3
+Social-economic,Flexibility,Aguion,aguion1,Place attachment,4,Excellent,High,yes,4,3
+Social-economic,Organization,Aguion,aguion1,Social capital,4,Excellent,High,yes,4,3
+Social-economic,Organization,Aguion,aguion1,Technology transfer,2,Fair,Low,yes,2,1
+Social-economic,Organization,Aguion,aguion1,Modular infrastructure,2,Fair,Low,yes,2,1
+Social-economic,Learning,Aguion,aguion1,Knowledge diversity,3,Good,High,yes,3,3
+Social-economic,Learning,Aguion,aguion1,Knowledge access,4,Excellent,High,yes,4,3
+Social-economic,Learning,Aguion,aguion1,Learning capacity,4,Fair,High,yes,4,3
+Social-economic,Agency,Aguion,aguion1,Agency,3,Excellent,High,yes,3,3
+Goverance,Flexibility,Aguion,aguion1,Responsive,3,Good,High,yes,3,3
+Goverance,Organization,Aguion,aguion1,Participatory,4,Excellent,High,yes,4,3
+Goverance,Organization,Aguion,aguion1,Equitable and inclusive,3,Low,Medium,yes,3,2
+Goverance,Organization,Aguion,aguion1,Accountable,2,Fair,Low,yes,2,1
+Goverance,Organization,Aguion,aguion1,Transparent,3,Low,High,yes,3,3
+Goverance,Organization,Aguion,aguion1,Effective and efficient,3,Fair,Medium,yes,3,2
+Goverance,Organization,Aguion,aguion1,Polycentric,4,Good,High,yes,4,3
+Goverance,Organization,Aguion,aguion1,Cross-scale integration,3,Good,High,yes,3,3
+Goverance,Learning,Aguion,aguion1,Adaptive,4,Good,High,yes,4,3
+Goverance,Agency,Aguion,aguion1,Leadership and initiative,3,Fair,High,yes,3,3
+Ecological,Assets,Burden,burden1,Age structure,1,NA,High,NA,1,3
+Ecological,Assets,Burden,burden1,Species diversity,2,NA,Low,NA,2,1
+Ecological,Flexibility,Burden,burden1,Adult mobility,3,NA,High,NA,3,3
+Ecological,Flexibility,Burden,burden1,Larval dispersal,3,NA,High,NA,3,3
+Ecological,Flexibility,Burden,burden1,Environmental niche breadth,2,NA,High,NA,2,3
+Ecological,Flexibility,Burden,burden1,Habitat diversity,2,NA,Low,NA,2,1
+Ecological,Flexibility,Burden,burden1,Plasticity,2,NA,Low,NA,2,1
+Ecological,Flexibility,Burden,burden1,Evolutionary potential,3,NA,Medium,NA,3,2
+Ecological,Organization,Burden,burden1,Ecosystem connectivity,4,NA,High,NA,4,3
+Ecological,Organization,Burden,burden1,Population modularity,2,NA,Low,NA,2,1
+Social-economic,Assets,Burden,burden1,Wealth and reserves,3,NA,Medium,NA,3,2
+Social-economic,Assets,Burden,burden1,Economic diversity,4,NA,High,NA,4,3
+Social-economic,Assets,Burden,burden1,Social diversity,2,NA,Low,NA,2,1
+Social-economic,Flexibility,Burden,burden1,Mobility,3,NA,High,NA,3,3
+Social-economic,Flexibility,Burden,burden1,Economic opportunity,4,NA,High,NA,4,3
+Social-economic,Flexibility,Burden,burden1,Resilience mindset,3,NA,High,NA,3,3
+Social-economic,Flexibility,Burden,burden1,Place attachment,3,NA,Low,NA,3,1
+Social-economic,Organization,Burden,burden1,Technology transfer,3,NA,Medium,NA,3,2
+Social-economic,Organization,Burden,burden1,Modular infrastructure,2,NA,Medium,NA,2,2
+Social-economic,Learning,Burden,burden1,Knowledge diversity,2,NA,Medium,NA,2,2
+Social-economic,Learning,Burden,burden1,Knowledge access,3,NA,Medium,NA,3,2
+Social-economic,Learning,Burden,burden1,Learning capacity,3,NA,High,NA,3,3
+Social-economic,Agency,Burden,burden1,Agency,3,NA,Medium,NA,3,2
+Goverance,Flexibility,Burden,burden1,Responsive,3,NA,High,NA,3,3
+Goverance,Organization,Burden,burden1,Participatory,4,NA,High,NA,4,3
+Goverance,Organization,Burden,burden1,Equitable and inclusive,3,NA,Medium,NA,3,2
+Goverance,Organization,Burden,burden1,Accountable,4,NA,High,NA,4,3
+Goverance,Organization,Burden,burden1,Transparent,4,NA,Medium,NA,4,2
+Goverance,Organization,Burden,burden1,Effective and efficient,2,NA,High,NA,2,3
+Goverance,Organization,Burden,burden1,Polycentric,3,NA,Medium,NA,3,2
+Goverance,Organization,Burden,burden1,Cross-scale integration,3,NA,Medium,NA,3,2
+Goverance,Learning,Burden,burden1,Adaptive,4,NA,High,NA,4,3
+Goverance,Agency,Burden,burden1,Leadership and initiative,3,NA,Medium,NA,3,2
+Ecological,Assets,Dickey_Collas,dickey_collas1,Population abundance,4,Excellent,Medium,yes,4,2
+Ecological,Assets,Dickey_Collas,dickey_collas1,Age structure,2,Excellent,Medium,no,2,2
+Ecological,Assets,Dickey_Collas,dickey_collas1,Genetic diversity,3,Excellent,Low,yes,3,1
+Ecological,Assets,Dickey_Collas,dickey_collas1,Species diversity,3,Excellent,Low,yes,3,1
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Adult mobility,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Larval dispersal,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Environmental niche breadth,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Dietary flexibility,4,Excellent,High,NA,4,3
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Habitat diversity,2,Excellent,Medium,no,2,2
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Plasticity,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Dickey_Collas,dickey_collas1,Evolutionary potential,3,Excellent,High,yes,3,3
+Ecological,Organization,Dickey_Collas,dickey_collas1,Ecosystem connectivity,4,Excellent,High,yes,4,3
+Ecological,Organization,Dickey_Collas,dickey_collas1,Population modularity,2,Excellent,Medium,yes,2,2
+Social-economic,Assets,Dickey_Collas,dickey_collas1,Wealth and reserves,4,Excellent,High,yes,4,3
+Social-economic,Assets,Dickey_Collas,dickey_collas1,Economic diversity,4,Fair,High,yes,4,3
+Social-economic,Assets,Dickey_Collas,dickey_collas1,Social diversity,2,Good,Medium,no,2,2
+Social-economic,Flexibility,Dickey_Collas,dickey_collas1,Flexible and agile infrstructure,4,Fair,High,NA,4,3
+Social-economic,Flexibility,Dickey_Collas,dickey_collas1,Mobility,4,Excellent,Low,yes,4,1
+Social-economic,Flexibility,Dickey_Collas,dickey_collas1,Economic opportunity,4,Excellent,High,yes,4,3
+Social-economic,Flexibility,Dickey_Collas,dickey_collas1,Resilience mindset,3,Good,Medium,yes,3,2
+Social-economic,Flexibility,Dickey_Collas,dickey_collas1,Place attachment,1,Fair,Low,no,1,1
+Social-economic,Organization,Dickey_Collas,dickey_collas1,Social capital,4,Good,High,yes,4,3
+Social-economic,Organization,Dickey_Collas,dickey_collas1,Technology transfer,4,Excellent,High,no,4,3
+Social-economic,Organization,Dickey_Collas,dickey_collas1,Modular infrastructure,4,Good,High,yes,4,3
+Social-economic,Learning,Dickey_Collas,dickey_collas1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Dickey_Collas,dickey_collas1,Knowledge access,4,Excellent,Medium,yes,4,2
+Social-economic,Learning,Dickey_Collas,dickey_collas1,Learning capacity,4,Excellent,High,yes,4,3
+Social-economic,Agency,Dickey_Collas,dickey_collas1,Agency,4,Excellent,High,yes,4,3
+Goverance,Flexibility,Dickey_Collas,dickey_collas1,Responsive,3,Fair,High,yes,3,3
+Goverance,Organization,Dickey_Collas,dickey_collas1,Participatory,3,Fair,Low,yes,3,1
+Goverance,Organization,Dickey_Collas,dickey_collas1,Transparent,3,Excellent,Low,yes,3,1
+Goverance,Organization,Dickey_Collas,dickey_collas1,Polycentric,3,Fair,Low,yes,3,1
+Goverance,Organization,Dickey_Collas,dickey_collas1,Cross-scale integration,3,Fair,Low,yes,3,1
+Goverance,Learning,Dickey_Collas,dickey_collas1,Adaptive,3,Fair,Low,yes,3,1
+Goverance,Agency,Dickey_Collas,dickey_collas1,Leadership and initiative,3,Fair,Low,yes,3,1
+Ecological,Assets,Eurich,eurich1,Population abundance,2,Excellent,Medium,yes,2,2
+Ecological,Assets,Eurich,eurich1,Age structure,2,Good,Medium,yes,2,2
+Ecological,Assets,Eurich,eurich1,Genetic diversity,3,Low,Low,yes,3,1
+Ecological,Assets,Eurich,eurich1,Species diversity,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Eurich,eurich1,Adult mobility,1,Excellent,Low,no,1,1
+Ecological,Flexibility,Eurich,eurich1,Larval dispersal,4,Good,High,yes,4,3
+Ecological,Flexibility,Eurich,eurich1,Environmental niche breadth,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Eurich,eurich1,Dietary flexibility,1,Excellent,Low,no,1,1
+Ecological,Flexibility,Eurich,eurich1,Habitat diversity,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Eurich,eurich1,Plasticity,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Eurich,eurich1,Evolutionary potential,4,Excellent,High,yes,4,3
+Ecological,Organization,Eurich,eurich1,Ecosystem connectivity,3,Good,High,yes,3,3
+Ecological,Organization,Eurich,eurich1,Population modularity,2,Fair,Low,yes,2,1
+Social-economic,Assets,Eurich,eurich1,Wealth and reserves,2,Good,Medium,yes,2,2
+Social-economic,Assets,Eurich,eurich1,Economic diversity,2,Fair,Medium,yes,2,2
+Social-economic,Assets,Eurich,eurich1,Social diversity,2,E - No data,Medium,yes,2,2
+Social-economic,Flexibility,Eurich,eurich1,Flexible and agile infrstructure,1,Good,Medium,no,1,2
+Social-economic,Flexibility,Eurich,eurich1,Mobility,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Eurich,eurich1,Economic opportunity,2,Fair,Medium,yes,2,2
+Social-economic,Flexibility,Eurich,eurich1,Resilience mindset,4,Good,High,yes,4,3
+Social-economic,Flexibility,Eurich,eurich1,Place attachment,4,Good,High,yes,4,3
+Social-economic,Organization,Eurich,eurich1,Social capital,3,Fair,Medium,yes,3,2
+Social-economic,Organization,Eurich,eurich1,Technology transfer,1,Fair,Low,yes,1,1
+Social-economic,Organization,Eurich,eurich1,Modular infrastructure,2,Good,Low,yes,2,1
+Social-economic,Learning,Eurich,eurich1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Eurich,eurich1,Knowledge access,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Eurich,eurich1,Learning capacity,3,Good,Medium,yes,3,2
+Social-economic,Agency,Eurich,eurich1,Agency,4,Good,High,yes,4,3
+Goverance,Flexibility,Eurich,eurich1,Responsive,2,Good,Medium,yes,2,2
+Goverance,Organization,Eurich,eurich1,Participatory,4,Good,High,yes,4,3
+Goverance,Organization,Eurich,eurich1,Equitable and inclusive,3,Fair,High,yes,3,3
+Goverance,Organization,Eurich,eurich1,Accountable,4,Fair,Medium,yes,4,2
+Goverance,Organization,Eurich,eurich1,Transparent,2,Fair,Medium,yes,2,2
+Goverance,Organization,Eurich,eurich1,Effective and efficient,2,Good,High,yes,2,3
+Goverance,Organization,Eurich,eurich1,Polycentric,3,Fair,High,yes,3,3
+Goverance,Organization,Eurich,eurich1,Cross-scale integration,3,Good,High,yes,3,3
+Goverance,Learning,Eurich,eurich1,Adaptive,4,Good,High,yes,4,3
+Goverance,Agency,Eurich,eurich1,Leadership and initiative,3,Fair,High,yes,3,3
+Ecological,Assets,Free,free1,Population abundance,4,Excellent,High,yes,4,3
+Ecological,Assets,Free,free1,Age structure,3,Excellent,Medium,yes,3,2
+Ecological,Assets,Free,free1,Genetic diversity,4,Excellent,Low,yes,4,1
+Ecological,Assets,Free,free1,Species diversity,3,Excellent,Low,yes,3,1
+Ecological,Flexibility,Free,free1,Adult mobility,2,Excellent,Low,yes,2,1
+Ecological,Flexibility,Free,free1,Larval dispersal,4,Excellent,Medium,yes,4,2
+Ecological,Flexibility,Free,free1,Environmental niche breadth,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Free,free1,Dietary flexibility,4,Excellent,Medium,yes,4,2
+Ecological,Flexibility,Free,free1,Habitat diversity,2,Excellent,Low,no,2,1
+Ecological,Flexibility,Free,free1,Plasticity,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Free,free1,Evolutionary potential,3,Good,Low,yes,3,1
+Ecological,Organization,Free,free1,Ecosystem connectivity,3,Excellent,Low,yes,3,1
+Ecological,Organization,Free,free1,Population modularity,1,Excellent,Low,yes,1,1
+Social-economic,Assets,Free,free1,Wealth and reserves,3,Low,High,yes,3,3
+Social-economic,Assets,Free,free1,Economic diversity,2,Fair,High,yes,2,3
+Social-economic,Assets,Free,free1,Social diversity,2,No data,Low,yes,2,1
+Social-economic,Flexibility,Free,free1,Flexible and agile infrstructure,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Free,free1,Mobility,3,Good,High,yes,3,3
+Social-economic,Flexibility,Free,free1,Economic opportunity,3,Good,High,yes,3,3
+Social-economic,Flexibility,Free,free1,Resilience mindset,3,Low,High,yes,3,3
+Social-economic,Flexibility,Free,free1,Place attachment,3,Fair,Medium,no,3,2
+Social-economic,Organization,Free,free1,Social capital,3,Good,High,yes,3,3
+Social-economic,Organization,Free,free1,Technology transfer,2,Fair,Low,yes,2,1
+Social-economic,Organization,Free,free1,Modular infrastructure,2,Low,Low,yes,2,1
+Social-economic,Learning,Free,free1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Free,free1,Knowledge access,3,Excellent,High,yes,3,3
+Social-economic,Learning,Free,free1,Learning capacity,4,Good,High,yes,4,3
+Social-economic,Agency,Free,free1,Agency,3,Low,Medium,yes,3,2
+Goverance,Flexibility,Free,free1,Responsive,2,Fair,High,yes,2,3
+Goverance,Organization,Free,free1,Participatory,3,Excellent,High,yes,3,3
+Goverance,Organization,Free,free1,Equitable and inclusive,3,Good,High,yes,3,3
+Goverance,Organization,Free,free1,Accountable,4,Excellent,High,yes,4,3
+Goverance,Organization,Free,free1,Transparent,3,Excellent,High,yes,3,3
+Goverance,Organization,Free,free1,Effective and efficient,2,Good,High,yes,2,3
+Goverance,Organization,Free,free1,Polycentric,4,Excellent,High,yes,4,3
+Goverance,Organization,Free,free1,Cross-scale integration,4,Excellent,High,yes,4,3
+Goverance,Learning,Free,free1,Adaptive,2,Fair,High,yes,2,3
+Goverance,Agency,Free,free1,Leadership and initiative,4,Good,High,yes,4,3
+Ecological,Assets,Friedman,friedman1,Population abundance,3,Good,High,yes,3,3
+Ecological,Assets,Friedman,friedman1,Age structure,2,Good,High,yes,2,3
+Ecological,Assets,Friedman,friedman1,Genetic diversity,4,Fair,High,yes,4,3
+Ecological,Assets,Friedman,friedman1,Species diversity,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Friedman,friedman1,Adult mobility,2,Excellent,Medium,yes,2,2
+Ecological,Flexibility,Friedman,friedman1,Larval dispersal,3,Good,High,yes,3,3
+Ecological,Flexibility,Friedman,friedman1,Environmental niche breadth,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Friedman,friedman1,Habitat diversity,4,Excellent,High,yes,4,3
+Social-economic,Flexibility,Hollowed,hollowed1,Flexible and agile infrstructure,2,Good,High,no,2,3
+Ecological,Assets,Kleisner,kleisner1,Population abundance,3,Fair,High,yes,3,3
+Ecological,Assets,Kleisner,kleisner1,Age structure,3,Fair,High,yes,3,3
+Ecological,Assets,Kleisner,kleisner1,Genetic diversity,2,Fair,High,"NA",2,3
+Ecological,Assets,Kleisner,kleisner1,Species diversity,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Kleisner,kleisner1,Adult mobility,3,Fair,Low,yes,3,1
+Ecological,Flexibility,Kleisner,kleisner1,Larval dispersal,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Kleisner,kleisner1,Environmental niche breadth,2,Fair,High,yes,2,3
+Ecological,Flexibility,Kleisner,kleisner1,Dietary flexibility,3,Fair,Medium,yes,3,2
+Ecological,Flexibility,Kleisner,kleisner1,Habitat diversity,2,Good,Medium,yes,2,2
+Ecological,Flexibility,Kleisner,kleisner1,Plasticity,2,Good,Low,"NA",2,1
+Ecological,Flexibility,Kleisner,kleisner1,Evolutionary potential,2,Fair,Medium,no,2,2
+Ecological,Organization,Kleisner,kleisner1,Ecosystem connectivity,3,Fair,Medium,yes,3,2
+Ecological,Organization,Kleisner,kleisner1,Population modularity,3,Fair,Medium,yes,3,2
+Social-economic,Assets,Kleisner,kleisner1,Wealth and reserves,3,Fair,High,yes,3,3
+Social-economic,Assets,Kleisner,kleisner1,Economic diversity,2,Fair,High,yes,2,3
+Social-economic,Assets,Kleisner,kleisner1,Social diversity,3,Low,Medium,yes,3,2
+Social-economic,Flexibility,Kleisner,kleisner1,Flexible and agile infrstructure,2,Fair,Medium,yes,2,2
+Social-economic,Flexibility,Kleisner,kleisner1,Mobility,2,Fair,High,yes,2,3
+Social-economic,Flexibility,Kleisner,kleisner1,Economic opportunity,3,Fair,High,yes,3,3
+Social-economic,Flexibility,Kleisner,kleisner1,Resilience mindset,3,Fair,High,yes,3,3
+Social-economic,Flexibility,Kleisner,kleisner1,Place attachment,4,Fair,High,yes,4,3
+Social-economic,Organization,Kleisner,kleisner1,Social capital,4,Fair,High,yes,4,3
+Social-economic,Organization,Kleisner,kleisner1,Technology transfer,2,Low,Low,"NA",2,1
+Social-economic,Organization,Kleisner,kleisner1,Modular infrastructure,3,Fair,Low,"NA",3,1
+Social-economic,Learning,Kleisner,kleisner1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Kleisner,kleisner1,Knowledge access,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Kleisner,kleisner1,Learning capacity,4,Fair,High,yes,4,3
+Social-economic,Agency,Kleisner,kleisner1,Agency,3,Low,High,yes,3,3
+Goverance,Flexibility,Kleisner,kleisner1,Responsive,3,Fair,Medium,yes,3,2
+Goverance,Organization,Kleisner,kleisner1,Participatory,3,Fair,High,yes,3,3
+Goverance,Organization,Kleisner,kleisner1,Equitable and inclusive,3,Fair,High,yes,3,3
+Goverance,Organization,Kleisner,kleisner1,Accountable,4,Fair,Medium,yes,4,2
+Goverance,Organization,Kleisner,kleisner1,Transparent,3,Fair,Medium,yes,3,2
+Goverance,Organization,Kleisner,kleisner1,Effective and efficient,3,Fair,Medium,yes,3,2
+Goverance,Organization,Kleisner,kleisner1,Polycentric,3,Fair,Medium,yes,3,2
+Goverance,Organization,Kleisner,kleisner1,Cross-scale integration,2,Fair,High,yes,2,3
+Goverance,Learning,Kleisner,kleisner1,Adaptive,2,Fair,High,yes,2,3
+Goverance,Agency,Kleisner,kleisner1,Leadership and initiative,4,Fair,High,yes,4,3
+Ecological,Assets,Lau,lau1,Population abundance,3,Good,Medium,yes,3,2
+Ecological,Assets,Lau,lau1,Age structure,2,Good,Low,yes,2,1
+Ecological,Assets,Lau,lau1,Species diversity,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Lau,lau1,Adult mobility,2,Fair,Low,yes,2,1
+Ecological,Flexibility,Lau,lau1,Larval dispersal,3,Fair,High,yes,3,3
+Ecological,Flexibility,Lau,lau1,Habitat diversity,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Lau,lau1,Plasticity,2,Low,Low,yes,2,1
+Ecological,Organization,Lau,lau1,Ecosystem connectivity,3,Fair,High,yes,3,3
+Ecological,Organization,Lau,lau1,Population modularity,1,Fair,High,no,1,3
+Social-economic,Assets,Lau,lau1,Wealth and reserves,2,Good,Medium,yes,2,2
+Social-economic,Assets,Lau,lau1,Economic diversity,2,Good,High,yes,2,3
+Social-economic,Assets,Lau,lau1,Social diversity,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Lau,lau1,Flexible and agile infrstructure,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Lau,lau1,Mobility,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Lau,lau1,Economic opportunity,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Lau,lau1,Resilience mindset,2,Good,High,yes,2,3
+Social-economic,Flexibility,Lau,lau1,Place attachment,4,Excellent,High,no,4,3
+Social-economic,Organization,Lau,lau1,Social capital,4,Excellent,High,yes,4,3
+Social-economic,Organization,Lau,lau1,Technology transfer,2,Fair,Medium,yes,2,2
+Social-economic,Organization,Lau,lau1,Modular infrastructure,2,Good,Medium,no,2,2
+Social-economic,Learning,Lau,lau1,Knowledge diversity,2,Good,Medium,yes,2,2
+Social-economic,Learning,Lau,lau1,Knowledge access,2,Good,Medium,yes,2,2
+Social-economic,Learning,Lau,lau1,Learning capacity,3,Good,High,yes,3,3
+Social-economic,Agency,Lau,lau1,Agency,3,Good,High,yes,3,3
+Goverance,Flexibility,Lau,lau1,Responsive,4,Excellent,Medium,yes,4,2
+Goverance,Organization,Lau,lau1,Participatory,3,Good,High,yes,3,3
+Goverance,Organization,Lau,lau1,Equitable and inclusive,3,Good,Medium,no,3,2
+Goverance,Organization,Lau,lau1,Accountable,2,Good,Medium,yes,2,2
+Goverance,Organization,Lau,lau1,Transparent,3,Good,Medium,yes,3,2
+Goverance,Organization,Lau,lau1,Effective and efficient,2,Good,Medium,yes,2,2
+Goverance,Organization,Lau,lau1,Polycentric,2,Good,Low,yes,2,1
+Goverance,Organization,Lau,lau1,Cross-scale integration,2,Good,Medium,yes,2,2
+Goverance,Learning,Lau,lau1,Adaptive,4,Excellent,High,yes,4,3
+Goverance,Agency,Lau,lau1,Leadership and initiative,4,Excellent,High,yes,4,3
+Ecological,Assets,Mason,mason1,Population abundance,4,Excellent,High,yes,4,3
+Ecological,Assets,Mason,mason1,Age structure,3,Excellent,High,yes,3,3
+Ecological,Assets,Mason,mason1,Genetic diversity,3,Excellent,Low,yes,3,1
+Ecological,Assets,Mason,mason1,Species diversity,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Mason,mason1,Adult mobility,4,Excellent,Medium,yes,4,2
+Ecological,Flexibility,Mason,mason1,Larval dispersal,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Mason,mason1,Environmental niche breadth,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Mason,mason1,Dietary flexibility,3,Good,High,no,3,3
+Ecological,Flexibility,Mason,mason1,Habitat diversity,3,Good,Low,yes,3,1
+Ecological,Flexibility,Mason,mason1,Plasticity,2,Good,Low,yes,2,1
+Ecological,Flexibility,Mason,mason1,Evolutionary potential,3,Good,Low,yes,3,1
+Ecological,Organization,Mason,mason1,Ecosystem connectivity,4,Excellent,Low,yes,4,1
+Ecological,Organization,Mason,mason1,Population modularity,2,Excellent,Medium,yes,2,2
+Social-economic,Assets,Mason,mason1,Wealth and reserves,4,Excellent,High,yes,4,3
+Social-economic,Assets,Mason,mason1,Economic diversity,2,Excellent,High,no,2,3
+Social-economic,Assets,Mason,mason1,Social diversity,2,Excellent,Medium,yes,2,2
+Social-economic,Flexibility,Mason,mason1,Flexible and agile infrstructure,3,Good,High,yes,3,3
+Social-economic,Flexibility,Mason,mason1,Mobility,4,Excellent,High,yes,4,3
+Social-economic,Flexibility,Mason,mason1,Economic opportunity,3,Excellent,High,yes,3,3
+Social-economic,Flexibility,Mason,mason1,Resilience mindset,4,Excellent,High,no,4,3
+Social-economic,Flexibility,Mason,mason1,Place attachment,4,Good,High,yes,4,3
+Social-economic,Organization,Mason,mason1,Social capital,4,Excellent,High,yes,4,3
+Social-economic,Organization,Mason,mason1,Technology transfer,4,Excellent,High,yes,4,3
+Social-economic,Organization,Mason,mason1,Modular infrastructure,3,Good,High,yes,3,3
+Social-economic,Learning,Mason,mason1,Knowledge diversity,2,Excellent,Medium,yes,2,2
+Social-economic,Learning,Mason,mason1,Knowledge access,4,Excellent,High,yes,4,3
+Social-economic,Learning,Mason,mason1,Learning capacity,3,Excellent,High,yes,3,3
+Social-economic,Agency,Mason,mason1,Agency,3,Good,Medium,yes,3,2
+Goverance,Flexibility,Mason,mason1,Responsive,3,Excellent,High,yes,3,3
+Goverance,Organization,Mason,mason1,Participatory,2,Excellent,Medium,yes,2,2
+Goverance,Organization,Mason,mason1,Equitable and inclusive,2,Good,Medium,yes,2,2
+Goverance,Organization,Mason,mason1,Accountable,3,Good,Medium,yes,3,2
+Goverance,Organization,Mason,mason1,Transparent,4,Excellent,High,yes,4,3
+Goverance,Organization,Mason,mason1,Effective and efficient,4,Good,High,yes,4,3
+Goverance,Organization,Mason,mason1,Polycentric,2,Excellent,Medium,yes,2,2
+Goverance,Organization,Mason,mason1,Cross-scale integration,2,Excellent,High,yes,2,3
+Goverance,Learning,Mason,mason1,Adaptive,3,Good,High,yes,3,3
+Goverance,Agency,Mason,mason1,Leadership and initiative,4,Good,High,yes,4,3
+Ecological,Assets,Mills,mills1,Population abundance,4,Excellent,High,yes,4,3
+Ecological,Assets,Mills,mills1,Age structure,2,Excellent,Medium,yes,2,2
+Ecological,Assets,Mills,mills1,Genetic diversity,4,Excellent,Low,yes,4,1
+Ecological,Assets,Mills,mills1,Species diversity,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Mills,mills1,Adult mobility,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Mills,mills1,Larval dispersal,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Mills,mills1,Environmental niche breadth,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Mills,mills1,Dietary flexibility,4,Excellent,Low,no,4,1
+Ecological,Flexibility,Mills,mills1,Habitat diversity,2,Excellent,Low,no,2,1
+Ecological,Flexibility,Mills,mills1,Plasticity,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Mills,mills1,Evolutionary potential,2,Good,Low,yes,2,1
+Ecological,Organization,Mills,mills1,Ecosystem connectivity,2,Good,Low,no,2,1
+Ecological,Organization,Mills,mills1,Population modularity,4,Excellent,High,yes,4,3
+Social-economic,Assets,Mills,mills1,Wealth and reserves,4,Excellent,High,yes,4,3
+Social-economic,Assets,Mills,mills1,Economic diversity,2,Excellent,High,no,2,3
+Social-economic,Assets,Mills,mills1,Social diversity,2,Good,Low,no,2,1
+Social-economic,Flexibility,Mills,mills1,Mobility,2,Good,Medium,yes,2,2
+Social-economic,Flexibility,Mills,mills1,Economic opportunity,3,Excellent,High,yes,3,3
+Social-economic,Flexibility,Mills,mills1,Resilience mindset,2,Good,High,yes,2,3
+Social-economic,Flexibility,Mills,mills1,Place attachment,4,Good,High,yes,4,3
+Social-economic,Organization,Mills,mills1,Social capital,3,Good,Medium,no,3,2
+Social-economic,Organization,Mills,mills1,Technology transfer,3,Good,Medium,yes,3,2
+Social-economic,Organization,Mills,mills1,Modular infrastructure,2,Low,Medium,yes,2,2
+Social-economic,Learning,Mills,mills1,Knowledge diversity,4,Excellent,Medium,yes,4,2
+Social-economic,Learning,Mills,mills1,Knowledge access,4,Excellent,Medium,yes,4,2
+Social-economic,Learning,Mills,mills1,Learning capacity,4,Good,Medium,yes,4,2
+Social-economic,Agency,Mills,mills1,Agency,4,Good,Medium,yes,4,2
+Goverance,Flexibility,Mills,mills1,Responsive,4,Good,Medium,yes,4,2
+Goverance,Organization,Mills,mills1,Participatory,4,Excellent,High,yes,4,3
+Goverance,Organization,Mills,mills1,Equitable and inclusive,2,Good,Medium,no,2,2
+Goverance,Organization,Mills,mills1,Accountable,4,Good,Medium,yes,4,2
+Goverance,Organization,Mills,mills1,Transparent,4,Excellent,Medium,yes,4,2
+Goverance,Organization,Mills,mills1,Effective and efficient,3,Excellent,Low,yes,3,1
+Goverance,Organization,Mills,mills1,Polycentric,4,Excellent,Medium,yes,4,2
+Goverance,Organization,Mills,mills1,Cross-scale integration,2,Good,High,"NA",2,3
+Goverance,Learning,Mills,mills1,Adaptive,2,Good,Low,yes,2,1
+Goverance,Agency,Mills,mills1,Leadership and initiative,4,Good,Medium,yes,4,2
+Ecological,Assets,Pecl,pecl1,Population abundance,2,Excellent,High,yes,2,3
+Ecological,Assets,Pecl,pecl1,Age structure,2,Excellent,High,yes,2,3
+Ecological,Assets,Pecl,pecl1,Genetic diversity,3,Fair,Medium,yes,3,2
+Ecological,Assets,Pecl,pecl1,Species diversity,3,Excellent,Medium,no,3,2
+Ecological,Flexibility,Pecl,pecl1,Adult mobility,2,Excellent,High,yes,2,3
+Ecological,Flexibility,Pecl,pecl1,Larval dispersal,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Pecl,pecl1,Environmental niche breadth,2,Good,High,yes,2,3
+Ecological,Flexibility,Pecl,pecl1,Dietary flexibility,2,Excellent,High,yes,2,3
+Ecological,Flexibility,Pecl,pecl1,Habitat diversity,2,Excellent,High,yes,2,3
+Ecological,Flexibility,Pecl,pecl1,Plasticity,2,Fair,High,yes,2,3
+Ecological,Flexibility,Pecl,pecl1,Evolutionary potential,2,Good,High,yes,2,3
+Ecological,Organization,Pecl,pecl1,Ecosystem connectivity,3,Excellent,High,yes,3,3
+Ecological,Organization,Pecl,pecl1,Population modularity,2,Excellent,Medium,yes,2,2
+Social-economic,Assets,Pecl,pecl1,Wealth and reserves,3,Excellent,High,yes,3,3
+Social-economic,Assets,Pecl,pecl1,Economic diversity,3,Excellent,Medium,yes,3,2
+Social-economic,Assets,Pecl,pecl1,Social diversity,3,Excellent,Medium,yes,3,2
+Social-economic,Flexibility,Pecl,pecl1,Flexible and agile infrstructure,2,Good,High,yes,2,3
+Social-economic,Flexibility,Pecl,pecl1,Mobility,2,Fair,Medium,no,2,2
+Social-economic,Flexibility,Pecl,pecl1,Economic opportunity,3,Fair,Medium,yes,3,2
+Social-economic,Flexibility,Pecl,pecl1,Resilience mindset,2,Fair,High,yes,2,3
+Social-economic,Flexibility,Pecl,pecl1,Place attachment,4,Excellent,High,yes,4,3
+Social-economic,Organization,Pecl,pecl1,Social capital,4,Excellent,Medium,yes,4,2
+Social-economic,Organization,Pecl,pecl1,Technology transfer,2,Fair,High,yes,2,3
+Social-economic,Organization,Pecl,pecl1,Modular infrastructure,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Pecl,pecl1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Pecl,pecl1,Knowledge access,4,Excellent,Medium,yes,4,2
+Social-economic,Learning,Pecl,pecl1,Learning capacity,3,Fair,High,yes,3,3
+Social-economic,Agency,Pecl,pecl1,Agency,3,Excellent,Medium,yes,3,2
+Goverance,Flexibility,Pecl,pecl1,Responsive,3,Good,Medium,yes,3,2
+Goverance,Organization,Pecl,pecl1,Participatory,3,Excellent,High,yes,3,3
+Goverance,Organization,Pecl,pecl1,Equitable and inclusive,2,Excellent,High,yes,2,3
+Goverance,Organization,Pecl,pecl1,Accountable,4,Excellent,High,yes,4,3
+Goverance,Organization,Pecl,pecl1,Effective and efficient,3,Good,Medium,yes,3,2
+Goverance,Organization,Pecl,pecl1,Polycentric,2,Excellent,Medium,yes,2,2
+Goverance,Organization,Pecl,pecl1,Cross-scale integration,4,Good,Medium,yes,4,2
+Goverance,Learning,Pecl,pecl1,Adaptive,2,Good,High,yes,2,3
+Goverance,Agency,Pecl,pecl1,Leadership and initiative,2,Good,High,yes,2,3
+Ecological,Assets,Tokunaga,tokunaga1,Population abundance,3,Low,Medium,yes,3,2
+Ecological,Assets,Tokunaga,tokunaga1,Age structure,3,Good,Medium,yes,3,2
+Ecological,Assets,Tokunaga,tokunaga1,Genetic diversity,1,Excellent,High,yes,1,3
+Ecological,Assets,Tokunaga,tokunaga1,Species diversity,2,Low,Medium,yes,2,2
+Ecological,Flexibility,Tokunaga,tokunaga1,Adult mobility,1,Excellent,High,no,1,3
+Ecological,Flexibility,Tokunaga,tokunaga1,Larval dispersal,3,Excellent,High,yes,3,3
+Ecological,Flexibility,Tokunaga,tokunaga1,Environmental niche breadth,2,Excellent,Medium,yes,2,2
+Ecological,Flexibility,Tokunaga,tokunaga1,Dietary flexibility,3,Low,Medium,yes,3,2
+Ecological,Flexibility,Tokunaga,tokunaga1,Habitat diversity,2,Fair,Medium,yes,2,2
+Ecological,Flexibility,Tokunaga,tokunaga1,Plasticity,2,Good,Medium,yes,2,2
+Ecological,Flexibility,Tokunaga,tokunaga1,Evolutionary potential,1,Excellent,High,yes,1,3
+Ecological,Organization,Tokunaga,tokunaga1,Ecosystem connectivity,2,Good,Medium,yes,2,2
+Ecological,Organization,Tokunaga,tokunaga1,Population modularity,2,Fair,Medium,yes,2,2
+Social-economic,Assets,Tokunaga,tokunaga1,Wealth and reserves,4,Good,Medium,yes,4,2
+Social-economic,Assets,Tokunaga,tokunaga1,Economic diversity,2,Fair,Medium,yes,2,2
+Social-economic,Assets,Tokunaga,tokunaga1,Social diversity,2,Low,Low,yes,2,1
+Social-economic,Flexibility,Tokunaga,tokunaga1,Flexible and agile infrstructure,3,Good,Medium,yes,3,2
+Social-economic,Flexibility,Tokunaga,tokunaga1,Mobility,1,Excellent,High,"NA",1,3
+Social-economic,Flexibility,Tokunaga,tokunaga1,Economic opportunity,3,Low,Medium,"NA",3,2
+Social-economic,Flexibility,Tokunaga,tokunaga1,Resilience mindset,4,E - No data,High,yes,4,3
+Social-economic,Flexibility,Tokunaga,tokunaga1,Place attachment,4,Fair,High,"NA",4,3
+Social-economic,Organization,Tokunaga,tokunaga1,Social capital,4,Good,High,yes,4,3
+Social-economic,Organization,Tokunaga,tokunaga1,Technology transfer,2,Fair,Medium,"NA",2,2
+Social-economic,Organization,Tokunaga,tokunaga1,Modular infrastructure,2,Good,Medium,yes,2,2
+Social-economic,Learning,Tokunaga,tokunaga1,Knowledge diversity,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Tokunaga,tokunaga1,Knowledge access,2,Low,High,yes,2,3
+Social-economic,Learning,Tokunaga,tokunaga1,Learning capacity,4,Low,High,yes,4,3
+Social-economic,Agency,Tokunaga,tokunaga1,Agency,4,Excellent,High,yes,4,3
+Goverance,Flexibility,Tokunaga,tokunaga1,Responsive,4,Fair,High,yes,4,3
+Goverance,Organization,Tokunaga,tokunaga1,Participatory,4,Good,High,yes,4,3
+Goverance,Organization,Tokunaga,tokunaga1,Equitable and inclusive,4,Excellent,Medium,yes,4,2
+Goverance,Organization,Tokunaga,tokunaga1,Accountable,3,Low,Medium,yes,3,2
+Goverance,Organization,Tokunaga,tokunaga1,Transparent,3,Fair,Medium,yes,3,2
+Goverance,Organization,Tokunaga,tokunaga1,Effective and efficient,"NA",Excellent,Medium,yes,0,2
+Goverance,Organization,Tokunaga,tokunaga1,Polycentric,2,Excellent,Low,"NA",2,1
+Goverance,Organization,Tokunaga,tokunaga1,Cross-scale integration,2,Low,Low,yes,2,1
+Goverance,Learning,Tokunaga,tokunaga1,Adaptive,3,Fair,Medium,yes,3,2
+Goverance,Agency,Tokunaga,tokunaga1,Leadership and initiative,3,Good,Medium,no,3,2
+Ecological,Assets,Westfall,westfall1,Population abundance,2,Good,High,yes,2,3
+Ecological,Assets,Westfall,westfall1,Age structure,2,Low,Medium,yes,2,2
+Ecological,Assets,Westfall,westfall1,Species diversity,3,Fair,Medium,yes,3,2
+Ecological,Flexibility,Westfall,westfall1,Adult mobility,4,Excellent,High,yes,4,3
+Ecological,Flexibility,Westfall,westfall1,Larval dispersal,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Westfall,westfall1,Environmental niche breadth,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Westfall,westfall1,Habitat diversity,3,Excellent,Medium,yes,3,2
+Ecological,Flexibility,Westfall,westfall1,Plasticity,2,Excellent,High,no,2,3
+Ecological,Flexibility,Westfall,westfall1,Evolutionary potential,3,Low,Low,no,3,1
+Ecological,Organization,Westfall,westfall1,Ecosystem connectivity,4,Excellent,High,yes,4,3
+Ecological,Organization,Westfall,westfall1,Population modularity,2,Fair,Medium,yes,2,2
+Social-economic,Assets,Westfall,westfall1,Wealth and reserves,2,Low,High,no,2,3
+Social-economic,Assets,Westfall,westfall1,Economic diversity,2,Low,High,no,2,3
+Social-economic,Assets,Westfall,westfall1,Social diversity,3,Fair,Medium,yes,3,2
+Social-economic,Flexibility,Westfall,westfall1,Flexible and agile infrstructure,2,Fair,High,yes,2,3
+Social-economic,Flexibility,Westfall,westfall1,Mobility,2,Fair,Medium,yes,2,2
+Social-economic,Flexibility,Westfall,westfall1,Economic opportunity,2,Fair,High,yes,2,3
+Social-economic,Flexibility,Westfall,westfall1,Resilience mindset,3,Fair,Medium,yes,3,2
+Social-economic,Flexibility,Westfall,westfall1,Place attachment,3,Good,Medium,yes,3,2
+Social-economic,Organization,Westfall,westfall1,Social capital,3,Fair,Medium,yes,3,2
+Social-economic,Organization,Westfall,westfall1,Technology transfer,4,Fair,High,yes,4,3
+Social-economic,Organization,Westfall,westfall1,Modular infrastructure,2,Low,Medium,yes,2,2
+Social-economic,Learning,Westfall,westfall1,Knowledge diversity,2,Fair,High,no,2,3
+Social-economic,Learning,Westfall,westfall1,Knowledge access,3,Fair,Medium,yes,3,2
+Social-economic,Learning,Westfall,westfall1,Learning capacity,3,Fair,High,yes,3,3
+Social-economic,Agency,Westfall,westfall1,Agency,2,Fair,High,yes,2,3
+Goverance,Flexibility,Westfall,westfall1,Responsive,2,Fair,High,yes,2,3
+Goverance,Organization,Westfall,westfall1,Participatory,2,Fair,High,no,2,3
+Goverance,Organization,Westfall,westfall1,Equitable and inclusive,2,Fair,High,no,2,3
+Goverance,Organization,Westfall,westfall1,Accountable,3,Fair,Low,yes,3,1
+Goverance,Organization,Westfall,westfall1,Transparent,2,Fair,High,yes,2,3
+Goverance,Organization,Westfall,westfall1,Effective and efficient,2,Fair,High,yes,2,3
+Goverance,Organization,Westfall,westfall1,Polycentric,2,Fair,High,no,2,3
+Goverance,Organization,Westfall,westfall1,Cross-scale integration,2,Fair,High,no,2,3
+Goverance,Learning,Westfall,westfall1,Adaptive,3,Fair,High,yes,3,3
+Goverance,Agency,Westfall,westfall1,Leadership and initiative,3,Fair,Low,yes,3,1
+Ecological,Assets,Zhao,zhao1,Population abundance,3,Good,High,yes,3,3
+Ecological,Assets,Zhao,zhao1,Age structure,3,Good,Medium,yes,3,2
+Ecological,Assets,Zhao,zhao1,Genetic diversity,3,Low,Medium,yes,3,2
+Ecological,Assets,Zhao,zhao1,Species diversity,4,Low,Medium,yes,4,2
+Ecological,Flexibility,Zhao,zhao1,Adult mobility,3,Good,Medium,yes,3,2
+Ecological,Flexibility,Zhao,zhao1,Larval dispersal,3,Low,Medium,yes,3,2
+Ecological,Flexibility,Zhao,zhao1,Environmental niche breadth,3,Low,High,yes,3,3
+Ecological,Flexibility,Zhao,zhao1,Dietary flexibility,3,Excellent,Medium,yes,3,2
+Ecological,Organization,Zhao,zhao1,Ecosystem connectivity,4,Fair,High,yes,4,3
+Ecological,Organization,Zhao,zhao1,Population modularity,3,Fair,Medium,yes,3,2
+Social-economic,Assets,Zhao,zhao1,Wealth and reserves,3,Good,High,no,3,3
+Social-economic,Assets,Zhao,zhao1,Economic diversity,3,Fair,High,no,3,3
+Social-economic,Assets,Zhao,zhao1,Social diversity,4,Excellent,High,no,4,3
+Social-economic,Flexibility,Zhao,zhao1,Flexible and agile infrstructure,2,Fair,Medium,yes,2,2
+Social-economic,Flexibility,Zhao,zhao1,Mobility,2,Excellent,High,yes,2,3
+Social-economic,Flexibility,Zhao,zhao1,Economic opportunity,2,Excellent,High,no,2,3
+Social-economic,Flexibility,Zhao,zhao1,Resilience mindset,3,Excellent,High,no,3,3
+Social-economic,Flexibility,Zhao,zhao1,Place attachment,4,Fair,High,yes,4,3
+Social-economic,Organization,Zhao,zhao1,Social capital,2,Fair,High,no,2,3
+Social-economic,Organization,Zhao,zhao1,Technology transfer,3,Low,Medium,yes,3,2
+Social-economic,Organization,Zhao,zhao1,Modular infrastructure,"NA",E - No data,Medium,yes,0,2
+Social-economic,Learning,Zhao,zhao1,Knowledge diversity,4,Excellent,High,no,4,3
+Social-economic,Learning,Zhao,zhao1,Knowledge access,2,Good,High,yes,2,3
+Social-economic,Learning,Zhao,zhao1,Learning capacity,4,Low,High,yes,4,3
+Social-economic,Agency,Zhao,zhao1,Agency,3,Fair,High,yes,3,3
+Goverance,Flexibility,Zhao,zhao1,Responsive,2,Fair,High,no,2,3
+Goverance,Organization,Zhao,zhao1,Participatory,3,Excellent,High,yes,3,3
+Goverance,Organization,Zhao,zhao1,Equitable and inclusive,2,Excellent,High,yes,2,3
+Goverance,Organization,Zhao,zhao1,Accountable,2,Excellent,High,yes,2,3
+Goverance,Organization,Zhao,zhao1,Transparent,2,Excellent,High,yes,2,3
+Goverance,Organization,Zhao,zhao1,Effective and efficient,2,Excellent,High,yes,2,3
+Goverance,Organization,Zhao,zhao1,Polycentric,2,Excellent,High,yes,2,3
+Goverance,Organization,Zhao,zhao1,Cross-scale integration,2,Excellent,High,no,2,3
+Goverance,Learning,Zhao,zhao1,Adaptive,2,Fair,High,yes,2,3
+Goverance,Agency,Zhao,zhao1,Leadership and initiative,3,Good,Medium,no,3,2

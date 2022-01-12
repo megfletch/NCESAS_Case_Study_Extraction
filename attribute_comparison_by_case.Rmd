@@ -411,6 +411,7 @@ attributes_merged_clean <- attributes_merged %>%
   mutate(numeric_importance=as.numeric(numeric_importance)) %>% 
   filter(!is.na(numeric_importance))
   
+
 ```
 
 ```{r}
@@ -621,7 +622,7 @@ importance_mean %>%
 
 #########################################################################################################
 
-# Looking at means by fishery scale
+# Small vs. Large-scale Fishery Stats
 
 With both of these tables, it is important to remember that score is based 1-4 while importance was a categorical variable originally. Due to this, Importance has been converted to numerical values where low = 1, medium = 2, and high = 3. This mean that for score, the highest value is 4 and the lowest is 1 and for importance, the highest is 3 and the lowest is 1.
 
@@ -680,12 +681,16 @@ large_scale_combined <- merge(large_scale_score, large_scale_importance) %>%
          "Score SD" = score..2,
          "Importance Mean" = numeric_importance..1,
          "Importance SD" = numeric_importance..2)
+
+# Turn the table sinto CSV files
+write_csv(small_scale_combined, "ssf.csv")
+write_csv(large_scale_combined, "ls.csv")
 ```
 
 ```{r}
 # Create a table for the menas and standard deviations of both socre and importance 
 small_scale_combined %>% 
-  kbl(caption = "Small-Scale Fishery Resilience Attribute Score and Importance Means") %>% 
+  kbl(caption = "Large-Scale Fishery Resilience Attribute Score and Importance Means") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
