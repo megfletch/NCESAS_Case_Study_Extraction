@@ -791,10 +791,10 @@ small_scale_importance <- attributes_merged_clean %>%
 # Merge the datasets
 small_scale_combined <- merge(small_scale_score, small_scale_importance) %>% 
   rename(Attributes = attribute,
-         "Score Mean" = score..1,
-         "Score SD" = score..2,
-         "Importance Mean" = numeric_importance..1,
-         "Importance SD" = numeric_importance..2)
+         "Score Mean." = score..1,
+         "Score SD." = score..2,
+         "Importance Mean." = numeric_importance..1,
+         "Importance SD." = numeric_importance..2)
 ```
 
 ```{r}
@@ -829,9 +829,9 @@ large_scale_combined <- merge(large_scale_score, large_scale_importance) %>%
          "Importance Mean" = numeric_importance..1,
          "Importance SD" = numeric_importance..2)
 
-# Turn the table sinto CSV files
-write_csv(small_scale_combined, "ssf.csv")
-write_csv(large_scale_combined, "ls.csv")
+# Turn the tables into CSV files
+#write_csv(small_scale_combined, "ssf.csv")
+#write_csv(large_scale_combined, "ls.csv")
 ```
 
 ```{r}
@@ -845,6 +845,23 @@ small_scale_combined %>%
 ###################################################################################################
 
 # Plot Small-Scale vs. Large-Scale Means
+
+```{r}
+# Merge the different fishery archetypes
+
+scale_merged <- merge(small_scale_combined, large_scale_combined)
+```
+
+
+## Small-Scale Fisheries Plot
+
+```{r}
+ggplot() +
+  geom_bar(data = scale_merged, stat = 'identity', mapping = aes(x = Attributes, y = "Score Mean."))
+```
+
+
+
 
 
 

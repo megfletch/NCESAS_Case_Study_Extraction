@@ -799,7 +799,7 @@ ggplot() +
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=flexible_agile, aes(yintercept = mean(official_score)), linetype="dashed") +
-  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
+  geom_hline(data=flexible_agile, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
@@ -857,9 +857,9 @@ ggplot() +
   labs(title = "REsilience mindset Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=resilience_mindset, aes(yintercept = mean(official_score)), linetype="dashed") +
-  geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
+  geom_hline(data=resilience_mindset, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
 ```
 
