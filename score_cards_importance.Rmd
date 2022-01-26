@@ -118,7 +118,7 @@ burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1TkB-P
 #                               "A - adequate and reliable data/information"="Excellent")) %>% 
   mutate(importance=stringr::str_to_sentence(importance),
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
   arrange(dimension, domain, score) %>% 
   mutate(attribute=factor(attribute, levels=attribute)) %>% 
 # Create a new column to house numeric values for importance

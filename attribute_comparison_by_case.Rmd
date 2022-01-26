@@ -353,11 +353,8 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 # Merge the datasets
 
 ```{r}
-attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
 
-
-# Data frames that don't bind:
-#  kisara_squid
 ```
 
 
@@ -411,24 +408,8 @@ attributes_merged_clean <- attributes_merged %>%
   mutate(numeric_importance=as.numeric(numeric_importance)) %>% 
   filter(!is.na(numeric_importance))
   
-
 ```
 
-```{r}
-# To add asterisks for attributes for `work_as_described` column says "no"
-#%>% 
-  # Arrange
-  # arrange(dimension, domain, official_score)%>% 
-  # Set attribute order
-  #mutate(attribute=factor(attribute, levels=attribute))
-  # Format attribute - to put an * next to the attribute name is the `work_as_described` column says "no"
-  #mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) 
-
-# To remove the astrisks if added back into the dataset:
-#aguion1 <- aguion_barnacle %>% 
-  #select(attribute, score) %>% 
-  #mutate(attribute = gsub("\\*", "", attribute))
-```
 
 
 ############################################################################################

@@ -41,7 +41,6 @@ aguion_barnacle <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1WfGs
              .after = "question_id")
 
 
-
 #######################################################################################################################
 burden_sardine <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1TkB-P94xgRssmcbAuzwoh0BlDdvUfYHO7vWjK6r2pxs/edit#gid=1965519914", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
@@ -354,11 +353,8 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 # Merge the datasets
 
 ```{r}
-attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
 
-
-# Data frames that don't bind:
-#  kisara_squid
 ```
 
 
@@ -500,18 +496,18 @@ friedman_mean <- attributes_merged_clean %>%
   rename(Friedman = score)
 
 # Hollowed mean
-#hollowed_mean <- attributes_merged_clean %>% 
-#  filter(case_study == "Hollowed") %>% 
-#  group_by(dimension, domain) %>% 
-#  summarise_at(vars(official_score), list(score = mean)) %>% 
-#  rename(Hollowed = score)
+hollowed_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Hollowed") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Hollowed = score)
 
 # Kisara mean
-#kisara_mean <- attributes_merged_clean %>% 
-#  filter(case_study == "Kisara") %>% 
-#  group_by(dimension, domain) %>% 
-#  summarise_at(vars(official_score), list(score = mean)) %>% 
-#  rename(Kisara = score)
+kisara_mean <- attributes_merged_clean %>% 
+  filter(case_study == "Kisara") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = mean)) %>% 
+  rename(Kisara = score)
 
 # Kleisner mean
 kleisner_mean <- attributes_merged_clean %>% 
@@ -571,9 +567,11 @@ zhao_mean <- attributes_merged_clean %>%
 ```
 
 ```{r}
+### Kisara Case Study missing
+
 # Merge all mean datasets together
-means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
-  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, hollowed_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
   rename(Dimension = dimension...1, Domain = domain...2)
 
 # Create a table
@@ -675,18 +673,18 @@ friedman_importance <- attributes_merged_clean %>%
   rename(Friedman = importance)
 
 # Hollowed importance
-#hollowed_importance <- attributes_merged_clean %>% 
-#  filter(case_study == "Hollowed") %>% 
-#  group_by(dimension, domain) %>% 
-#  summarise_at(vars(numeric_importance), list(importance = mean)) %>% 
-#  rename(Hollowed = importance)
+hollowed_importance <- attributes_merged_clean %>% 
+  filter(case_study == "Hollowed") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(numeric_importance), list(importance = mean)) %>% 
+  rename(Hollowed = importance)
 
 # Kisara importance
-#kisara_importance <- attributes_merged_clean %>% 
-#  filter(case_study == "Kisara") %>% 
-#  group_by(dimension, domain) %>% 
-#  summarise_at(vars(numeric_importance), list(importance = mean)) %>% 
-#  rename(Kisara = importance)
+kisara_importance <- attributes_merged_clean %>% 
+  filter(case_study == "Kisara") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(numeric_importance), list(importance = mean)) %>% 
+  rename(Kisara = importance)
 
 # Kleisner importance
 kleisner_importance <- attributes_merged_clean %>% 
@@ -746,9 +744,12 @@ zhao_importance <- attributes_merged_clean %>%
 ```
 
 ```{r}
+### Kisara case study missing 
+
+
 # Merge all mean datasets together
-importance_merged_by_case <- cbind(aguion_importance, burden_importance, dickey_collas_importance, eurich_importance, free_importance, friedman_importance, kleisner_importance, lau_importance, mason_importance, mills_importance, pecl_importance, tokunaga_importance, westfall_importance, zhao_importance) %>% 
-  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+importance_merged_by_case <- cbind(aguion_importance, burden_importance, dickey_collas_importance, eurich_importance, free_importance, friedman_importance, hollowed_importance, kleisner_importance, lau_importance, mason_importance, mills_importance, pecl_importance, tokunaga_importance, westfall_importance, zhao_importance) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
   rename(Dimension = dimension...1, Domain = domain...2)
 
 # Create a table
@@ -756,14 +757,6 @@ importance_merged_by_case %>%
   kbl(caption = "Resilience Attribute Importance Means Across Case Studies") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"))
-```
-
-#########################################################################################################
-
-# Plot Score Means vs. Importance Means
-
-```{r}
-# These means are different (ie. based on 1-4 and 1-3) so putting them next to each other on a bar plot doesn't amke much sense
 ```
 
 
@@ -778,23 +771,27 @@ With both of these tables, it is important to remember that score is based 1-4 w
 ```{r}
 # Create dataset for attribute score means in small-scale fisheries
 small_scale_score <- attributes_merged_clean %>% 
-  filter(case_study %in% c("Aguion", "Eurich", "Friedman", "Kleisner", "Lau", "Pecl", "Tokunaga", "Zhao")) %>% 
-  group_by(attribute) %>% 
-  summarise_at(vars(official_score), list(score = mean, score = sd))
+  filter(case_study %in% c("Aguion", "Eurich", "Friedman", "Kleisner", "Lau", "Mills", "Pecl", "Tokunaga", "Zhao")) %>% 
+  group_by(dimension, domain, attribute) %>% 
+  summarise_at(vars(official_score), list(score = mean, score = sd)) %>% 
+  rename(Dimension = dimension,
+         Domain = domain)
 
 # Create dataset for attribute importance score means in small-scale fisheries
 small_scale_importance <- attributes_merged_clean %>% 
-  filter(case_study %in% c("Aguion", "Eurich", "Friedman", "Kleisner", "Lau", "Pecl", "Tokunaga", "Zhao")) %>% 
-  group_by(attribute) %>% 
-  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd)) 
+  filter(case_study %in% c("Aguion", "Eurich", "Friedman", "Kleisner", "Lau", "Mills", "Pecl", "Tokunaga", "Zhao")) %>% 
+  group_by(dimension, domain, attribute) %>% 
+  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd)) %>% 
+  rename(Dimension = dimension,
+         Domain = domain)
   
 # Merge the datasets
 small_scale_combined <- merge(small_scale_score, small_scale_importance) %>% 
   rename(Attributes = attribute,
-         "Score Mean." = score..1,
-         "Score SD." = score..2,
-         "Importance Mean." = numeric_importance..1,
-         "Importance SD." = numeric_importance..2)
+         "Score_Mean" = score..1,
+         "Score_SD" = score..2,
+         "Importance_Mean" = numeric_importance..1,
+         "Importance_SD" = numeric_importance..2)
 ```
 
 ```{r}
@@ -812,22 +809,26 @@ small_scale_combined %>%
 # Create dataset for attribute score means in small-scale fisheries
 large_scale_score <- attributes_merged_clean %>% 
   filter(case_study %in% c("Burden", "Hollowed", "Free", "Dickey-Collas", "Mason", "Westfall")) %>% 
-  group_by(attribute) %>% 
-  summarise_at(vars(official_score), list(score = mean, score = sd))
+  group_by(dimension, domain, attribute) %>% 
+  summarise_at(vars(official_score), list(score = mean, score = sd)) %>% 
+  rename(Dimension = dimension,
+         Domain = domain)
 
 # Create dataset for attribute importance score means in small-scale fisheries
 large_scale_importance <- attributes_merged_clean %>% 
   filter(case_study %in% c("Burden", "Hollowed", "Free", "Dickey-Collas", "Mason", "Westfall")) %>% 
-  group_by(attribute) %>% 
-  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd)) 
+  group_by(dimension, domain, attribute) %>% 
+  summarise_at(vars(numeric_importance), list(numeric_importance = mean, numeric_importance = sd))%>% 
+  rename(Dimension = dimension,
+         Domain = domain)
   
 # Merge the datasets
 large_scale_combined <- merge(large_scale_score, large_scale_importance) %>% 
   rename(Attributes = attribute,
-         "Score Mean" = score..1,
-         "Score SD" = score..2,
-         "Importance Mean" = numeric_importance..1,
-         "Importance SD" = numeric_importance..2)
+         "Score_Mean" = score..1,
+         "Score_SD" = score..2,
+         "Importance_Mean" = numeric_importance..1,
+         "Importance_SD" = numeric_importance..2)
 
 # Turn the tables into CSV files
 #write_csv(small_scale_combined, "ssf.csv")
@@ -847,21 +848,76 @@ small_scale_combined %>%
 # Plot Small-Scale vs. Large-Scale Means
 
 ```{r}
-# Merge the different fishery archetypes
-
-scale_merged <- merge(small_scale_combined, large_scale_combined)
+# Create theme
+my_theme <-  theme(axis.text.x=element_text(size=7, angle=35, hjust=1),
+                   axis.text.y=element_text(size=8),
+                   legend.text=element_text(size=8),
+                   legend.title=element_text(size=9),
+                   strip.text=element_text(size=9),
+                   # Gridlines
+                   panel.grid.major = element_blank(), 
+                   panel.grid.minor = element_blank(),
+                   panel.background = element_rect(), 
+                   axis.line = element_line())
 ```
-
-
-## Small-Scale Fisheries Plot
 
 ```{r}
-ggplot() +
-  geom_bar(data = scale_merged, stat = 'identity', mapping = aes(x = Attributes, y = "Score Mean."))
+# Make a dumby column in both datasets in order to plot the columns next to each other
+small_scale1 <- small_scale_combined %>% 
+    add_column(Archetype = "Small-scale",
+             .after = "Attributes")
+
+large_scale1 <- large_scale_combined %>% 
+    add_column(Archetype = "Large-scale",
+             .after = "Attributes")
+
+
+# Merge the different fishery archetypes
+scale_merged <- rbind(small_scale1, large_scale1)
 ```
 
 
+## Score Averages by Fishery Scale
 
+```{r}
+ggplot(data=scale_merged, aes(x = Attributes, y = Score_Mean, fill = Archetype)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme_bw() + my_theme + 
+  facet_wrap(~Dimension, scales = "free") +
+  labs(title = "Small vs. Large-Scale Fishery Attribute Score Comparison", subtitle = "Based on the average attributes scores across case studies", y = "Score") +
+  scale_fill_manual(values = c("Large-scale" = "navy",
+                               "Small-scale" = "cyan3")) +
+  theme(legend.background = element_rect(fill="gray",
+                                  size=0.5, linetype="solid", 
+                                  colour ="black"))
+  
+ 
+
+# Save the plot
+#ggsave("scale_score.png", 
+#      width=8, height=6, units="in", dpi=600)
+```
+
+
+## Importance Averages by Fishery Scale
+
+```{r}
+ggplot(data=scale_merged, aes(x = Attributes, y = Importance_Mean, fill = Archetype)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme_bw() + my_theme + 
+  facet_wrap(~Dimension, scales = "free") +
+  labs(title = "Small vs. Large-Scale Fishery Importance Score Comparison", subtitle = "Based on the average importance scores across case studies", y = "Importance Score") +
+  scale_fill_manual(values = c("Large-scale" = "navy",
+                               "Small-scale" = "cyan3")) +
+  theme(legend.background = element_rect(fill="gray",
+                                  size=0.5, linetype="solid", 
+                                  colour ="black"))
+
+
+# Save the plot
+#ggsave("scale_importance.png", 
+#     width=8, height=6, units="in", dpi=600)
+```
 
 
 
