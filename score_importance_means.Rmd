@@ -150,7 +150,7 @@ friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1
 
 
 #######################################################################################################################
-hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=1980661832", 
+hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=9514874", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
                            range = "A6:P61",
                            col_names = TRUE,
@@ -567,11 +567,11 @@ zhao_mean <- attributes_merged_clean %>%
 ```
 
 ```{r}
-### Kisara Case Study missing
+### Kisara Case Study missing b/c no information forsome of the dimensions 
 
 # Merge all mean datasets together
-means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, hollowed_mean, kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
-  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, hollowed_mean, kisara_mean,  kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kisara, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
   rename(Dimension = dimension...1, Domain = domain...2)
 
 # Create a table

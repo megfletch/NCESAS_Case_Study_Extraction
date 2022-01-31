@@ -814,7 +814,7 @@ aguion_plot <- ggplot() +
 aguion_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_aguion.png", 
+ggsave("aguion_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -836,7 +836,7 @@ burden_plot <- ggplot() +
 burden_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_burden.png", 
+ggsave("burden_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -858,7 +858,7 @@ dickey_collas_plot <- ggplot() +
 dickey_collas_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_dickey_collas.png", 
+ggsave("dickey_collas_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -889,7 +889,7 @@ eurich_plot <- ggplot() +
 eurich_plot
 
 # Save the plot as a PNG
-ggsave("case_study_attribute_score_eurich.png",
+ggsave("eurich_attribute_score_card.png",
        width=6.5, height=6.5, units="in", dpi=600)
 
 ```
@@ -912,7 +912,7 @@ free_plot <- ggplot() +
 free_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_free.png", 
+ggsave("free_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -934,7 +934,7 @@ friedman_plot <- ggplot() +
 friedman_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_friedman.png", 
+ggsave("friedman_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -956,7 +956,7 @@ hollowed_plot <- ggplot() +
 hollowed_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_hollowed.png", 
+ggsave("hollowed_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -978,7 +978,7 @@ kisara_plot <- ggplot() +
 kisara_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_kisara.png", 
+ggsave("kisara_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1000,7 +1000,7 @@ kleisner_plot <- ggplot() +
 kleisner_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_kleisner.png", 
+ggsave("kleisner_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1023,7 +1023,7 @@ lau_plot <- ggplot() +
 lau_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_lau.png", 
+ggsave("lau_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1045,7 +1045,7 @@ mason_plot <- ggplot() +
 mason_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_mason.png", 
+ggsave("mason_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1067,7 +1067,7 @@ mills_plot <- ggplot() +
 mills_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_mills.png", 
+ggsave("mills_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1089,7 +1089,7 @@ pecl_plot <- ggplot() +
 pecl_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_pecl.png", 
+ggsave("pecl_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1111,7 +1111,7 @@ tokunaga_plot <- ggplot() +
 tokunaga_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_lau.png", 
+ggsave("tokunaga_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1133,7 +1133,7 @@ westfall_plot <- ggplot() +
 westfall_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_westfall.png", 
+ggsave("westfall_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1155,7 +1155,7 @@ zhao_plot <- ggplot() +
 zhao_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_zhao.png", 
+ggsave("zhao_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 

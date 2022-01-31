@@ -364,7 +364,7 @@ friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1
 
 
 #######################################################################################################################
-hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=1980661832", 
+hollowed_bering_sea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1YOYZ9T7RR_8OkqQIWeZobhS-3yaEbKmuAVz16Nrrz9g/edit#gid=9514874", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
                            range = "A6:P61",
                            col_names = TRUE,
@@ -899,7 +899,7 @@ aguion_plot <- ggplot() +
   geom_segment(data=aguion_barnacle, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
   geom_point(data=aguion_barnacle, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
   scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
-  labs(x="Attribute score", y="", title="Galicia stalked barnacle resilience importance score card") +
+  labs(x="Importance score", y="", title="Galicia stalked barnacle resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
   guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
@@ -907,7 +907,7 @@ aguion_plot <- ggplot() +
 aguion_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_aguion.png", 
+ggsave("aguion_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -920,7 +920,7 @@ burden_plot <- ggplot() +
   geom_segment(data=burden_sardine, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
   geom_point(data=burden_sardine, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
   scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
-  labs(x="Attribute score", y="", title="Pacific sardine resilience importance score card") +
+  labs(x="Importance score", y="", title="Pacific sardine resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
   guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
@@ -928,7 +928,7 @@ burden_plot <- ggplot() +
 burden_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_burden.png", 
+ggsave("burden_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -941,7 +941,7 @@ dickey_collas_plot <- ggplot() +
   geom_segment(data=dickey_collas_eur, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
   geom_point(data=dickey_collas_eur, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
   scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
-  labs(x="Attribute score", y="", title="Pelagic EUR fishery resilience importance score card") +
+  labs(x="Importance score", y="", title="Pelagic EUR fishery resilience importance score card") +
   scale_alpha_ordinal(name="Data quality") +
   scale_color_discrete(name="Domain") +
   guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
@@ -949,7 +949,7 @@ dickey_collas_plot <- ggplot() +
 dickey_collas_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_dickey_collas.png", 
+ggsave("dickey_collas_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -970,7 +970,7 @@ eurich_plot <- ggplot() +
 eurich_plot
 
 # Save the plot as a PNG
-ggsave("case_study_attribute_score_eurich.png",
+ggsave("eurich_importance_scores.png",
        width=6.5, height=6.5, units="in", dpi=600)
 
 ```
@@ -992,7 +992,7 @@ free_plot <- ggplot() +
 free_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_free.png", 
+ggsave("free_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1013,7 +1013,7 @@ friedman_plot <- ggplot() +
 friedman_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_friedman.png", 
+ggsave("friedman_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1034,7 +1034,7 @@ hollowed_plot <- ggplot() +
 hollowed_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_hollowed.png", 
+ggsave("hollowed_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1055,7 +1055,7 @@ kisara_plot <- ggplot() +
 kisara_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_kisara.png", 
+ggsave("kisara_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1076,7 +1076,7 @@ kleisner_plot <- ggplot() +
 kleisner_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_kleisner.png", 
+ggsave("kleisner_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1097,7 +1097,7 @@ lau_plot <- ggplot() +
 lau_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_lau.png", 
+ggsave("lau_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1118,7 +1118,7 @@ mason_plot <- ggplot() +
 mason_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_mason.png", 
+ggsave("mason_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1139,7 +1139,7 @@ mills_plot <- ggplot() +
 mills_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_mills.png", 
+ggsave("mills_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1160,7 +1160,7 @@ pecl_plot <- ggplot() +
 pecl_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_pecl.png", 
+ggsave("pecl_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1181,7 +1181,7 @@ tokunaga_plot <- ggplot() +
 tokunaga_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_lau.png", 
+ggsave("tokunaga_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1202,7 +1202,7 @@ westfall_plot <- ggplot() +
 westfall_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_westfall.png", 
+ggsave("westfall_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
@@ -1223,7 +1223,7 @@ zhao_plot <- ggplot() +
 zhao_plot
 
 # Save the plot
-ggsave("case_study_attribute_scores_zhao.png", 
+ggsave("zhao_importance_scores.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 
