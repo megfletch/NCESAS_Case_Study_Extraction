@@ -20,6 +20,8 @@ library(janitor)
 library(googlesheets4)
 library(here)
 library(kableExtra)
+library(broom)
+library(ggpubr)
 ```
 
 
@@ -773,6 +775,35 @@ ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
 
 # Attribute Score Proportions
 
+```{r}
+# Create a table that shows the counts and proportions of attribute scores to help identify which are scoring higher than others and vice versa.
+
+attribute_score_stats <- attributes_merged_clean %>% 
+  select(dimension, score) %>% 
+  count(dimension, score) 
+
+attribute_score_counts <- attribute_score_stats %>% 
+  tabyl(dimension, score, n)
+
+
+%>% 
+  mutate(n=as.numeric(n)) %>% 
+  #slice(-c(9,14)) %>% 
+  pivot_wider(names_from = c(score), values_from = n, values_fn = list) 
+  
+
+%>% 
+  column_to_rownames(var = "dimension")
+attribute_score_proportions <- attribute_score_counts %>% 
+  adorn_percentages() 
+
+%>% 
+  adorn_pct_formatting(digits = 2) %>% 
+  adorn_ns() %>% 
+  select("dimension", "1", "2", "2", "4")
+  
+
+```
 
 
 
