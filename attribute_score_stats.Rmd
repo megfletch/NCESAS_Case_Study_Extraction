@@ -766,7 +766,7 @@ ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
   theme_bw() + my_theme +
   facet_wrap(~Dimension, scales = "free") +
   theme(legend.position="top") +
-  geom_hline(data=dimension_mean, aes(yintercept = (Mean)), linetype="dashed", colour="black") =
+  geom_hline(data=dimension_mean, aes(yintercept = (Mean)), linetype="dashed", colour="black") +
   labs(x = "Case Studies", y = "Attribute Score Averages")
 ```
 

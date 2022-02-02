@@ -1,7 +1,7 @@
 ---
-title: "Evaluating Importance Levels Across Case Studies"
+title: "Evaluating Data Quality Across Case Studies"
 author: "Meghan Fletcher"
-date: "1/31/2022"
+date: "2/1/2022"
 output: 
   html_document:
     theme: flatly
@@ -397,6 +397,17 @@ attributes_merged_clean <- attributes_merged %>%
                                "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
                                "B - limited data/information and expert judgement"="Good",
                                "A - adequate and reliable data/information"="Excellent")) %>% 
+  # To fix some errors around data quality in the original datasets
+  mutate(quality=recode_factor(quality,
+                               "E - No data"="No data")) %>% 
+  # Create a new column to house numeric values for information quality
+  mutate(numeric_quality = case_when(
+    quality == "Excellent" ~ 4,
+    quality == "Good" ~ 3,
+    quality == "Fair" ~ 2,
+    quality == "Low" ~ 1,
+    quality == "No data" ~ 0)) %>% 
+  filter(!is.na(numeric_quality)) %>% 
   # Format importance
   mutate(importance=stringr::str_to_sentence(importance),
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
@@ -414,49 +425,49 @@ attributes_merged_clean <- attributes_merged %>%
 
 ################################################################################################
 
-# Find Importance Score Means 
-The importance score means of each attribute are reflected in the table. These means are based off of all case studies combined.In onder to calculate means, the importance levels needed to converted to numeric value so, _high importance = 3, medium = 2, and low = 1_.
+# Find Data Quality Score Means 
+The data quality score means of each attribute are reflected in the table. These means are based off of all case studies combined. In order to calculate the means of each attribute, the data quality levels needed to converted to numeric values so, _Excellent = 4, Good = 3, Fair = 2, Low = 1, and No data = 0_.
 
 ```{r}
 # Build a table
-merged_importance <- attributes_merged_clean %>% 
+merged_quality <- attributes_merged_clean %>% 
   group_by(attribute) %>% 
-  summarise_at(vars(numeric_importance), list(importance = mean))
+  summarise_at(vars(numeric_quality), list(data_quality = mean))
 
 # Use `kableExtra` package to create table
-merged_importance %>% 
-  kbl(caption = "Importance Score Means") %>% 
+merged_quality %>% 
+  kbl(caption = "Data Quality Means by Attribute") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-## Importance means by dimension
+## Data quality means by dimension
 
 ```{r}
 # Find means across domains but within each dimension
-dimension_importance <- attributes_merged_clean %>% 
+dimension_quality <- attributes_merged_clean %>% 
   group_by(dimension) %>% 
-  summarise_at(vars(numeric_importance), list("Mean" = mean, "Standard Deviaton" = sd)) %>% 
+  summarise_at(vars(numeric_quality), list("Mean" = mean, "Standard Deviaton" = sd)) %>% 
   rename(Dimension = dimension)
 
 # Create a table
-dimension_importance %>% 
-  kbl(caption = "Importance Score Means by Dimension") %>% 
+dimension_quality %>% 
+  kbl(caption = "Data Quality Means by Dimension") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-## Importance means by domain
+## Data quality means by domain
 
 ```{r}
 # Find means across domains but within each dimension
-domain_importance <- attributes_merged_clean %>% 
+domain_quality <- attributes_merged_clean %>% 
   group_by(dimension, domain) %>% 
-  summarise_at(vars(numeric_importance), list(importance = mean))
+  summarise_at(vars(numeric_quality), list(data_quality = mean))
 
 # Create a table
-domain_importance %>% 
-  kbl(caption = "Importance Score Means by Domain") %>% 
+domain_quality %>% 
+  kbl(caption = "Data Quality Means by Domain") %>% 
    kable_classic_2(full_width = F, html_font = "Cambria") %>% 
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
@@ -774,16 +785,3 @@ ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
 ##################################################################################################
 
 # Importance Score Proportions
-
-
-
-
-
-
-
-
-
-
-
-
-
