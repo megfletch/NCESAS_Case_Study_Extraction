@@ -114,20 +114,20 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
 
 
 #######################################################################################################################
-#golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  add_column(case_study = "Golden",
-#             reference = "golden1",
-#             .after = "question_id")
+golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=390607640", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "Golden",
+             reference = "golden1",
+             .after = "question_id")
 
 
 
@@ -353,7 +353,7 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 # Merge the datasets
 
 ```{r}
-attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, golden_madagascar, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
 
 ```
 
@@ -570,8 +570,8 @@ zhao_mean <- attributes_merged_clean %>%
 ### Kisara Case Study missing b/c no information forsome of the dimensions 
 
 # Merge all mean datasets together
-means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, hollowed_mean, kisara_mean,  kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
-  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kisara, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+means_merged_by_case <- cbind(aguion_mean, burden_mean, dickey_collas_mean, eurich_mean, free_mean, friedman_mean, hollowed_mean,  kleisner_mean, lau_mean, mason_mean, mills_mean, pecl_mean, tokunaga_mean, westfall_mean, zhao_mean) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Friedman, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
   rename(Dimension = dimension...1, Domain = domain...2)
 
 # Create a table
