@@ -783,7 +783,7 @@ attribute_score_stats <- attributes_merged_clean %>%
   count(dimension, score) 
 
 attribute_score_counts <- attribute_score_stats %>% 
-  tabyl(dimension, score, n)
+  tabyl(dimension)
 
 
 %>% 

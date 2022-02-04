@@ -775,7 +775,23 @@ ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
 
 # Importance Score Proportions
 
+```{r}
+# Create a table that shows the counts and proportions of attribute scores to help identify which are scoring higher than others and vice versa.
 
+importance_stats <- attributes_merged_clean %>% 
+  select(dimension, importance) %>% 
+  tabyl(dimension,importance) %>%
+  adorn_percentages() %>% 
+  adorn_pct_formatting(digits = 2) %>% 
+  column_to_rownames(var = "dimension")
+
+
+# Create a table
+importance_stats %>% 
+  kbl(caption = "Proportion of Importanc Levels by each Dimension") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
 
 
 
