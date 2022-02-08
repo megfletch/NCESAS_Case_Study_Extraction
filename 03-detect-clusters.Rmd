@@ -14,26 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(here)
 source(here("00-load-libraries.R"))
-load(here("data","attribute_tables.Rdata"))
+load(here("data","attribute_table_clean.Rdata")) # from 01-prep-attribute-tables.Rmd
 
 ```
 
-# Prep data
-```{r}
-attribs <- attributes_merged_clean %>% 
-  mutate(attribute_id = str_c(dimension, attribute, sep = "_"),
-         attribute_id = str_replace_all(attribute_id,"[:blank:]|[:punct:]","_")) %>% 
-  select(-score) %>% 
-  rename(score = official_score)
-
-attribs
-
-# Issue with Golden row name; fixed in 01-read-attribs.Rmd
-attribs %>% 
-  select(case_study, attribute_id, score) %>% 
-  pivot_wider(names_from = attribute_id ,values_from = score) %>% 
-  select(case_study, contains("agile"))
-```
 
 # Factor Analysis
 https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch19.pdf

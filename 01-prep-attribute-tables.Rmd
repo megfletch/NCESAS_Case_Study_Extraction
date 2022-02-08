@@ -421,9 +421,24 @@ attributes_merged_clean <- attributes_merged %>%
 
 ```
 
-# Save workspace image
+# Create final table for export
+```{r}
+attribs <- attributes_merged_clean %>% 
+  mutate(attribute_id = str_c(dimension, attribute, sep = "_"),
+         attribute_id = str_replace_all(attribute_id,"[:blank:]|[:punct:]","_")) %>% 
+  select(-score) %>% 
+  rename(score = official_score)
+
+attribs
+```
+
+
+# Save
+Save workspace image & csv to load with other scripts
 ```{r}
 
-save.image(here("data", "attribute_tables.Rdata"))
+save(attribs, file = here("data","attribute_table_clean.Rdata"))
+attribs %>% write_csv(here("data","attribute_table_clean.csv"))
+
 ```
 
