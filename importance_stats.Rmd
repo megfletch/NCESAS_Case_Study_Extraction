@@ -114,24 +114,6 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
 
 
 #######################################################################################################################
-golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=390607640", 
-                           sheet = "UPDATED_S4_ResilienceAttributes",
-                           range = "A6:P61",
-                           col_names = TRUE,
-                           na = "",
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = "c"
-                           ) %>%
-  as_tibble() %>%
-  clean_names() %>% 
-  add_column(case_study = "Golden",
-             reference = "golden1",
-             .after = "question_id")
-
-
-
-#######################################################################################################################
 friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1xHZB6gZqXUBHuylaC3ImCDIDTFFjqQ8RAoV-s/edit#gid=476628697", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
                            range = "A6:P61",
@@ -145,6 +127,24 @@ friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1
   clean_names() %>% 
   add_column(case_study = "Friedman",
              reference = "friedman1",
+             .after = "question_id")
+
+
+
+#######################################################################################################################
+golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=390607640", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "Golden",
+             reference = "golden1",
              .after = "question_id")
 
 

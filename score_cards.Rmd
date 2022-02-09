@@ -243,47 +243,6 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
 
 
 #######################################################################################################################
-#golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  rename(dimension=dimensions, 
-#         domain=new_domain, 
-#         attribute=resilience_attribute, 
-#         score=score_1_4,
-#         quality=information_quality, 
-#         importance=importance_of_attribute_in_study_system_high_medium_low, 
-#         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
-#  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
-#  filter(!is.na(attribute)) %>% 
-#  mutate(score=as.numeric(score)) %>% 
-#  mutate(dimension=recode_factor(dimension, 
-#                                 "Ecological"="Ecological",
-#                                 "Socio-economic"="Social-economic",
-#                                 "Governance-management"="Goverance")) %>% 
-#  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
-#         quality=recode_factor(quality,
-#                               "E - No data"="No data",
-#                               "D - not confident that the answer provided reflects the true state of the system"="Low",
-#                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
-#                               "B - limited data/information and expert judgement"="Good",
-#                               "A - adequate and reliable data/information"="Excellent")) %>% 
-#  mutate(importance=stringr::str_to_sentence(importance),
-#         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
-#  mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
-#  arrange(dimension, domain, score) %>% 
-#  mutate(attribute=factor(attribute, levels=attribute))
-
-
-
-#######################################################################################################################
 friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1xHZB6gZqXUBHuylaC3ImCDIDTFFjqQ8RAoV-s/edit#gid=476628697", 
                            sheet = "UPDATED_S4_ResilienceAttributes",
                            range = "A6:P61",
@@ -319,6 +278,47 @@ friedman_fiji <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/13fgkP1
   mutate(importance=stringr::str_to_sentence(importance),
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
  # mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
+  arrange(dimension, domain, score) %>% 
+  mutate(attribute=factor(attribute, levels=attribute))
+
+
+
+#######################################################################################################################
+golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  rename(dimension=dimensions, 
+         domain=new_domain, 
+         attribute=resilience_attribute, 
+         score=score_1_4,
+         quality=information_quality, 
+         importance=importance_of_attribute_in_study_system_high_medium_low, 
+         work_as_described=does_the_mechanism_work_as_described_in_this_fishery_system) %>% 
+  select(dimension, domain, attribute, score, quality, importance, work_as_described) %>% 
+  filter(!is.na(attribute)) %>% 
+  mutate(score=as.numeric(score)) %>% 
+  mutate(dimension=recode_factor(dimension, 
+                                 "Ecological"="Ecological",
+                                 "Socio-economic"="Social-economic",
+                                 "Governance-management"="Goverance")) %>% 
+  mutate(quality=ifelse(quality=="NA - Not relevant in this system", NA, quality),
+         quality=recode_factor(quality,
+                               "E - No data"="No data",
+                               "D - not confident that the answer provided reflects the true state of the system"="Low",
+                               "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
+                               "B - limited data/information and expert judgement"="Good",
+                               "A - adequate and reliable data/information"="Excellent")) %>% 
+  mutate(importance=stringr::str_to_sentence(importance),
+         importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
+  #mutate(attribute=ifelse(work_as_described=="no", paste0(attribute, "*"), attribute)) %>% 
   arrange(dimension, domain, score) %>% 
   mutate(attribute=factor(attribute, levels=attribute))
 
@@ -935,6 +935,28 @@ friedman_plot
 
 # Save the plot
 ggsave("friedman_attribute_score_card.png", 
+      width=6.5, height=6.5, units="in", dpi=600)
+```
+
+
+## Golden Score Card
+
+```{r}
+golden_plot <- ggplot() +
+  facet_grid(dimension~., space="free", scales="free_y") +
+  geom_segment(data=golden_madagascar, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=score, color=domain, alpha=quality)) +
+  geom_point(data=golden_madagascar, mapping=aes(x=score, y=attribute, color=domain, alpha=quality, shape=importance), size=3.5, inherit.aes = F) +
+  scale_x_continuous(lim=c(0.5, 4.3), breaks=1:4, labels=c("1\n(none)", "2\n(low)", "3\n(medium)", "4\n(high)")) +
+  labs(x="Attribute score", y="", title="Madagascar SSF resilience score card") +
+  scale_alpha_ordinal(name="Data quality") +
+  scale_color_discrete(name="Domain") +
+  scale_shape_discrete(name="Importance") +
+  guides(color = guide_legend(order = 1), size = guide_legend(order = 2), alpha = guide_legend(order = 3)) +
+  theme_bw() + my_theme
+golden_plot
+
+# Save the plot
+ggsave("golden_attribute_score_card.png", 
       width=6.5, height=6.5, units="in", dpi=600)
 ```
 

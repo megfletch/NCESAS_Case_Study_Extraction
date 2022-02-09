@@ -14,8 +14,9 @@ library(broom)
 library(ggpubr)
 library(psych)
 library(corrplot)
-library(ComplexHeatmap) # install_github("jokergoo/ComplexHeatmap")
-library(circlize)       #install_github("jokergoo/circlize")
 library(cluster)
-library(RColorBrewer)
+
+
+
+
 

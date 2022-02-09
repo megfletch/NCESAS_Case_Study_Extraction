@@ -352,24 +352,6 @@ free_crab &lt;- read_sheet(ss = &quot;https://docs.google.com/spreadsheets/d/12z
 
 
 #######################################################################################################################
-golden_madagascar &lt;- read_sheet(ss = &quot;https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=390607640&quot;, 
-                           sheet = &quot;UPDATED_S4_ResilienceAttributes&quot;,
-                           range = &quot;A6:P61&quot;,
-                           col_names = TRUE,
-                           na = &quot;&quot;,
-                           guess_max = 10000,
-                           trim_ws = TRUE,
-                           col_types = &quot;c&quot;
-                           ) %&gt;%
-  as_tibble() %&gt;%
-  clean_names() %&gt;% 
-  add_column(case_study = &quot;Golden&quot;,
-             reference = &quot;golden1&quot;,
-             .after = &quot;question_id&quot;)
-
-
-
-#######################################################################################################################
 friedman_fiji &lt;- read_sheet(ss = &quot;https://docs.google.com/spreadsheets/d/13fgkP1xHZB6gZqXUBHuylaC3ImCDIDTFFjqQ8RAoV-s/edit#gid=476628697&quot;, 
                            sheet = &quot;UPDATED_S4_ResilienceAttributes&quot;,
                            range = &quot;A6:P61&quot;,
@@ -383,6 +365,24 @@ friedman_fiji &lt;- read_sheet(ss = &quot;https://docs.google.com/spreadsheets/d
   clean_names() %&gt;% 
   add_column(case_study = &quot;Friedman&quot;,
              reference = &quot;friedman1&quot;,
+             .after = &quot;question_id&quot;)
+
+
+
+#######################################################################################################################
+golden_madagascar &lt;- read_sheet(ss = &quot;https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=390607640&quot;, 
+                           sheet = &quot;UPDATED_S4_ResilienceAttributes&quot;,
+                           range = &quot;A6:P61&quot;,
+                           col_names = TRUE,
+                           na = &quot;&quot;,
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = &quot;c&quot;
+                           ) %&gt;%
+  as_tibble() %&gt;%
+  clean_names() %&gt;% 
+  add_column(case_study = &quot;Golden&quot;,
+             reference = &quot;golden1&quot;,
              .after = &quot;question_id&quot;)
 
 
@@ -787,18 +787,10 @@ Evolutionary potential
 </tr>
 <tr>
 <td style="text-align:left;">
-Flexible and agile infrastructure
-</td>
-<td style="text-align:right;">
-1.000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Flexible and agile infrstructure
 </td>
 <td style="text-align:right;">
-2.384615
+2.285714
 </td>
 </tr>
 <tr>
