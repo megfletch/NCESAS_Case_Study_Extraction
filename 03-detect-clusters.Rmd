@@ -149,6 +149,10 @@ https://jokergoo.github.io/ComplexHeatmap-reference/book/a-single-heatmap.html#c
 https://www.biostars.org/p/273155/
 
 ```{r}
+#library(ComplexHeatmap) # install_github("jokergoo/ComplexHeatmap")
+#library(circlize)       #install_github("jokergoo/circlize")
+
+
 # Heatmap based on raw values
 df_clust %>% 
   column_to_rownames(var = "case_study") %>% 

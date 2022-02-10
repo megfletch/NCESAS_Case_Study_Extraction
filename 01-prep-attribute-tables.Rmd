@@ -283,7 +283,7 @@ pecl_lobster <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/11Z-SLlA
 
 
 ###########################################################################################################################
-#schmidt_senegal <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1bUY6yII5y0FZfDRJ5lxpA7iD2p3o__2A1xsWivxwKB0/edit#gid=2000123802", 
+#schmidt_senegal <- read_sheet(ss = #"https://docs.google.com/spreadsheets/d/1bUY6yII5y0FZfDRJ5lxpA7iD2p3o__2A1xsWivxwKB0/edit#gid=2000123802", 
 #                           sheet = "UPDATED_S4_ResilienceAttributes",
 #                           range = "A6:P61",
 #                           col_names = TRUE,

@@ -432,7 +432,8 @@ The data quality score means of each attribute are reflected in the table. These
 # Build a table
 merged_quality <- attributes_merged_clean %>% 
   group_by(attribute) %>% 
-  summarise_at(vars(numeric_quality), list(data_quality = mean))
+  summarise_at(vars(numeric_quality), list(data_quality = mean)) %>% 
+  mutate(across(where(is.numeric), ~ round(., 3)))
 
 # Use `kableExtra` package to create table
 merged_quality %>% 
@@ -448,7 +449,8 @@ merged_quality %>%
 dimension_quality <- attributes_merged_clean %>% 
   group_by(dimension) %>% 
   summarise_at(vars(numeric_quality), list("Mean" = mean, "Standard Deviaton" = sd)) %>% 
-  rename(Dimension = dimension)
+  rename(Dimension = dimension) %>% 
+  mutate(across(where(is.numeric), ~ round(., 3)))
 
 # Create a table
 dimension_quality %>% 
@@ -463,7 +465,8 @@ dimension_quality %>%
 # Find means across domains but within each dimension
 domain_quality <- attributes_merged_clean %>% 
   group_by(dimension, domain) %>% 
-  summarise_at(vars(numeric_quality), list(data_quality = mean))
+  summarise_at(vars(numeric_quality), list(data_quality = mean)) %>% 
+  mutate(across(where(is.numeric), ~ round(., 2)))
 
 # Create a table
 domain_quality %>% 
@@ -609,7 +612,8 @@ zhao_dim <- attributes_merged_clean %>%
 
 # Merge all mean datasets together
 dimension_quality_merged <- cbind(aguion_dim, dickey_collas_dim, eurich_dim, free_dim, friedman_dim, golden_dim, hollowed_dim,  kleisner_dim, lau_dim, mason_dim, mills_dim, pecl_dim, tokunaga_dim, westfall_dim, zhao_dim) %>% 
-  select(Dimension, Aguion, Dickey_Collas, Eurich, Free, Friedman, Golden, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) 
+  select(Dimension, Aguion, Dickey_Collas, Eurich, Free, Friedman, Golden, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+  mutate(across(where(is.numeric), ~ round(., 2)))
 
 
 # Create a table
@@ -752,7 +756,8 @@ zhao_dom <- attributes_merged_clean %>%
 # Merge all mean datasets together
 means_merged_by_case <- cbind(aguion_dom, dickey_collas_dom, eurich_dom, free_dom, friedman_dom, golden_dom, hollowed_dom,  kleisner_dom, lau_dom, mason_dom, mills_dom, pecl_dom, tokunaga_dom, westfall_dom, zhao_dom) %>% 
   select(dimension...1, domain...2, Aguion, Dickey_Collas, Eurich, Free, Friedman, Golden, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
-  rename(Dimension = dimension...1, Domain = domain...2)
+  rename(Dimension = dimension...1, Domain = domain...2) %>% 
+  mutate(across(where(is.numeric), ~ round(., 2)))
 
 # Create a table
 means_merged_by_case %>% 
@@ -783,7 +788,8 @@ my_theme <-  theme(axis.text.x=element_text(size=7, angle=38, hjust=0.8),
 # Bar graph showing average comparison by dimension across case studies
 
 dimension_comparison <- dimension_quality_merged %>% 
-  pivot_longer(!Dimension, names_to = "case_study", values_to = "means")
+  pivot_longer(!Dimension, names_to = "case_study", values_to = "means") %>% 
+  mutate(across(where(is.numeric), ~ round(., 2)))
 
 
 ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
@@ -791,8 +797,22 @@ ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension)) +
   theme_bw() + my_theme +
   facet_wrap(~Dimension, scales = "free_x") +
   theme(legend.position="top") +
+  scale_fill_brewer(palette = "Accent") +
   geom_hline(data=dimension_quality, aes(yintercept = (Mean)), linetype="dashed", colour="black") +
   labs(x = "Case Studies", y = "Data Quality Averages")
+```
+
+```{r}
+# Make a stacked graph for the data
+
+quality_stacked <- ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension, label = means)) +
+  geom_bar(stat="identity", position="stack") +
+  theme_bw() + my_theme +
+  theme(legend.position="top") +
+  labs(x = "Case Studies", y = "Attribute Score Averages") +
+  scale_fill_brewer(palette = "Accent") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5))
+plot(quality_stacked)
 ```
 
 
