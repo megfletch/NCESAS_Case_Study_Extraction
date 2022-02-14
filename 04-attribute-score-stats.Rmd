@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(here)
 source(here("00-load-libraries.R"))
 load(here("data","attribute_table_clean.Rdata")) # from 01-prep-attribute-tables.Rmd
+load(here("data","attributes_merged_clean.Rdata"))
 
 ```
 
@@ -420,9 +421,7 @@ plot(score_dimension_graph)
 score_stacked <- ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension, label = means)) +
   geom_bar(stat="identity", position="stack") +
   theme_bw() + my_theme +
-  #facet_wrap(~Dimension, scales = "free") +
   theme(legend.position="top") +
-  #geom_hline(data=dimension_mean, aes(yintercept = (Mean)), linetype="dashed", colour="black") +
   labs(x = "Case Studies", y = "Attribute Score Averages") +
   scale_fill_brewer(palette = "Accent") +
   geom_text(size = 3, position = position_stack(vjust = 0.5))

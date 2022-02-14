@@ -181,14 +181,14 @@ Goverance,Organization,Free,Free44,Polycentric,Excellent,High,yes,4,3,Goverance_
 Goverance,Organization,Free,Free45,Cross-scale integration,Excellent,High,yes,4,3,Goverance_Cross_scale_integration
 Goverance,Learning,Free,Free47,Adaptive,Fair,High,yes,2,3,Goverance_Adaptive
 Goverance,Agency,Free,Free49,Leadership and initiative,Good,High,yes,4,3,Goverance_Leadership_and_initiative
-Ecological,Assets,Friedman,Friedman1,Population abundance,Good,High,yes,3,3,Ecological_Population_abundance
-Ecological,Assets,Friedman,Friedman2,Age structure,Good,High,yes,2,3,Ecological_Age_structure
+Ecological,Assets,Friedman,Friedman1,Population abundance,Excellent,High,yes,3,3,Ecological_Population_abundance
+Ecological,Assets,Friedman,Friedman2,Age structure,Excellent,High,yes,3,3,Ecological_Age_structure
 Ecological,Assets,Friedman,Friedman3,Genetic diversity,Fair,High,yes,4,3,Ecological_Genetic_diversity
 Ecological,Assets,Friedman,Friedman4,Species diversity,Excellent,High,yes,4,3,Ecological_Species_diversity
 Ecological,Flexibility,Friedman,Friedman6,Adult mobility,Excellent,Medium,yes,2,2,Ecological_Adult_mobility
 Ecological,Flexibility,Friedman,Friedman7,Larval dispersal,Good,High,yes,3,3,Ecological_Larval_dispersal
 Ecological,Flexibility,Friedman,Friedman8,Environmental niche breadth,Excellent,High,yes,3,3,Ecological_Environmental_niche_breadth
-Ecological,Flexibility,Friedman,Friedman9,Dietary flexibility,Good,Medium,yes,3,2,Ecological_Dietary_flexibility
+Ecological,Flexibility,Friedman,Friedman9,Dietary flexibility,Excellent,Medium,yes,4,2,Ecological_Dietary_flexibility
 Ecological,Flexibility,Friedman,Friedman10,Habitat diversity,Excellent,High,yes,4,3,Ecological_Habitat_diversity
 Ecological,Flexibility,Friedman,Friedman11,Plasticity,Excellent,Medium,NA,2,2,Ecological_Plasticity
 Ecological,Flexibility,Friedman,Friedman12,Evolutionary potential,Excellent,High,NA,3,3,Ecological_Evolutionary_potential
@@ -197,9 +197,9 @@ Ecological,Organization,Friedman,Friedman15,Population modularity,Good,Medium,NA
 Social-economic,Assets,Friedman,Friedman17,Wealth and reserves,Excellent,High,NA,3,3,Social_economic_Wealth_and_reserves
 Social-economic,Assets,Friedman,Friedman18,Economic diversity,Excellent,High,NA,2,3,Social_economic_Economic_diversity
 Social-economic,Assets,Friedman,Friedman19,Social diversity,Excellent,Medium,NA,4,2,Social_economic_Social_diversity
-Social-economic,Flexibility,Friedman,Friedman21,Flexible and agile infrstructure,Excellent,High,NA,3,3,Social_economic_Flexible_and_agile_infrstructure
+Social-economic,Flexibility,Friedman,Friedman21,Flexible and agile infrstructure,Excellent,High,NA,2,3,Social_economic_Flexible_and_agile_infrstructure
 Social-economic,Flexibility,Friedman,Friedman22,Mobility,Excellent,Medium,NA,2,2,Social_economic_Mobility
-Social-economic,Flexibility,Friedman,Friedman23,Economic opportunity,Excellent,High,NA,4,3,Social_economic_Economic_opportunity
+Social-economic,Flexibility,Friedman,Friedman23,Economic opportunity,Excellent,High,NA,2,3,Social_economic_Economic_opportunity
 Social-economic,Flexibility,Friedman,Friedman24,Resilience mindset,Good,Low,NA,2,1,Social_economic_Resilience_mindset
 Social-economic,Flexibility,Friedman,Friedman25,Place attachment,Excellent,High,NA,4,3,Social_economic_Place_attachment
 Social-economic,Organization,Friedman,Friedman27,Social capital,Excellent,High,NA,4,3,Social_economic_Social_capital
@@ -208,10 +208,11 @@ Social-economic,Organization,Friedman,Friedman29,Modular infrastructure,Excellen
 Social-economic,Learning,Friedman,Friedman31,Knowledge diversity,Excellent,High,NA,3,3,Social_economic_Knowledge_diversity
 Social-economic,Learning,Friedman,Friedman32,Knowledge access,Excellent,High,NA,2,3,Social_economic_Knowledge_access
 Social-economic,Learning,Friedman,Friedman33,Learning capacity,Good,High,NA,3,3,Social_economic_Learning_capacity
-Social-economic,Agency,Friedman,Friedman35,Agency,Good,Medium,NA,3,2,Social_economic_Agency
+Social-economic,Agency,Friedman,Friedman35,Agency,Good,Medium,NA,2,2,Social_economic_Agency
 Goverance,Flexibility,Friedman,Friedman37,Responsive,Excellent,High,NA,2,3,Goverance_Responsive
 Goverance,Organization,Friedman,Friedman39,Participatory,Excellent,High,NA,3,3,Goverance_Participatory
 Goverance,Organization,Friedman,Friedman40,Equitable and inclusive,Good,High,NA,2,3,Goverance_Equitable_and_inclusive
+Goverance,Organization,Friedman,Friedman41,Accountable,Good,Medium,NA,2,2,Goverance_Accountable
 Goverance,Organization,Friedman,Friedman42,Transparent,Good,High,NA,2,3,Goverance_Transparent
 Goverance,Organization,Friedman,Friedman43,Effective and efficient,Excellent,High,NA,1,3,Goverance_Effective_and_efficient
 Goverance,Organization,Friedman,Friedman44,Polycentric,Excellent,Medium,NA,2,2,Goverance_Polycentric

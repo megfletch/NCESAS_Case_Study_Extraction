@@ -407,6 +407,17 @@ attributes_merged_clean <- attributes_merged %>%
                                "C - fairly confident that the answer provided reflects the true state of the system"="Fair",
                                "B - limited data/information and expert judgement"="Good",
                                "A - adequate and reliable data/information"="Excellent")) %>% 
+    # To fix some errors around data quality in the original datasets
+  mutate(quality=recode_factor(quality,
+                               "E - No data"="No data")) %>% 
+  # Create a new column to house numeric values for information quality
+  mutate(numeric_quality = case_when(
+    quality == "Excellent" ~ 4,
+    quality == "Good" ~ 3,
+    quality == "Fair" ~ 2,
+    quality == "Low" ~ 1,
+    quality == "No data" ~ 0)) %>% 
+  filter(!is.na(numeric_quality)) %>%
   # Format importance
   mutate(importance=stringr::str_to_sentence(importance),
          importance=factor(importance, levels=c("Low", "Medium", "High"))) %>% 
@@ -437,8 +448,11 @@ attribs
 Save workspace image & csv to load with other scripts
 ```{r}
 
-save(attribs, file = here("data","attribute_table_clean.Rdata"))
-attribs %>% write_csv(here("data","attribute_table_clean.csv"))
+save(attribs, file = here("data","attribs.Rdata"))
+attribs %>% write_csv(here("data","attribs.csv"))
+
+save(attributes_merged_clean, file = here("data","attributes_merged_clean.Rdata"))
+attributes_merged_clean %>% write_csv(here("data","attributes_merged_clean.csv"))
 
 ```
 
