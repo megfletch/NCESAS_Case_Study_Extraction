@@ -417,6 +417,7 @@ attributes_merged_clean <- attributes_merged %>%
     quality == "Fair" ~ 2,
     quality == "Low" ~ 1,
     quality == "No data" ~ 0)) %>% 
+  # Burden has NA's across this seciton an can't be in data (Take out the # when you are working on scores and importance aadd bakc in when working in data quality until this is updated in his sheet)
   filter(!is.na(numeric_quality)) %>%
   # Format importance
   mutate(importance=stringr::str_to_sentence(importance),

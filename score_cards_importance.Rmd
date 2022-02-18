@@ -1021,21 +1021,7 @@ ggsave("friedman_importance_scores.png",
 ## Golden Score Card
 
 ```{r}
-eurich_plot <- ggplot() +
-  facet_grid(dimension~., space="free", scales="free_y") +
-  geom_segment(data=golden_madagascar, mapping=aes(y=attribute, yend=attribute, x=0.5, xend=numeric_importance, color=domain, alpha=quality)) +
-  geom_point(data=golden_madagascar, mapping=aes(x=numeric_importance, y=attribute, color=domain, alpha=quality), size=3.5, inherit.aes = F) +
-  scale_x_continuous(lim=c(0.5, 3.3), breaks=1:3, labels=c("1\n(low)", "2\n(medium)", "3\n(high)")) +
-  labs(x="Attribute score", y="", title="Madagascar SSF resilience importance score card") +
-  scale_alpha_ordinal(name="Data quality") +
-  scale_color_discrete(name="Domain") +
-  guides(color = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  theme_bw() + my_theme
-eurich_plot
 
-# Save the plot as a PNG
-ggsave("golden_importance_scores.png",
-       width=6.5, height=6.5, units="in", dpi=600)
 
 ```
 

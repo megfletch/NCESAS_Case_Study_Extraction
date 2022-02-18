@@ -2128,9 +2128,7 @@ plot(score_dimension_graph)</code></pre>
 score_stacked &lt;- ggplot(dimension_comparison, aes(x = case_study, y = means, fill = Dimension, label = means)) +
   geom_bar(stat=&quot;identity&quot;, position=&quot;stack&quot;) +
   theme_bw() + my_theme +
-  #facet_wrap(~Dimension, scales = &quot;free&quot;) +
   theme(legend.position=&quot;top&quot;) +
-  #geom_hline(data=dimension_mean, aes(yintercept = (Mean)), linetype=&quot;dashed&quot;, colour=&quot;black&quot;) +
   labs(x = &quot;Case Studies&quot;, y = &quot;Attribute Score Averages&quot;) +
   scale_fill_brewer(palette = &quot;Accent&quot;) +
   geom_text(size = 3, position = position_stack(vjust = 0.5))

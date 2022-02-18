@@ -114,20 +114,20 @@ free_crab <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/12zMb5el0QA
 
 
 #######################################################################################################################
-#golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
-#                           sheet = "UPDATED_S4_ResilienceAttributes",
-#                           range = "A6:P61",
-#                           col_names = TRUE,
-#                           na = "",
-#                           guess_max = 10000,
-#                           trim_ws = TRUE,
-#                           col_types = "c"
-#                           ) %>%
-#  as_tibble() %>%
-#  clean_names() %>% 
-#  add_column(case_study = "Golden",
-#             reference = "golden1",
-#             .after = "question_id")
+golden_madagascar <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1w99nN8C_Vd82j4Y23g2ZG_kuEh_Jc2HkW6lnLkhzeCU/edit#gid=1980661832", 
+                           sheet = "UPDATED_S4_ResilienceAttributes",
+                           range = "A6:P61",
+                           col_names = TRUE,
+                           na = "",
+                           guess_max = 10000,
+                           trim_ws = TRUE,
+                           col_types = "c"
+                           ) %>%
+  as_tibble() %>%
+  clean_names() %>% 
+  add_column(case_study = "Golden",
+             reference = "golden1",
+             .after = "question_id")
 
 
 
@@ -353,7 +353,7 @@ zhao_moorea <- read_sheet(ss = "https://docs.google.com/spreadsheets/d/1-Muz76--
 # Merge the datasets
 
 ```{r}
-attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
+attributes_merged <- rbind(aguion_barnacle, burden_sardine, dickey_collas_eur, eurich_clam, free_crab, friedman_fiji, golden_madagascar, hollowed_bering_sea, kisara_squid, kleisner_jfi, lau_png, mason_iceland, mills_lobster, pecl_lobster, tokunaga_lobster, westfall_hms, zhao_moorea)
 
 ```
 
@@ -879,7 +879,7 @@ ggplot() +
   labs(title = "Social Capital Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=social_capital, aes(yintercept = mean(official_score)), linetype="dashed") +
   geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
@@ -940,7 +940,7 @@ ggplot() +
   labs(title = "Knowledge Diversity Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=knowledge_diversity, aes(yintercept = mean(official_score)), linetype="dashed") +
   geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
@@ -960,7 +960,7 @@ ggplot() +
   labs(title = "KNowledge Access Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=knowledge_access, aes(yintercept = mean(official_score)), linetype="dashed") +
   geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme
@@ -1001,7 +1001,7 @@ ggplot() +
   labs(title = "Agency Scores Across Case Studies", x = "Case Studies", y = "Attribute Score", fill = "Importance") + 
   scale_alpha_ordinal(name="Data quality") + 
   guides(fill = guide_legend(order = 1), alpha = guide_legend(order = 2)) +
-  scale_fill_manual(values = c("#E7B800", "#FC4E07", "#999999")) +
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07", "#999999")) +
   geom_hline(data=agency, aes(yintercept = mean(official_score)), linetype="dashed") +
   geom_hline(data=population_abundance, aes(yintercept = mean(numeric_importance)), linetype="dashed", colour="blue") +
   theme_bw() + my_theme

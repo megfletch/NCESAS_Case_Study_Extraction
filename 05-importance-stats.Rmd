@@ -414,7 +414,7 @@ importance_stacked <- ggplot(dimension_comparison, aes(x = case_study, y = means
   geom_bar(stat="identity", position="stack") +
   theme_bw() + my_theme +
   theme(legend.position="top") +
-  labs(x = "Case Studies", y = "Attribute Score Averages") +
+  labs(x = "Case Studies", y = "Importance Averages") +
   scale_fill_brewer(palette = "Accent") +
   geom_text(size = 3, position = position_stack(vjust = 0.5))
 plot(importance_stacked)
