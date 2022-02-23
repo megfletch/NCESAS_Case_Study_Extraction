@@ -100,6 +100,7 @@ aguion_dim <- attributes_merged_clean %>%
   rename(Aguion = score,
          Dimension=dimension) 
 
+# Go back to Burden case in the 01-prep-data RMD and remove filter NA for data quality score
 # Burden mean
 burden_dim <- attributes_merged_clean %>% 
   filter(case_study == "Burden") %>% 
@@ -378,6 +379,149 @@ means_merged_by_case %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
+
+####################################################################################################
+
+# Summing the attributes by dimension and domain
+
+```{r}
+# Create a table where the sums if each attribute score are grouped by dimension and domain
+
+# Aguion sum
+aguion_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Aguion") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Aguion = score) 
+
+# Burden sum
+burden_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Burden") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Burden = score)
+
+# Dickey-Collas sum
+dickey_collas_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Dickey_Collas") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Dickey_Collas = score) 
+
+# Eurich sum
+eurich_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Eurich") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Eurich = score)
+
+# Free sum
+free_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Free") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Free = score)
+
+# Friedman sum
+friedman_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Friedman") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Friedman = score)
+
+# Golden sum
+golden_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Golden") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Golden = score)
+
+# Hollowed sum
+hollowed_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Hollowed") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Hollowed = score)
+
+# Kisara mean
+#kisara_mean <- attributes_merged_clean %>% 
+#  filter(case_study == "Kisara") %>% 
+#  group_by(dimension, domain) %>% 
+#  summarise_at(vars(official_score), list(score = mean)) %>% 
+#  rename(Kisara = score)
+
+# Kleisner sum
+kleisner_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Kleisner") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Kleisner = score)
+
+# Lau sum
+lau_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Lau") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Lau = score)
+
+# Mason sum
+mason_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Mason") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Mason = score)
+
+# Mills sum
+mills_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Mills") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Mills = score)
+
+# Pecl sum
+pecl_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Pecl") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Pecl = score)
+
+# Tokunaga sum
+tokunaga_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Tokunaga") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Tokunaga = score)
+
+# Westfall sum
+westfall_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Westfall") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Westfall = score)
+
+# Zhao sum
+zhao_sum <- attributes_merged_clean %>% 
+  filter(case_study == "Zhao") %>% 
+  group_by(dimension, domain) %>% 
+  summarise_at(vars(official_score), list(score = sum)) %>% 
+  rename(Zhao = score)
+```
+
+```{r}
+### Kisara Case Study missing b/c no information for some of the dimensions 
+
+# Merge all sum datasets together
+sums_merged_by_case <- cbind(aguion_sum, burden_sum, dickey_collas_sum, eurich_sum, free_sum, friedman_sum, golden_sum, hollowed_sum,  kleisner_sum, lau_sum, mason_sum, mills_sum, pecl_sum, tokunaga_sum, westfall_sum, zhao_sum) %>% 
+  select(dimension...1, domain...2, Aguion, Burden, Dickey_Collas, Eurich, Free, Golden, Friedman, Hollowed, Kleisner, Lau, Mason, Mills, Pecl, Tokunaga, Westfall, Zhao) %>% 
+  rename(Dimension = dimension...1, Domain = domain...2) %>% 
+  mutate(across(where(is.numeric), ~ round(., 2)))
+
+# Create a table
+sums_merged_by_case %>% 
+  kbl(caption = "Resilience Attribute Score Sums Grouped by Dimension and Domain Across Case Studies") %>% 
+   kable_classic_2(full_width = F, html_font = "Cambria") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
 ####################################################################################################
 
 # Visualize Attribute Score Means
@@ -428,6 +572,32 @@ score_stacked <- ggplot(dimension_comparison, aes(x = case_study, y = means, fil
 plot(score_stacked)
 ```
 
+# Visualize sum
+
+```{r}
+# Create dataset
+
+sum_comparison <- sums_merged_by_case %>% 
+  pivot_longer(cols = c("Aguion", "Burden", "Dickey_Collas", "Eurich", "Free", "Golden", "Friedman", "Hollowed", "Kleisner", "Lau", "Mason", "Mills", "Pecl", "Tokunaga", "Westfall", "Zhao"),
+               names_to = "case_study", 
+               values_to = "sums") %>% 
+  mutate(across(where(is.numeric), ~ round(., 2))) %>% 
+  mutate()
+# need to break it into dimensions - plot eahc one individually
+
+
+# Make a stacked graph for the data
+
+score_sum_stacked <- ggplot(sum_comparison, aes(x = case_study, y = sums, fill = Domain, label = sums)) +
+  geom_bar(stat="identity", position="stack") +
+  theme_bw() + my_theme +
+  theme(legend.position="top") +
+  labs(x = "Case Studies", y = "Attribute Score Averages") +
+  scale_fill_brewer(palette = "Accent") +
+ # geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  facet_wrap(~Dimension, scales="free")
+plot(score_sum_stacked)
+```
 
 ##################################################################################################
 
